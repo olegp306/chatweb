@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import ChatsList from "../ChatsList";
-import BigChatInfo from "../ChatInfo/BigChatInfo";
-import MessagesList from "../MessagesList";
-import SendNewMessage from "../SendNewMessage";
+import ChatsList from "../../components/ChatsList";
+import BigChatInfo from "../../components/ChatInfo/BigChatInfo";
+import MessagesList from "../../components/MessagesList";
+import SendNewMessage from "../../components/SendNewMessage";
 
  
 
@@ -39,6 +39,7 @@ export default class ChatApp extends Component {
           <div className="col-xs-9 xs-padding-left">
             <div className="panel panel-primary messages-panel">
               <div className="panel-heading chat-panel-heading">
+              BigChatInfo
                 {/* <BigChatInfo
                   chatInfo={this.state.chats[this.state.currentChatId]}
                   addUsersFn={this.addUsers}
@@ -47,6 +48,7 @@ export default class ChatApp extends Component {
                   currentUserId={this.props.userId}
                 /> */}
               </div>
+              MessagesList
 
               {/* <MessagesList
                 currentChatId={this.state.currentChatId}
@@ -59,6 +61,7 @@ export default class ChatApp extends Component {
               /> */}
             </div>
           </div>
+          SendNewMessage
           {/* <SendNewMessage
             addMessageFn={this.addMessagge}
             newMessageText={this.state.newMessageText}
