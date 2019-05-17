@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import logo from "./logo.svg";
 // import "./App.css";
 import { Provider as ReduxProvider } from "react-redux";
-import configureStore from "./redux/configureStore";
+import configureStore from "./store/configureStore";
 import ChatApp from "./containers/ChatApp/"
 
 const reduxStore = configureStore(window.REDUX_INITIAL_DATA);
