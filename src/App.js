@@ -2,15 +2,15 @@ import React, { Component } from "react";
 // import logo from "./logo.svg";
 // import "./App.css";
 import { Provider as ReduxProvider } from "react-redux";
-import configureStore from "./store/configureStore";
-import ChatApp from "./containers/ChatApp/"
+import store from "./redux/store";
+import ChatApp from "./containers/ChatApp/ChatApp.js";
 
-const reduxStore = configureStore(window.REDUX_INITIAL_DATA);
+//const reduxStore = configureStore(window.REDUX_INITIAL_DATA);
 
 class App extends Component {
   render() {
     return (
-      <ReduxProvider store={reduxStore}>
+      <ReduxProvider store={store}>
         {/* <div className="App">
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
@@ -18,7 +18,7 @@ class App extends Component {
           </header>
           
         </div> */}
-        <ChatApp />
+        <ChatApp chatparams={this.props.chatparams} />
       </ReduxProvider>
     );
   }

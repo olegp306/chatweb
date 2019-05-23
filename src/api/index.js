@@ -113,7 +113,7 @@ const getChatByChatId=(chatId) =>{
   return axios.get("/chats/chat/" + chatId).then(checkStatus);
 }
 
-const getUserChats=(userId) =>{
+const fetchUserChats=(userId) =>{
   return axios.get("/chats/user/" + userId).then(checkStatus);
 }
 
@@ -148,7 +148,7 @@ const  updateMessagesReadStatus=(readMessages)=> {
 export default { 
   authenticateByUserId, 
   getChatByChatId, 
-  getUserChats, 
+  fetchUserChats, 
   addUsersToChat, 
   getUsersByChatId, 
   getUsersAvailableToAdd,
