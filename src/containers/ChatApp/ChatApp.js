@@ -3,31 +3,36 @@ import ChatsList from "../../components/ChatsList";
 import BigChatInfo from "../../components/ChatInfo/BigChatInfo";
 import MessagesList from "../../components/MessagesList";
 import SendNewMessage from "../../components/SendNewMessage";
+import { connect } from "react-redux";
+import { fetch as fetchChats } from "../../redux/actions/chats";
+import { login, loginByUserId } from "../../redux/actions/Session";
 
-import api from "../../api"
+import api from "../../api";
 
- 
-
-export default class ChatApp extends Component {
+class ChatApp extends Component {
   constructor(props) {
     //console.log('constructor');
     super(props);
-    this.state={
-      userId:this.props.chatparams.userId,
-      chatId:this.props.chatparams.chatId
+    this.state = {
+      userId: this.props.chatparams.userId,
+      chatId: this.props.chatparams.chatId
     };
   }
-
+  onLoginClick = () => {
+    this.props.login("Заказчик", "AW7777");
+  };
   componentDidMount() {
     //auth by user id
-    api.authenticateByUserId()
+    // login action
+    //this.props.login("Заказчик", "AW7777");
+    // this.props.loginByUserId(this.props.chatparams.userId)
 
+    console.log(this.props.chatparams.userId);
   }
   render() {
     // if (!this.state.chatUsers || !this.state.messages || !this.state.chats) {
     //   return <p>MessagesList Loading....</p>;
     // }
-  
 
     // let chatUnreadMessages = {};
     // for (let prop in this.state.unreadMessages) {
@@ -40,7 +45,10 @@ export default class ChatApp extends Component {
       <div className="bootstrap">
         <div className="row">
           <div className="col-xs-3 no-padding-right">
-          ChatsList
+            <a ihref="#" onClick={this.onLoginClick}>
+              <button type="button" class="btn btn-primary" />
+            </a>
+            ChatsList
             {/* <ChatsList
               chats={this.state.chats}
               currentChatId={this.state.currentChatId}
@@ -52,7 +60,7 @@ export default class ChatApp extends Component {
           <div className="col-xs-9 xs-padding-left">
             <div className="panel panel-primary messages-panel">
               <div className="panel-heading chat-panel-heading">
-              BigChatInfo
+                BigChatInfo
                 {/* <BigChatInfo
                   chatInfo={this.state.chats[this.state.currentChatId]}
                   addUsersFn={this.addUsers}
@@ -62,7 +70,6 @@ export default class ChatApp extends Component {
                 /> */}
               </div>
               MessagesList
-
               {/* <MessagesList
                 currentChatId={this.state.currentChatId}
                 currentUserId={this.props.userId}
@@ -85,3 +92,19 @@ export default class ChatApp extends Component {
     );
   }
 }
+
+// const mapStateToProps = {
+//   // updatePostComment: updateComment,
+//   // deletePostComment: deleteComment
+// }
+
+// const mapDispatchToProps = (dispatch)= {
+//   fetchChats: fetchChats,
+//   loginByUserId: loginByUserId,
+//   login: (user, password) => dispatch(login(user, password))
+// }
+
+export default connect(
+  store => store,
+  dispatch => ({ login: (user, password) => dispatch(login(user, password)) })
+)(ChatApp);

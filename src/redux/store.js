@@ -1,10 +1,11 @@
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware,compose  } from 'redux'
+
 import createSagaMiddleware from 'redux-saga'
 import { createLogger } from 'redux-logger'
 import Immutable from 'immutable'
 
 import rootReducer from './reducers'
-import saga from './saga' 
+import sagaWatcher from './saga' 
 
 
 const logger = createLogger({
@@ -24,9 +25,15 @@ const logger = createLogger({
 })
 
 const sagaMiddleware = createSagaMiddleware()
-const middlewares = [sagaMiddleware, logger]
-const store = createStore(rootReducer, applyMiddleware(...middlewares))
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-sagaMiddleware.run(saga)
+const middlewares = [sagaMiddleware, logger,]
+
+
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(...middlewares)))
+
+//const store = createStore(rootReducer, compose(middleware, Reactotron.createEnhancer()))
+
+sagaMiddleware.run(sagaWatcher)
 
 export default store

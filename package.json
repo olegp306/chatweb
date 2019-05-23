@@ -36,6 +36,8 @@
     ]
   },
   "devDependencies": {
+    "reactotron-react-js": "^3.2.3",
+    "reactotron-redux": "^3.1.0",
     "signalr-no-jquery": "^0.1.8"
   }
 }

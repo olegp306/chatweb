@@ -109,6 +109,14 @@ const authenticateByUserId=(userId) =>{
   });
 }
 
+const login = (user, password) => {
+  const body = `grant_type=password&username=${user}&password=${password}`;
+  const conf = {
+    headers: { "Content-Type": "application/x-www-form-urlencoded" }
+  };
+  return axios.post("auth/token", body, conf);
+};
+
 const getChatByChatId=(chatId) =>{
   return axios.get("/chats/chat/" + chatId).then(checkStatus);
 }
@@ -147,6 +155,7 @@ const  updateMessagesReadStatus=(readMessages)=> {
 
 export default { 
   authenticateByUserId, 
+  login,
   getChatByChatId, 
   fetchUserChats, 
   addUsersToChat, 

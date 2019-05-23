@@ -1,4 +1,4 @@
-export const LOGIN_REQUEST = 'loginRequest'
+export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_BY_USERID = 'LOGIN_BY_USERID'
 
 export const IS_LOGGING = 'isLogging'
