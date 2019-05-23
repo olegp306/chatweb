@@ -5,7 +5,7 @@ import { createLogger } from 'redux-logger'
 import Immutable from 'immutable'
 
 import rootReducer from './reducers'
-import sagaWatcher from './saga' 
+import saga from './saga' 
 
 
 const logger = createLogger({
@@ -34,6 +34,6 @@ const store = createStore(rootReducer, composeEnhancers(applyMiddleware(...middl
 
 //const store = createStore(rootReducer, compose(middleware, Reactotron.createEnhancer()))
 
-sagaMiddleware.run(sagaWatcher)
+sagaMiddleware.run(saga)
 
 export default store
