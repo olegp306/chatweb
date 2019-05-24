@@ -18,14 +18,13 @@ class ChatApp extends Component {
       chatId: this.props.chatparams.chatId
     };
   }
-  onLoginClick = () => {
-    this.props.login("Заказчик", "AW7777");
-  };
+  onLoginClick = () => {};
   componentDidMount() {
     //auth by user id
     // login action
     //this.props.login("Заказчик", "AW7777");
-    // this.props.loginByUserId(this.props.chatparams.userId)
+    //this.props.login("Заказчик", "AW7777");
+    this.props.loginByUserId(this.props.chatparams.userId)
 
     console.log(this.props.chatparams.userId);
   }
@@ -104,7 +103,30 @@ class ChatApp extends Component {
 //   login: (user, password) => dispatch(login(user, password))
 // }
 
+const mapStateToProps = store => {
+  return {
+    // filterDate: store.filter.get("filterDate"),
+    // filterReceptionId: store.filter.get("filterReceptionId"),
+    // requests: store.requests.toJS(),
+    // selectedItems: store.selectedItems.toJS(),
+    // barcodes: store.barcodes.toJS(),
+    // receptions: store.receptions.toJS()
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    login: (user, password) => dispatch(login(user, password)),
+    loginByUserId: userId => dispatch(loginByUserId(userId))
+  };
+};
+
+// @connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )
+
 export default connect(
-  store => store,
-  dispatch => ({ login: (user, password) => dispatch(login(user, password)) })
+  mapStateToProps,
+  mapDispatchToProps
 )(ChatApp);
