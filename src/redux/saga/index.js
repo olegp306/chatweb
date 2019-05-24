@@ -7,14 +7,16 @@ import { FETCH_USERS } from "../actions/messages";
 import { FETCH_MESSAGES } from "../actions/messages";
 
 import loginSaga from "./Session.js";
-import chatsSaga from "./chat";
+// import chatsSaga from "./chats";
+// import messagesSaga from "./messages";
 
 
 
 function* sagaWatcher() {  
   yield takeLatest(LOGIN_REQUEST, loginSaga)
-  yield takeLatest(FETCH_CHATS, chatsSaga)
-  //ield takeLatest(FETCH_CHATS, chatsSaga)
+  yield takeLatest(LOGIN_BY_USERID, loginSaga)
+  // yield takeLatest(FETCH_CHATS, chatsSaga)
+  // yield takeLatest(FETCH_MESSAGES, messagesSaga)
   // yield [
   //   takeLatest(LOGIN_REQUEST, loginSaga),
   //   // takeLatest(LOGIN_BY_USERID, loginSaga),
