@@ -23,3 +23,6 @@ function* sagaWatcher() {
   //   //takeLatest(FETCH_COMPANIES_REQUEST, fetchCompaniesSaga)
   // ];
 }
+
+
+export default sagaWatcher;

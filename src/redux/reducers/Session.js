@@ -10,11 +10,16 @@ import {
 const initialState = Map({
   token: null,
   userId: null,
-  user: null,
+  avatarUrl: null,
+  contractorId: null,
+  userName: null,        
+  roles: null,
+  
   companyId: null,
   accountId: null,
   account: null,
-  roles: [],
+
+
   isLogging: false,
   logged: false,
   error: null
@@ -35,19 +40,17 @@ const reducer = (state = initialState, action) => {
       const {
         token,
         userId,
-        user,
-        companyId,
-        accountId,
-        account,
+        avatarUrl,
+        contractorId,
+        userName,        
         roles
       } = action.payload;
       return state.merge({
         token,
         userId,
-        user,
-        companyId,
-        accountId,
-        account,
+        avatarUrl,
+        contractorId,
+        userName,        
         roles,
         isLogging: false,
         logged: true

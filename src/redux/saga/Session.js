@@ -1,46 +1,50 @@
 import { call, put } from "redux-saga/effects";
 
-import { login, isLogging, logged, loginFailed } from "../actions/Session" ;
+import { login, isLogging, logged, loginFailed } from "../actions/Session";
 
-import api from "../../api"
+import api from "../../api";
 
 function* loginSaga(action) {
-    //console.log("loginSaga")
+  //console.log("loginSaga")
   const { user, password } = action.payload;
   yield put(isLogging());
 
   try {
-    const loginResponse=null;
-    if ((action.type == "LOGIN_BY_USERID")) {
-       loginResponse = yield call(
-        api.authenticateByUserId,
-        action.payload
-      );
+    let loginResponse = null;
+    if (action.type == "LOGIN_BY_USERID") {
+      loginResponse = yield call(api.authenticateByUserId, action.payload);
     } else {
-       loginResponse = yield call(api.login, user, password);
+      loginResponse = yield call(api.login, user, password);
     }
 
-    const { access_token } = loginResponse.data;
-    yield call(api.setAuthHeader, access_token);
+    let { accessToken } = loginResponse.data;
+    //yield call(api.setAuthHeader, access_token);
 
-    const sessionResponse = yield call(api.authorize);
-    const {
+    //const sessionResponse = yield call(api.authorize);
+    let {
       id,
-      name,
-      companyId,
-      accountId,
-      accountName,
-      roles
-    } = sessionResponse.data;
+      contractorId,
+      employee
+      //   name,
+      //   companyId,
+      //   accountId,
+      //   accountName,
+      //   roles
+    } = loginResponse.data;
 
     const session = {
-      token: access_token,
-      userId: id,
-      user: name,
-      companyId: companyId,
-      accountId: accountId,
-      account: accountName,
-      roles: roles
+      token: accessToken,
+      userId: employee.id,
+      contractorId: contractorId,
+      avatarUrl: employee.avatar.url,
+      userName: employee.name,
+      roles: employee.extInfo
+
+      //   user: name,
+      //   companyId: companyId,
+      //   accountId: accountId,
+      //   account: accountName,
+      //   roles: roles
     };
 
     //yield put(isLogging(false))
