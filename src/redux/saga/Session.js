@@ -11,7 +11,7 @@ function* loginSaga(action) {
 
   try {
     const loginResponse=null;
-    if ((action.type = "LOGIN_BY_USERID")) {
+    if ((action.type == "LOGIN_BY_USERID")) {
        loginResponse = yield call(
         api.authenticateByUserId,
         action.payload

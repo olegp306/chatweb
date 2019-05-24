@@ -1,8 +1,8 @@
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_BY_USERID = 'LOGIN_BY_USERID'
 
-export const IS_LOGGING = 'isLogging'
-export const LOGGED = 'logged'
+export const IS_LOGGING = 'IS_LOGGING'
+export const LOGGED = 'LOGGED'
 export const LOGIN_FAILED = 'loginFailure'
 
 
