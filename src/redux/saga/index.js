@@ -9,19 +9,17 @@ import { FETCH_MESSAGES } from "../actions/messages";
 import loginSaga from "./Session.js";
 import chatsSaga from "./chat";
 
-//import ticketsSaga from './Tickets'
-//import addTicketSaga from './Ticket'
-//import fetchCompaniesSaga from './Companies'
-//import fetchEmployeesSaga from './Employees'
 
-function* sagaWatcher() {
-  yield [
-    takeLatest('LOGIN_REQUEST', loginSaga),
-    // takeLatest(LOGIN_BY_USERID, loginSaga),
-    // takeLatest(FETCH_CHATS, chatsSaga)
 
-    //takeLatest(FETCH_COMPANIES_REQUEST, fetchCompaniesSaga)
-  ];
+function* sagaWatcher() {  
+  yield takeLatest(LOGIN_REQUEST, loginSaga)
+  yield takeLatest(FETCH_CHATS, chatsSaga)
+  //ield takeLatest(FETCH_CHATS, chatsSaga)
+  // yield [
+  //   takeLatest(LOGIN_REQUEST, loginSaga),
+  //   // takeLatest(LOGIN_BY_USERID, loginSaga),
+  //   // takeLatest(FETCH_CHATS, chatsSaga)
+
+  //   //takeLatest(FETCH_COMPANIES_REQUEST, fetchCompaniesSaga)
+  // ];
 }
-
-export default sagaWatcher;
