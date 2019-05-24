@@ -8,6 +8,7 @@ import api from "../../api"
 function* loginSaga(action) {
   //console.log("loginSaga")
   const { user, password } = action.payload;
+
   yield put(isLogging());
 
   try {
@@ -17,16 +18,13 @@ function* loginSaga(action) {
     } else {
       loginResponse = yield call(api.login, user, password);
     }
+   // let { accessToken } = loginResponse.data;
 
-    let { accessToken } = loginResponse.data;
-    
-    const test=loginResponse.data;
-    
-
-    let {
+    const {
       id,
       contractorId,
-      employee      
+      employee,
+      accessToken   
     } = loginResponse.data;
 
     const session = {
