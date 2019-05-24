@@ -8,7 +8,7 @@ const PRODUCTION_SIGNALR_URL = "http://localhost:5000";
 const DEVELOPMENT_SIGNALR_URL = "http://localhost:89/";
 
 const PRODUCTION_API_URL = "http://service.allwingroup.ru:3652/germes/v1";
-const DEVELOPMENT_API_URL = "http://192.168.0.143/ApiService/germes/v1";
+const DEVELOPMENT_API_URL = "http://192.168.1.67/ApiService/germes/v1";
 
 const signalrUrl =
   process.env.NODE_ENV === "production"
@@ -114,7 +114,7 @@ const login = (user, password) => {
   const conf = {
     headers: { "Content-Type": "application/x-www-form-urlencoded" }
   };
-  return axios.post("auth/token", body, conf);
+  return axios.post("auth/token", body, conf).then(checkStatus);
 };
 
 const getChatByChatId=(chatId) =>{
