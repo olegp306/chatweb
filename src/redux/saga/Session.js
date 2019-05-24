@@ -2,7 +2,8 @@ import { call, put } from "redux-saga/effects";
 
 import { login, isLogging, logged, loginFailed } from "../actions/Session";
 
-import api from "../../api";
+
+import api from "../../api"
 
 function* loginSaga(action) {
   //console.log("loginSaga")
@@ -18,18 +19,14 @@ function* loginSaga(action) {
     }
 
     let { accessToken } = loginResponse.data;
-    //yield call(api.setAuthHeader, access_token);
+    
+    const test=loginResponse.data;
+    
 
-    //const sessionResponse = yield call(api.authorize);
     let {
       id,
       contractorId,
-      employee
-      //   name,
-      //   companyId,
-      //   accountId,
-      //   accountName,
-      //   roles
+      employee      
     } = loginResponse.data;
 
     const session = {
@@ -39,12 +36,6 @@ function* loginSaga(action) {
       avatarUrl: employee.avatar.url,
       userName: employee.name,
       roles: employee.extInfo
-
-      //   user: name,
-      //   companyId: companyId,
-      //   accountId: accountId,
-      //   account: accountName,
-      //   roles: roles
     };
 
     //yield put(isLogging(false))

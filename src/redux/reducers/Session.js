@@ -12,13 +12,12 @@ const initialState = Map({
   userId: null,
   avatarUrl: null,
   contractorId: null,
-  userName: null,        
+  userName: null,
   roles: null,
-  
+
   companyId: null,
   accountId: null,
   account: null,
-
 
   isLogging: false,
   logged: false,
@@ -42,15 +41,16 @@ const reducer = (state = initialState, action) => {
         userId,
         avatarUrl,
         contractorId,
-        userName,        
+        userName,
         roles
       } = action.payload;
+
       return state.merge({
         token,
         userId,
         avatarUrl,
         contractorId,
-        userName,        
+        userName,
         roles,
         isLogging: false,
         logged: true

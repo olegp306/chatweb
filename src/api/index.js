@@ -104,7 +104,7 @@ const checkStatus=(response) =>{
 
 const authenticateByUserId=(userId) =>{
   return axios.post("/authbyappkey/token", {
-    userid: userId,
+    userid: userId.userId,
     appkey: CLIENT_ID
   });
 }
