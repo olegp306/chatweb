@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-import ChatsList from "../../components/ChatsList";
+import ChatsContainer from "../ChatsContainer/ChatsContainer";
+import CurrentChatContainer from "../CurrentChatContainer/CurrentChatContainer";
+import MessagesContainer from "../MessagesContainer/MessagesContainer";
+import NewMessageContainer from "../NewMessageContainer/NewMessageContainer";
+
+//import ChatsList from "../../components/ChatsList";
 import BigChatInfo from "../../components/ChatInfo/BigChatInfo";
 import MessagesList from "../../components/MessagesList";
 import SendNewMessage from "../../components/SendNewMessage";
@@ -9,54 +14,19 @@ import { login, loginByUserId } from "../../redux/actions/Session";
 import { fetch as fetchChats } from "../../redux/actions/chats";
 import { fetch as fetchChatAppData } from "../../redux/actions/chatApp";
 
-
-
 import api from "../../api";
 
 class ChatApp extends Component {
-  constructor(props) {
-    //console.log('constructor');
-    super(props);
-    this.state = {
-      userId: this.props.chatparams.userId,
-      chatId: this.props.chatparams.chatId
-    };
-  }
-  onLoginClick = () => {
-    //fetchChatAppData
-    this.props.fetchChatAppData(this.props.chatparams.userId);
-    //this.props.fetchChats(this.props.chatparams.userId);
-    //
-  };
   componentDidMount() {
-    //auth by user id
-    // login action
-    //this.props.login("Заказчик", "AW7777");
-    //this.props.login("Заказчик", "AW7777");
-    //this.props.loginByUserId(this.props.chatparams.userId)
-
-    //console.log(this.props.chatparams.userId);
+    this.props.fetchChatAppData(this.props.chatparams.userId);
   }
   render() {
-    // if (!this.state.chatUsers || !this.state.messages || !this.state.chats) {
-    //   return <p>MessagesList Loading....</p>;
-    // }
-
-    // let chatUnreadMessages = {};
-    // for (let prop in this.state.unreadMessages) {
-    //   let item = this.state.unreadMessages[prop];
-    //   if (item.chatId == this.state.currentChatId) {
-    //     chatUnreadMessages[prop] = item;
-    //   }
-    // }
     return (
       <div className="bootstrap">
         <div className="row">
           <div className="col-xs-3 no-padding-right">
-            <a ihref="#" onClick={this.onLoginClick}>
-              <button type="button" class="btn btn-primary" />
-            </a>
-            ChatsList
+            <ChatsContainer />
+
             {/* <ChatsList
               chats={this.state.chats}
               currentChatId={this.state.currentChatId}
@@ -68,7 +38,8 @@ class ChatApp extends Component {
           <div className="col-xs-9 xs-padding-left">
             <div className="panel panel-primary messages-panel">
               <div className="panel-heading chat-panel-heading">
-                BigChatInfo
+                <CurrentChatContainer />
+              
                 {/* <BigChatInfo
                   chatInfo={this.state.chats[this.state.currentChatId]}
                   addUsersFn={this.addUsers}
@@ -77,7 +48,8 @@ class ChatApp extends Component {
                   currentUserId={this.props.userId}
                 /> */}
               </div>
-              MessagesList
+              <MessagesContainer />
+              
               {/* <MessagesList
                 currentChatId={this.state.currentChatId}
                 currentUserId={this.props.userId}
@@ -114,6 +86,7 @@ class ChatApp extends Component {
 
 const mapStateToProps = store => {
   return {
+    currentChat: store.currentChat
     // filterDate: store.filter.get("filterDate"),
     // filterReceptionId: store.filter.get("filterReceptionId"),
     // requests: store.requests.toJS(),
@@ -127,8 +100,8 @@ const mapDispatchToProps = dispatch => {
   return {
     login: (user, password) => dispatch(login(user, password)),
     loginByUserId: userId => dispatch(loginByUserId(userId)),
-    fetchChats: userId=> dispatch(fetchChats(userId)),
-    fetchChatAppData: userId=>dispatch(fetchChatAppData(userId))
+    fetchChats: userId => dispatch(fetchChats(userId)),
+    fetchChatAppData: userId => dispatch(fetchChatAppData(userId))
   };
 };
 
