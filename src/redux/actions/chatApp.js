@@ -6,6 +6,8 @@ import { getSession } from "../selectors";
 export const FETCH_APPCHAT_DATA = "FETCH_APPCHAT_DATA";
 export const FETCH_APPCHAT_DATA_SUCCESS = "FETCH_APPCHAT_DATA_SUCCESS";
 export const FETCH_APPCHAT_DATA_FAIL = "FETCH_APPCHAT_DATA_FAIL";
+
+export const SET_CURRENT_CHAT = "SET_CURRENT_CHAT";
 // export const RESET_APPCHAT_DATA = "RESET_APPCHAT_DATA";
 
 export function fetch(userId) {
@@ -29,6 +31,14 @@ export function fetchFail(error) {
     payload: error
     //currentPage: args.pageCount
   };  
+}
+
+export function setCurrentChat(chat) {
+  return {
+    type: SET_CURRENT_CHAT,
+    payload: chat
+    //currentPage: args.pageCount
+  };
 }
 
 
