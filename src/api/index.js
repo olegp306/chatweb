@@ -104,7 +104,7 @@ const checkStatus=(response) =>{
 
 const authenticateByUserId=(userId) =>{
   return axios.post("/authbyappkey/token", {
-    userid: userId.userId,
+    userid: userId,
     appkey: CLIENT_ID
   });
 }
@@ -116,6 +116,8 @@ const login = (user, password) => {
   };
   return axios.post("auth/token", body, conf).then(checkStatus);
 };
+
+const setAuthHeader = (token) => axios.defaults.headers.authorization = `Bearer ${token}`
 
 const getChatByChatId=(chatId) =>{
   return axios.get("/chats/chat/" + chatId).then(checkStatus);
@@ -133,7 +135,7 @@ const getUsersByChatId=(chatId)=> {
   return axios.get("/users/chatId/" + chatId).then(checkStatus);
 }
 
-const getUsersAvailableToAdd=(chatId) =>{
+const fetchUsers=(chatId) =>{
   return axios.get("/users/availabletoadd/" + chatId).then(checkStatus);
 }
 
@@ -156,11 +158,12 @@ const  updateMessagesReadStatus=(readMessages)=> {
 export default { 
   authenticateByUserId, 
   login,
+  setAuthHeader,
   getChatByChatId, 
   fetchUserChats, 
+  fetchUsers,
   addUsersToChat, 
-  getUsersByChatId, 
-  getUsersAvailableToAdd,
+  getUsersByChatId,   
   getMessagesByChatId,
   addMessage,
   getUnreadMessage,
