@@ -1,12 +1,20 @@
 export const getSession = store => store.session.toJS()
 
-export const getChats = store => store.tickets.toJS()
 
-export const getCurrentChatId = store => store.currentChat.get('id');
+export const getCurrentChat = store => store.chatApp.currentChat;
+
+// export const getCurrentChatId = store => store.chatApp.toJS();
 
 export const getUsers = store => store.users.toJS()
 
 export const getMessages = store => store.messages.toJS()
+
+
+export const getChats = store => store.chats.toJS()
+
+
+export const getChatApp = store => store.chatApp.toJS()
+
 
 ///export const messages = store => store.messages.toJS()
 
