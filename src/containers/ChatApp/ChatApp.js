@@ -4,8 +4,12 @@ import BigChatInfo from "../../components/ChatInfo/BigChatInfo";
 import MessagesList from "../../components/MessagesList";
 import SendNewMessage from "../../components/SendNewMessage";
 import { connect } from "react-redux";
-import { fetch as fetchChats } from "../../redux/actions/chats";
+
 import { login, loginByUserId } from "../../redux/actions/Session";
+import { fetch as fetchChats } from "../../redux/actions/chats";
+import { fetch as fetchChatAppData } from "../../redux/actions/chatApp";
+
+
 
 import api from "../../api";
 
@@ -18,15 +22,20 @@ class ChatApp extends Component {
       chatId: this.props.chatparams.chatId
     };
   }
-  onLoginClick = () => {};
+  onLoginClick = () => {
+    //fetchChatAppData
+    this.props.fetchChatAppData(this.props.chatparams.userId);
+    //this.props.fetchChats(this.props.chatparams.userId);
+    //
+  };
   componentDidMount() {
     //auth by user id
     // login action
     //this.props.login("Заказчик", "AW7777");
     //this.props.login("Заказчик", "AW7777");
-    this.props.loginByUserId(this.props.chatparams.userId)
+    //this.props.loginByUserId(this.props.chatparams.userId)
 
-    console.log(this.props.chatparams.userId);
+    //console.log(this.props.chatparams.userId);
   }
   render() {
     // if (!this.state.chatUsers || !this.state.messages || !this.state.chats) {
@@ -117,7 +126,9 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch => {
   return {
     login: (user, password) => dispatch(login(user, password)),
-    loginByUserId: userId => dispatch(loginByUserId(userId))
+    loginByUserId: userId => dispatch(loginByUserId(userId)),
+    fetchChats: userId=> dispatch(fetchChats(userId)),
+    fetchChatAppData: userId=>dispatch(fetchChatAppData(userId))
   };
 };
 

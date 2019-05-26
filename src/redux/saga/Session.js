@@ -2,30 +2,27 @@ import { call, put } from "redux-saga/effects";
 
 import { login, isLogging, logged, loginFailed } from "../actions/Session";
 
-
-import api from "../../api"
+import api from "../../api";
 
 function* loginSaga(action) {
+  //yield put(login());
   //console.log("loginSaga")
   const { user, password } = action.payload;
 
   yield put(isLogging());
 
   try {
-    let loginResponse = null;
-    if (action.type == "LOGIN_BY_USERID") {
-      loginResponse = yield call(api.authenticateByUserId, action.payload);
+    let loginResponse = null;   
+
+    if (action.type == "LOGIN_BY_USERID" || action.type == "FETCH_APPCHAT_DATA" ) {
+      loginResponse = yield call(api.authenticateByUserId, action.payload.userId);
     } else {
       loginResponse = yield call(api.login, user, password);
     }
-   // let { accessToken } = loginResponse.data;
+    
+    yield call(api.setAuthHeader, loginResponse.data.accessToken);
 
-    const {
-      id,
-      contractorId,
-      employee,
-      accessToken   
-    } = loginResponse.data;
+    const { id, contractorId, employee, accessToken } = loginResponse.data;
 
     const session = {
       token: accessToken,
