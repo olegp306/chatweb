@@ -3,29 +3,29 @@
 import api from "../../api";
 import { getSession } from "../selectors";
 
-export const FETCH_CHATS = "FETCH_CHATS";
-export const IS_FETCHING_CHATS = "IS_FETCHING_CHATS";
-export const FETCH_CHATS_SUCCESS = "FETCH_CHATS_SUCCESS";
-export const FETCH_CHATS_FAIL = "FETCH_CHATS_FAIL";
+export const FETCH_USERS = "FETCH_USERS";
+export const IS_FETCHING_USERS = "IS_FETCHING_USERS";
+export const FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS";
+export const FETCH_USERS_FAIL = "FETCH_USERS_FAIL";
 
-export const RESET_CHATS = "RESET_CHATS";
+export const RESET_USERS = "RESET_USERS";
 
 export function fetch() {
   return {
-    type: FETCH_CHATS
+    type: FETCH_USERS
   };
 }
 
 export function isFetching() {
   return {
-    type: IS_FETCHING_CHATS
+    type: IS_FETCHING_USERS
   };
 }
 
 
 export function fetchSuccess(payload) {
   return {
-    type: FETCH_CHATS_SUCCESS,
+    type: FETCH_USERS_SUCCESS,
     payload: payload
     //currentPage: args.pageCount
   };
@@ -33,7 +33,7 @@ export function fetchSuccess(payload) {
 
 export function fetchFail(error) {
   return {
-    type: FETCH_CHATS_FAIL,
+    type: FETCH_USERS_FAIL,
     payload: error
     //currentPage: args.pageCount
   };  
@@ -42,7 +42,7 @@ export function fetchFail(error) {
 
 export function reset() {
   return {
-    type: RESET_CHATS    
+    type: RESET_USERS    
   };  
 }
 

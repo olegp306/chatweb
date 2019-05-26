@@ -3,40 +3,39 @@
 import { Map } from "immutable";
 
 import {
-  FETCH_CHATS,
-  IS_FETCHING_CHATS,
-  FETCH_CHATS_SUCCESS,
-  FETCH_CHATS_FAIL,
-  RESET_CHATS
-} from "../actions/chats";
+  FETCH_USERS,
+  IS_FETCHING_USERS,
+  FETCH_USERS_SUCCESS,
+  FETCH_USERS_FAIL,
+
+  RESET_USERS
+} from "../actions/users";
 
 const initialState = Map({
   payload: [],
-  isFetching: false,
-  //fetched: false,
+  isFetching: false,  
   error: null
 });
 
-export default function chatsReducer(state = initialState, action) {
+export default function usersReducer(state = initialState, action) {
   switch (action.type) {
-    case FETCH_CHATS:
+    case FETCH_USERS:
       return state.merge({ isFetching: false, error: null });
 
-    case IS_FETCHING_CHATS:
+    case IS_FETCHING_USERS:
       return state.merge({ isFetching: true });
 
-    case FETCH_CHATS_SUCCESS:
+    case FETCH_USERS_SUCCESS:
       return state.merge({
         isFetching: false,
         fetched: true,
         items: [...action.payload]
       });
 
-    case FETCH_CHATS_FAIL:
-      return state.merge({ isFetching: false, error: action.payload });
-    //   return { ...state, error: action.error, isFetching: false };
+    case FETCH_USERS_FAIL:
+      return state.merge({ isFetching: false, error: action.payload });    
 
-    case RESET_CHATS:
+    case RESET_USERS:
       return { ...state, ...initialState };
       
     default:
