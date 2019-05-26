@@ -11,7 +11,7 @@ import {
 } from "../actions/chats";
 
 const initialState = Map({
-  payload: [],
+  items: [],
   isFetching: false,
   //fetched: false,
   error: null
