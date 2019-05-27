@@ -12,7 +12,7 @@ import {
 } from "../actions/users";
 
 const initialState = Map({
-  payload: [],
+  items: [],
   isFetching: false,  
   error: null
 });
