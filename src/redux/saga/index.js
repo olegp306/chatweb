@@ -3,17 +3,18 @@ import { takeLatest } from "redux-saga/effects";
 import { LOGIN_REQUEST, LOGIN_BY_USERID } from "../actions/Session";
 import { FETCH_CHATS } from "../actions/chats";
 import { FETCH_USERS } from "../actions/users";
+import { FETCH_MESSAGES } from "../actions/messages";
 
 import { FETCH_APPCHAT_DATA } from "../actions/chatApp";
 
 
 
-import { FETCH_MESSAGES } from "../actions/messages";
-
 import loginSaga from "./Session.js";
 import chatsSaga from "./chats";
 
 import usersSaga from "./users";
+import messagesSaga from "./messages";
+
 
 import chatAppSaga from "./chatApp";
 
@@ -27,6 +28,8 @@ function* sagaWatcher() {
 
   yield takeLatest(FETCH_CHATS, chatsSaga)
   yield takeLatest(FETCH_USERS, usersSaga)
+  yield takeLatest(FETCH_MESSAGES, messagesSaga)
+ 
 
   yield takeLatest(FETCH_APPCHAT_DATA, chatAppSaga)
   
