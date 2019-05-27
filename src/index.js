@@ -24,7 +24,7 @@ console.log("Запуск GermesChat index.js");
 
 export const  chatparams={
   'chatType':'',
-  'chatId':'2768089346000',
+  'chatId':'2768825872000',
   'userId':'2767267939000'
 };
 
