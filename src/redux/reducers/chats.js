@@ -13,7 +13,7 @@ import {
 const initialState = Map({
   items: [],
   isFetching: false,
-  //fetched: false,
+  fetched: false,
   error: null
 });
 
