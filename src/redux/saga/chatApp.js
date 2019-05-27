@@ -9,6 +9,7 @@ import loginSaga from "../saga/Session";
 import chatsSaga from "../saga/chats";
 
 import usersSaga from "../saga/users";
+import messagesSaga from "../saga/messages";
 
 import _ from "lodash";
 
@@ -21,6 +22,8 @@ function* fetchChatAppDataSaga(action) {
     yield* usersSaga();
 
     yield* setCurrentChatSaga();
+
+    yield* messagesSaga();
 
     yield put(fetchSuccess());
   } catch (error) {
