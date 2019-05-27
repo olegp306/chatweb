@@ -1,9 +1,11 @@
 export const getSession = store => store.session.toJS()
 
+export const getCurrentUserId = store => store.session.get("id")
 
-export const getCurrentChat = store => store.chatApp.currentChat;
 
-// export const getCurrentChatId = store => store.chatApp.toJS();
+export const getCurrentChat = store => store.chatApp.toJS().currentChat;
+
+
 
 export const getUsers = store => store.users.toJS()
 

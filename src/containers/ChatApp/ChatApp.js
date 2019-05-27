@@ -6,7 +6,7 @@ import NewMessageContainer from "../NewMessageContainer/NewMessageContainer";
 
 //import ChatsList from "../../components/ChatsList";
 import BigChatInfo from "../../components/ChatInfo/BigChatInfo";
-import MessagesList from "../../components/MessagesList";
+//import MessagesList from "../../components/MessagesList";
 import SendNewMessage from "../../components/SendNewMessage";
 import { connect } from "react-redux";
 
