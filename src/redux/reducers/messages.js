@@ -6,13 +6,15 @@ import {
   IS_FETCHING_MESSAGES,
   FETCH_MESSAGES_SUCCESS,
   FETCH_MESSAGES_FAIL,
-
   RESET_MESSAGES
+  
 } from "../actions/messages";
+
 
 const initialState = Map({
   items: [],
   isFetching: false,  
+  fetched: false,
   error: null
 });
 
@@ -25,6 +27,7 @@ export default function messagesReducer(state = initialState, action) {
       return state.merge({ isFetching: true });
 
     case FETCH_MESSAGES_SUCCESS:
+        // return state.merge({ isFetching: false });
       return state.merge({
         isFetching: false,
         fetched: true,
@@ -32,11 +35,11 @@ export default function messagesReducer(state = initialState, action) {
       });
 
     case FETCH_MESSAGES_FAIL:
-      return state.merge({ isFetching: false, error: action.payload });    
+      return state.merge({ isFetching: false, error: action.payload });
 
     case RESET_MESSAGES:
       return { ...state, ...initialState };
-      
+
     default:
       return state;
   }

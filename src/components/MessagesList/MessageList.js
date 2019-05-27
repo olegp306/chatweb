@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import _ from "lodash";
 
 import SendNewMessage from "../SendNewMessage";
-import Message from "../Message";
+import Message from "../Message/Message";
 
 export default class MessagesList extends Component {
   //при инициализации 1 раз
@@ -36,7 +37,7 @@ export default class MessagesList extends Component {
   render() {
     const { users, messages, unreadMessages, currentUserId } = this.props;
 
-    if (users.isFetching || messages.isFetching  ) {
+    if (users.isFetching || messages.isFetching) {
       return <p>MessagesList Loading....</p>;
     } else {
       if (messages.length == 0) {
@@ -51,6 +52,14 @@ export default class MessagesList extends Component {
       //console.log(this.props.data);
 
       let messagesListView = new Array();
+      let usersObjArr = {};
+      for (let i = 0; i < users.items.length; i++) {
+        const user = users.items[i];
+        usersObjArr[user.id] = user;
+      }
+
+    
+      //const usersObjArr=_.map(users.items, 'id');
 
       for (let i = 0; i < messages.items.length; i++) {
         const message = messages.items[i];
@@ -62,10 +71,8 @@ export default class MessagesList extends Component {
         messagesListView.push(
           <Message
             key={message.id}
-            messageInfo={message}
-            userInfo={users.items.find(obj => {
-              return obj.id == message.userId;
-            })}
+            message={message}
+            author={usersObjArr[message.userId]}
             isMyMessage={isMyMessage}
             //isNewMessage={isNewMessage}
           />
