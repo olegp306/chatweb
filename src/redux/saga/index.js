@@ -5,9 +5,7 @@ import { FETCH_CHATS } from "../actions/chats";
 import { FETCH_USERS } from "../actions/users";
 import { FETCH_MESSAGES } from "../actions/messages";
 
-import { FETCH_APPCHAT_DATA } from "../actions/chatApp";
-
-
+import { FETCH_APPCHAT_DATA, SET_CURRENT_CHAT } from "../actions/chatApp";
 
 import loginSaga from "./Session.js";
 import chatsSaga from "./chats";
@@ -15,24 +13,23 @@ import chatsSaga from "./chats";
 import usersSaga from "./users";
 import messagesSaga from "./messages";
 
-
-import chatAppSaga from "./chatApp";
+import { fetchChatAppDataSaga, setCurrentChatSaga } from "./chatApp";
 
 // import messagesSaga from "./messages";
 
+function* sagaWatcher() {
+  yield takeLatest(LOGIN_REQUEST, loginSaga);
+  yield takeLatest(LOGIN_BY_USERID, loginSaga);
 
+  yield takeLatest(FETCH_CHATS, chatsSaga);
+  yield takeLatest(FETCH_USERS, usersSaga);
+  yield takeLatest(FETCH_MESSAGES, messagesSaga);
 
-function* sagaWatcher() {  
-  yield takeLatest(LOGIN_REQUEST, loginSaga)
-  yield takeLatest(LOGIN_BY_USERID, loginSaga)
+  yield takeLatest(FETCH_APPCHAT_DATA, fetchChatAppDataSaga);
+  yield takeLatest(SET_CURRENT_CHAT, setCurrentChatSaga);
 
-  yield takeLatest(FETCH_CHATS, chatsSaga)
-  yield takeLatest(FETCH_USERS, usersSaga)
-  yield takeLatest(FETCH_MESSAGES, messagesSaga)
- 
-
-  yield takeLatest(FETCH_APPCHAT_DATA, chatAppSaga)
   
+
   // yield takeLatest(FETCH_MESSAGES, messagesSaga)
   // yield [
   //   takeLatest(LOGIN_REQUEST, loginSaga),
@@ -42,6 +39,5 @@ function* sagaWatcher() {
   //   //takeLatest(FETCH_COMPANIES_REQUEST, fetchCompaniesSaga)
   // ];
 }
-
 
 export default sagaWatcher;
