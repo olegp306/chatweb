@@ -2,7 +2,12 @@ import React, { Component } from "react";
 
 import ChatsList from "../../components/ChatsList/ChatsList";
 import { fetch as fetchChats } from "../../redux/actions/chats";
-import { getChats,getCurrentChat ,getChatApp} from "../../redux/selectors/index";
+import { setCurrentChat } from "../../redux/actions/chatApp";
+import {
+  getChats,
+  getCurrentChat,
+  getChatApp
+} from "../../redux/selectors/index";
 import { connect } from "react-redux";
 
 const mapStateToProps = store => {
@@ -14,13 +19,14 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchChats: userId => dispatch(fetchChats(userId))
+    fetchChats: userId => dispatch(fetchChats(userId)),
+    onClickChat: chat => dispatch(setCurrentChat(chat))
   };
 };
 
 class ChatsContainer extends Component {
   render() {
-    const { chats, chatApp } = this.props;
+    const { chats, chatApp, onClickChat } = this.props;
     return (
       <div className="panel panel-primary chats-panel">
         <div className="panel-heading chat-panel-heading">
@@ -52,7 +58,11 @@ class ChatsContainer extends Component {
             </span>*/}
           </div>
 
-          <ChatsList chats={chats} currentChat={chatApp.currentChat} />
+          <ChatsList
+            chats={chats}
+            currentChat={chatApp.currentChat}
+            onClickChat={onClickChat}
+          />
         </div>
       </div>
     );
