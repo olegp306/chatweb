@@ -11,13 +11,6 @@ class App extends Component {
   render() {
     return (
       <ReduxProvider store={store}>
-        {/* <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">ToDo Redux app</h1>
-          </header>
-          
-        </div> */}
         <ChatApp chatparams={this.props.chatparams} />
       </ReduxProvider>
     );
