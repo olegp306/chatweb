@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import _ from "lodash";
-
-import SendNewMessage from "../SendNewMessage";
 import Message from "../Message/Message";
 
 export default class MessagesList extends Component {
