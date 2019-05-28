@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as api from "../../api";
-import SmallChat from "../ChatInfo/SmallChatInfo";
+import SmallChat from "../ChatInfo/SmallChatInfo/SmallChatInfo";
 
 export default class ChatsList extends Component {
   //при инициализации 1 раз
@@ -54,9 +54,11 @@ export default class ChatsList extends Component {
     return unReadMessagesCount;
   };
 
+ 
+
   render() {
-    const { chats, currentChat } = this.props;
-    if (chats.isFetching || currentChat==null) {
+    const { chats, currentChat, onClickChat } = this.props;
+    if (chats.isFetching || currentChat == null) {
       return <p>ChatsList Loading....</p>;
     }
 
@@ -70,9 +72,9 @@ export default class ChatsList extends Component {
         <SmallChat
           key={chat.id}
           chatInfo={chat}
-          isCurrentChat={(chat.id == currentChat.id)}
+          isCurrentChat={chat.id == currentChat.id}
           unreadMessagesCount={unreadMessagesCount}
-          // changeCurrentChatFn={this.props.changeCurrentChatFn}
+          onClickChat={onClickChat}
           // updateDataFn={this.props.updateData}
         />
       );
