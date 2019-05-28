@@ -1,20 +1,19 @@
 import React, { Component } from "react";
+
 import ChatsContainer from "../ChatsContainer/ChatsContainer";
 import CurrentChatContainer from "../CurrentChatContainer/CurrentChatContainer";
 import MessagesContainer from "../MessagesContainer/MessagesContainer";
 import NewMessageContainer from "../NewMessageContainer/NewMessageContainer";
 
-//import ChatsList from "../../components/ChatsList";
-import BigChatInfo from "../../components/ChatInfo/BigChatInfo";
-//import MessagesList from "../../components/MessagesList";
-import SendNewMessage from "../../components/SendNewMessage";
 import { connect } from "react-redux";
 
 import { login, loginByUserId } from "../../redux/actions/Session";
 import { fetch as fetchChats } from "../../redux/actions/chats";
 import { fetch as fetchChatAppData } from "../../redux/actions/chatApp";
 
+
 import api from "../../api";
+require('./styles.css');
 
 class ChatApp extends Component {
   componentDidMount() {
@@ -61,7 +60,8 @@ class ChatApp extends Component {
               /> */}
             </div>
           </div>
-          SendNewMessage
+          
+          <NewMessageContainer />
           {/* <SendNewMessage
             addMessageFn={this.addMessagge}
             newMessageText={this.state.newMessageText}
@@ -72,27 +72,9 @@ class ChatApp extends Component {
     );
   }
 }
-
-// const mapStateToProps = {
-//   // updatePostComment: updateComment,
-//   // deletePostComment: deleteComment
-// }
-
-// const mapDispatchToProps = (dispatch)= {
-//   fetchChats: fetchChats,
-//   loginByUserId: loginByUserId,
-//   login: (user, password) => dispatch(login(user, password))
-// }
-
 const mapStateToProps = store => {
   return {
-    currentChat: store.currentChat
-    // filterDate: store.filter.get("filterDate"),
-    // filterReceptionId: store.filter.get("filterReceptionId"),
-    // requests: store.requests.toJS(),
-    // selectedItems: store.selectedItems.toJS(),
-    // barcodes: store.barcodes.toJS(),
-    // receptions: store.receptions.toJS()
+    currentChat: store.currentChat   
   };
 };
 
@@ -104,12 +86,6 @@ const mapDispatchToProps = dispatch => {
     fetchChatAppData: userId => dispatch(fetchChatAppData(userId))
   };
 };
-
-// @connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )
-
 export default connect(
   mapStateToProps,
   mapDispatchToProps
