@@ -3,18 +3,6 @@ import React, { Component } from "react";
 import AvatarHelper from "../../utils/avatarHelper";
 
 export default class Message extends Component {
-  // constructor(props) {
-  //   // super(props);
-  //   // //this.state={};
-
-  //   // this.state={
-  //   //   messageInfo:this.props.messageInfo,
-  //   //   isMyMessage:this.props.isMyMessage,
-  //   //   isNewMessage:this.props.isNewMessage,
-  //   //   userInfo:this.props.userInfo
-  //   // };
-  // }
-
   componentWillReceiveProps(nextProps) {
     //   this.setState({
     //     messageInfo:nextProps.messageInfo,
@@ -24,18 +12,12 @@ export default class Message extends Component {
   }
 
   getUserPhoto(username) {
-    // let avatar=new AvatarHelper();
-    // return avatar.getUserPhoto(username);
+    let avatar=new AvatarHelper();
+    return avatar.getUserPhoto(username);
   }
 
   render() {
     const { author, message, isMyMessage, isNewMessage } = this.props;
-
-    //let message=this.state.messageInfo;
-    //let isMyMessage=this.state.isMyMessage;
-    //let isNewMessage=(!this.state.isNewMessage ? false: true);
-    //let userInfo=this.state.userInfo;
-
     return (
       <div className={isNewMessage == true ? "message new-message" : "message"}>
         <li
@@ -46,7 +28,11 @@ export default class Message extends Component {
               isMyMessage == true ? "chat-img pull-right" : "chat-img pull-left"
             }
           >
-            <img src={this.getUserPhoto(author.name)} alt="User Avatar" className="img-circle" />
+            <img
+              src={author ?this.getUserPhoto(author.name) :  this.getUserPhoto("???")}
+              alt="User Avatar"
+              className="img-circle"
+            />
           </span>
           <div className="chat-body clearfix">
             <div className="header">
@@ -57,8 +43,7 @@ export default class Message extends Component {
                     : "primary-font"
                 }
               >
-                {author.name}
-                
+                {author ? author.name : "неизвестный"}
               </strong>
               <small
                 className={
