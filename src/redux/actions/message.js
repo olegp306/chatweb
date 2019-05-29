@@ -5,10 +5,10 @@ export const ADD_MESSAGE_FAIL = 'ADD_MESSAGE_FAIL'
 
 //export const CLEAR_FLAGS = 'clearAddedFlag'
 
-export const add = (message) => {
+export const add = (payload) => {
     return {
         type: ADD_MESSAGE,
-        payload: message
+        payload: payload
     }
 }
 
