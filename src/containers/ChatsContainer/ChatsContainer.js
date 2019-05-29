@@ -30,15 +30,14 @@ class ChatsContainer extends Component {
     return (
       <div className="panel panel-primary chats-panel">
         <div className="panel-heading chat-panel-heading">
-          <h3 className="panel-title">
-            Чаты
-            <button
+          <div className="chat-list-title"> Чаты / Замечания</div>
+
+          {/* <button
               className="btn btn-primary refresh-btn"
               onClick={this.props.updateDataFn}
             >
               <span className="glyphicon glyphicon-refresh" />{" "}
-            </button>
-          </h3>
+            </button> */}
         </div>
         <div className="panel-body chat-list">
           {/* Поиск по чатам */}
@@ -46,7 +45,7 @@ class ChatsContainer extends Component {
             <input
               type="text"
               className="form-control"
-              placeholder="Поиск чата"
+              placeholder="Поиск ..."
               onChange={this.handleSearch}
               //value={this.state.searchQuery}
             />

@@ -4,6 +4,7 @@ import App from './App';
 
 
 window.GermesChat=App;
+window.ReactDOM=ReactDOM;
 
 //2768031944000 2768027877000 Это тип чата по Заявке
 console.log("Запуск GermesChat index.js");
@@ -19,9 +20,7 @@ console.log("Запуск GermesChat index.js");
 // 2690192400000 абармова chatId  2768089107000
 // 2767267939000 Медведева
 
-export const  chatparams={
-  'chatType':'',
-  'chatId':'2768825872000',
+export const  chatparams={  
   'userId':'2767267939000'
 };
 
