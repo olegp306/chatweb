@@ -1,27 +1,46 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getCurrentChat, getNewMessages } from "../../redux/selectors";
+import {
+  getCurrentUserId,
+  getCurrentChat,
+  getNewMessages
+} from "../../redux/selectors";
 import {
   changeNewMessage,
   cleanNewMessage
 } from "../../redux/actions/newMessages";
+import { add as addTextMessage } from "../../redux/actions/message";
 
 class NewMessageContainer extends Component {
-  
   onChangeNewMessage = event => {
-    const { currentChat ,changeNewMessage} = this.props;
-    const message = event.target.value;
-    changeNewMessage(currentChat.id, message);
+    const {
+      currentUserId,
+      currentChat,
+      changeNewMessage,
+      addTextMessage
+    } = this.props;
+
+    if (event.keyCode == 13 && event.ctrlKey == true) {
+      const messageText = event.target.value;
+      const chatId = currentChat.id;
+      const userId = currentUserId;
+      addTextMessage({ userId, chatId, messageText });
+      //отправляем как скайпе по Enter + CTRL
+      //console.log('handIsEnterKey ',event.target.value);
+    } else {
+      const message = event.target.value;
+      changeNewMessage(currentChat.id, message);
+    }    
   };
-  
+
   render() {
     const { currentChat, newMessages, changeNewMessage } = this.props;
-    if(!currentChat)
-      return(
-        <div>загрузка начальных данных</div>
-      )
-    
-    const messageText = (currentChat!=null  &&  newMessages.items[currentChat.id]) ? newMessages.items[currentChat.id].message : "";
+    if (!currentChat) return <div>загрузка начальных данных</div>;
+
+    const messageText =
+      currentChat != null && newMessages.items[currentChat.id]
+        ? newMessages.items[currentChat.id].message
+        : "";
 
     return (
       <div className="navbar-fixed-bottom row-fluid">
@@ -51,6 +70,7 @@ class NewMessageContainer extends Component {
 }
 const mapStateToProps = store => {
   return {
+    currentUserId: getCurrentUserId(store),
     currentChat: getCurrentChat(store),
     newMessages: getNewMessages(store)
   };
@@ -60,7 +80,8 @@ const mapDispatchToProps = dispatch => {
   return {
     changeNewMessage: (chatId, message) =>
       dispatch(changeNewMessage(chatId, message)),
-    cleanNewMessage: chatId => dispatch(cleanNewMessage(chatId))
+    cleanNewMessage: chatId => dispatch(cleanNewMessage(chatId)),
+    addTextMessage: message => dispatch(addTextMessage(message))
   };
 };
 export default connect(
