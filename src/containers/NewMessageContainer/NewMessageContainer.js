@@ -43,7 +43,7 @@ class NewMessageContainer extends Component {
         : "";
 
     return (
-      <div className="navbar-fixed-bottom row-fluid">
+      <div className="send-new-message-box row-fluid">
         <div className="navbar-inner">
           <div>
             {/*
@@ -59,7 +59,7 @@ class NewMessageContainer extends Component {
               onChange={this.onChangeNewMessage}
               //onKeyUp={this.onChangeNewMessage}
             />
-            {/*<span className="input-group-addon btn btn-warning btn-send-messsage " onClick={this.handMessageAdd}>Отправить </span>*/}
+            <span className="input-group-addon btn btn-warning btn-send-messsage " onClick={this.handMessageAdd}>Отправить </span>
             {/*  </div>
             </div>*/}
           </div>
