@@ -4,6 +4,7 @@ import { LOGIN_REQUEST, LOGIN_BY_USERID } from "../actions/Session";
 import { FETCH_CHATS } from "../actions/chats";
 import { FETCH_USERS } from "../actions/users";
 import { FETCH_MESSAGES } from "../actions/messages";
+import { ADD_MESSAGE } from "../actions/message";
 
 import { FETCH_APPCHAT_DATA, SET_CURRENT_CHAT } from "../actions/chatApp";
 
@@ -12,10 +13,11 @@ import chatsSaga from "./chats";
 
 import usersSaga from "./users";
 import messagesSaga from "./messages";
+import messageSaga from "./message";
 
 import { fetchChatAppDataSaga, setCurrentChatSaga } from "./chatApp";
 
-// import messagesSaga from "./messages";
+
 
 function* sagaWatcher() {
   yield takeLatest(LOGIN_REQUEST, loginSaga);
@@ -27,6 +29,9 @@ function* sagaWatcher() {
 
   yield takeLatest(FETCH_APPCHAT_DATA, fetchChatAppDataSaga);
   yield takeLatest(SET_CURRENT_CHAT, setCurrentChatSaga);
+
+  yield takeLatest(ADD_MESSAGE, messageSaga);
+  
 
   
 

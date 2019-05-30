@@ -9,28 +9,26 @@ import {
   changeNewMessage,
   cleanNewMessage
 } from "../../redux/actions/newMessages";
-import { add as addTextMessage } from "../../redux/actions/message";
+import { add as addTextMessageAction } from "../../redux/actions/message";
 
 class NewMessageContainer extends Component {
-  onChangeNewMessage = event => {
-    const {
-      currentUserId,
-      currentChat,
-      changeNewMessage,
-      addTextMessage
-    } = this.props;
+  onKeyPressHandler = event => {
+    //отправляем как скайпе по Enter + CTRL
+    if (event.charCode == 13 && event.ctrlKey == true) {
+       const {addTextMessage} = this.props;
 
-    if (event.keyCode == 13 && event.ctrlKey == true) {
-      const messageText = event.target.value;
-      const chatId = currentChat.id;
-      const userId = currentUserId;
-      addTextMessage({ userId, chatId, messageText });
-      //отправляем как скайпе по Enter + CTRL
-      //console.log('handIsEnterKey ',event.target.value);
-    } else {
-      const message = event.target.value;
-      changeNewMessage(currentChat.id, message);
-    }    
+      // const messageText = newMessages.items[currentChat.id].message;
+      // const chatId = currentChat.id;
+      addTextMessage();
+
+      event.preventDefault();
+    }
+  };
+
+  onChangeNewMessage = event => {
+    const { currentChat, changeNewMessage } = this.props;
+    const message = event.target.value;
+    changeNewMessage(currentChat.id, message);
   };
 
   render() {
@@ -46,20 +44,21 @@ class NewMessageContainer extends Component {
       <div className="send-new-message-box row-fluid">
         <div className="navbar-inner">
           <div>
-            {/*
-          <div className="panel-footer">
-            <div className="input-group">
-            */}
             <textarea
               placeholder="Введите сообщение здесь..."
               rows={4}
               className="form-control custom-control resize-none"
               rows="3"
-              value={messageText}
+              value={messageText}             
+              onKeyPress={this.onKeyPressHandler}
               onChange={this.onChangeNewMessage}
-              //onKeyUp={this.onChangeNewMessage}
             />
-            <span className="input-group-addon btn btn-warning btn-send-messsage " onClick={this.handMessageAdd}>Отправить </span>
+            <span
+              className="input-group-addon btn btn-warning btn-send-messsage "
+              onClick={this.handMessageAdd}
+            >
+              Отправить{" "}
+            </span>
             {/*  </div>
             </div>*/}
           </div>
@@ -81,7 +80,7 @@ const mapDispatchToProps = dispatch => {
     changeNewMessage: (chatId, message) =>
       dispatch(changeNewMessage(chatId, message)),
     cleanNewMessage: chatId => dispatch(cleanNewMessage(chatId)),
-    addTextMessage: message => dispatch(addTextMessage(message))
+    addTextMessage: ()=> dispatch(addTextMessageAction())
   };
 };
 export default connect(
