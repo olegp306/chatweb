@@ -64,10 +64,20 @@ export default class ChatsList extends Component {
 
     let unreadMessagesCount = null;
 
+
+    //сортировка чатов по last message or chat creation datetime
+    const sortChats=chats.items.sort((a,b)=>{
+      const aDateTime=new Date((a.lastMessage)?a.lastMessage.CreationDate: a.CreationDate);
+      const bDateTime=new Date((b.lastMessage)?b.lastMessage.CreationDate: b.CreationDate);
+      return aDateTime.getTime()-bDateTime.getTime()
+    })
+
     let chatsListView = [];
 
-    for (let i = 0; i < chats.items.length; i++) {
-      let chat = chats.items[i];
+
+
+    for (let i = 0; i < sortChats.length; i++) {
+      let chat = sortChats[i];
       chatsListView.push(
         <SmallChat
           key={chat.id}
