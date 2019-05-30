@@ -211,25 +211,20 @@ ul.chat-list {
 }
 
 .message-author {
-  /* font-weight:bold; */
-  font-size: smaller;
-  color: grey;
-  /* text-align: center; */
-  /* background-color: aqua */
+  font-size: smaller !important;
+  color: grey !important;
 }
 .message-text-block {
-  background:#F2F6F9 ; /* Цвет фона */
-  
-  padding: 15px; /* Поля вокруг текста */
-  margin-bottom: 10px; /* Отступ снизу */
-  border-radius: 8px;
+  background: #f2f6f9 !important; /* Цвет фона */
+  padding: 15px !important; /* Поля вокруг текста */
+  margin-bottom: 10px !important; /* Отступ снизу */
+  border-radius: 8px !important;
 }
 
 .my-message-text-block {
   text-align: right;
-  background:#DBF4FD; /* Цвет фона */
-  /* border: 1px solid gray;  */
-  padding: 15px; /* Поля вокруг текста */
-  margin-bottom: 10px; /* Отступ снизу */
-  border-radius: 8px;
+  background: #dbf4fd !important; /* Цвет фона */
+  padding: 15px !important; /* Поля вокруг текста */
+  margin-bottom: 10px !important; /* Отступ снизу */
+  border-radius: 8px !important;
 }
