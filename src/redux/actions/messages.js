@@ -7,6 +7,8 @@ export const IS_FETCHING_MESSAGES = "IS_FETCHING_MESSAGES";
 export const FETCH_MESSAGES_SUCCESS = "FETCH_MESSAGES_SUCCESS";
 export const FETCH_MESSAGES_FAIL = "FETCH_MESSAGES_FAIL";
 
+export const ADD_NEW_MESSAGE_IN_MESSAGES_LIST = "ADD_NEW_MESSAGE_IN_MESSAGES_LIST";
+
 export const RESET_MESSAGES = "RESET_MESSAGES";
 
 export function fetch() {
@@ -36,6 +38,14 @@ export function fetchFail(error) {
     payload: error
     //currentPage: args.pageCount
   };  
+}
+
+
+export function addNewMessageInMesssageList(message) {
+  return {
+    type: ADD_NEW_MESSAGE_IN_MESSAGES_LIST,
+    payload: { message }
+  };
 }
 
 
