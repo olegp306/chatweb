@@ -16,11 +16,8 @@ class NewMessageContainer extends Component {
     //отправляем как скайпе по Enter + CTRL
     if (event.charCode == 13 && event.ctrlKey == true) {
        const {addTextMessage} = this.props;
-
-      // const messageText = newMessages.items[currentChat.id].message;
-      // const chatId = currentChat.id;
+       
       addTextMessage();
-
       event.preventDefault();
     }
   };
