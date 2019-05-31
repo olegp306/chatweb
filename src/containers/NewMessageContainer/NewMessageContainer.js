@@ -45,7 +45,7 @@ class NewMessageContainer extends Component {
         <div className="navbar-inner">
           <div>
             <textarea
-              placeholder="Введите сообщение здесь..."
+              placeholder="Введите сообщение здесь.... (отправить Ctrl + Enter) "
               rows={4}
               className="form-control custom-control resize-none"
               rows="3"
