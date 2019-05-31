@@ -72,7 +72,7 @@
 }
 
 .chat-list {
-  background-color: #f5f5f5;
+  background-color: #f5f5f57c;
 }
 
 ul.chat-list {
@@ -111,8 +111,9 @@ ul.chat-list {
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
-  color: #fff !important;
-  background-color: #428bca !important;
+  color: rgb(80, 80, 80) !important;
+  font-weight: 600;
+  background-color: #dbf4fd !important;
 }
 
 .new-message {
@@ -227,4 +228,15 @@ ul.chat-list {
   padding: 15px !important; /* Поля вокруг текста */
   margin-bottom: 10px !important; /* Отступ снизу */
   border-radius: 8px !important;
+}
+.small-chat-text{
+  color: grey !important;
+}
+
+.last-message-text-in-sm-chat{
+  margin-top: 3px !important;
+  margin-left: 3px !important;
+  font-size: smaller !important;
+  color: grey !important;
+  font-weight: 400
 }

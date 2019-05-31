@@ -54,8 +54,6 @@ export default class ChatsList extends Component {
     return unReadMessagesCount;
   };
 
- 
-
   render() {
     const { chats, currentChat, onClickChat } = this.props;
     if (chats.isFetching || currentChat == null) {
@@ -64,24 +62,26 @@ export default class ChatsList extends Component {
 
     let unreadMessagesCount = null;
 
-
     //сортировка чатов по last message or chat creation datetime
-    const sortChats=chats.items.sort((a,b)=>{
-      const aDateTime=new Date((a.lastMessage)?a.lastMessage.CreationDate: a.CreationDate);
-      const bDateTime=new Date((b.lastMessage)?b.lastMessage.CreationDate: b.CreationDate);
-      return aDateTime.getTime()-bDateTime.getTime()
-    })
+    const sortChats = chats.items.sort((a, b) => {
+      const aDateTime = new Date(
+        a.lastMessage ? a.lastMessage.CreationDate : a.CreationDate
+      );
+      const bDateTime = new Date(
+        b.lastMessage ? b.lastMessage.CreationDate : b.CreationDate
+      );
+      return aDateTime.getTime() - bDateTime.getTime();
+    });
 
     let chatsListView = [];
-
-
 
     for (let i = 0; i < sortChats.length; i++) {
       let chat = sortChats[i];
       chatsListView.push(
         <SmallChat
-          key={chat.id}
-          chatInfo={chat}
+          chat={chat}
+          key={chat.id + chat.name}
+          // chatInfo={chat}
           isCurrentChat={chat.id == currentChat.id}
           unreadMessagesCount={unreadMessagesCount}
           onClickChat={onClickChat}
