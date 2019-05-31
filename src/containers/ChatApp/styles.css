@@ -215,7 +215,15 @@ ul.chat-list {
   font-size: smaller !important;
   color: grey !important;
 }
+
+.my-message-author {
+  text-align: right !important;
+  font-size: smaller !important;
+  color: grey !important;
+}
 .message-text-block {
+  display: inline-block !important;
+  max-width: 75% !important;
   background: #f2f6f9 !important; /* Цвет фона */
   padding: 15px !important; /* Поля вокруг текста */
   margin-bottom: 10px !important; /* Отступ снизу */
@@ -223,6 +231,10 @@ ul.chat-list {
 }
 
 .my-message-text-block {
+  float: right !important;
+  max-width: 75% !important;
+  display: inline-block; 
+  align-content: right;
   text-align: right;
   background: #dbf4fd !important; /* Цвет фона */
   padding: 15px !important; /* Поля вокруг текста */

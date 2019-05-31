@@ -13,9 +13,7 @@ export default class Message extends Component {
     const messageDateTime = new Date(message.creationDate).toLocaleTimeString();
     return (
       <div className={isNewMessage == true ? "message new-message" : "message"}>
-        <li
-          className={isMyMessage == true ? "right clearfix" : "left clearfix"}
-        >
+        
           <div
             className={
               isMyMessage == true ? "chat-img pull-right" : "chat-img pull-left"
@@ -32,7 +30,7 @@ export default class Message extends Component {
             />
           </div>
           <div className="chat-body clearfix ">
-            <div className="message-author">
+            <div className= {isMyMessage == true ? "my-message-author" : "message-author"}>
               {author ? author.name : "неизвестный"} {messageDateTime}
             </div>
 
@@ -46,7 +44,7 @@ export default class Message extends Component {
               {message.text}
             </div>
           </div>
-        </li>
+        
       </div>
     );
   }
