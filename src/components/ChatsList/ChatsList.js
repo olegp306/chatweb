@@ -65,12 +65,15 @@ export default class ChatsList extends Component {
     //сортировка чатов по last message or chat creation datetime
     const sortChats = chats.items.sort((a, b) => {
       const aDateTime = new Date(
-        a.lastMessage ? a.lastMessage.CreationDate : a.CreationDate
+        a.lastMessage ? a.lastMessage.creationDate : a.creationDate
       );
       const bDateTime = new Date(
-        b.lastMessage ? b.lastMessage.CreationDate : b.CreationDate
+        b.lastMessage ? b.lastMessage.creationDate : b.creationDate
       );
-      return aDateTime.getTime() - bDateTime.getTime();
+      console.log(`
+      чат А ${a.name} время &${aDateTime} getTime  ${aDateTime.getTime()}
+      чат B ${b.name} время &${bDateTime} getTime  ${bDateTime.getTime()}`)
+      return bDateTime.getTime()-aDateTime.getTime() ;
     });
 
     let chatsListView = [];
@@ -80,7 +83,7 @@ export default class ChatsList extends Component {
       chatsListView.push(
         <SmallChat
           chat={chat}
-          key={chat.id + chat.name}
+          key={chat.id}
           // chatInfo={chat}
           isCurrentChat={chat.id == currentChat.id}
           unreadMessagesCount={unreadMessagesCount}
