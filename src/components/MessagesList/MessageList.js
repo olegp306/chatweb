@@ -36,7 +36,11 @@ export default class MessagesList extends Component {
     const { users, messages, unreadMessages, currentUserId } = this.props;
 
     if (users.isFetching || messages.isFetching) {
-      return <p>MessagesList Loading....</p>;
+      return (
+        <div id="messagesList" className="panel-body">
+          <p>MessagesList Loading....</p>;
+        </div>
+      );
     } else {
       if (messages.length == 0) {
         return (
@@ -56,7 +60,6 @@ export default class MessagesList extends Component {
         usersObjArr[user.id] = user;
       }
 
-    
       //const usersObjArr=_.map(users.items, 'id');
 
       for (let i = 0; i < messages.items.length; i++) {
