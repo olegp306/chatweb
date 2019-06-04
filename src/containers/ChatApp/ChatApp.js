@@ -31,9 +31,9 @@ class ChatApp extends Component {
                 <CurrentChatContainer />
               </div>
               <MessagesContainer />
-            </div>
-            <NewMessageContainer />
-          </div>         
+            </div>         
+            <NewMessageContainer />         
+          </div>             
         </div>
       </div>
     );

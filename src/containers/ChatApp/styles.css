@@ -38,6 +38,14 @@
   height: 450px;
 }
 
+.chat-list-panel-body {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 550px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
 .chats-panel {
   margin-bottom: 5px !important ;
 }
@@ -191,8 +199,8 @@ ul.chat-list {
 }
 
 .send-new-message-box {
-  padding-right: 15px;
-  padding-left: 15px;
+  /* padding-right: 15px; */
+  /* padding-left: 15px; */
 }
 
 .chat-list-title {
@@ -233,7 +241,7 @@ ul.chat-list {
 .my-message-text-block {
   float: right !important;
   max-width: 75% !important;
-  display: inline-block; 
+  display: inline-block;
   align-content: right;
   text-align: right;
   background: #dbf4fd !important; /* Цвет фона */
@@ -241,14 +249,14 @@ ul.chat-list {
   margin-bottom: 10px !important; /* Отступ снизу */
   border-radius: 8px !important;
 }
-.small-chat-text{
+.small-chat-text {
   color: grey !important;
 }
 
-.last-message-text-in-sm-chat{
+.last-message-text-in-sm-chat {
   margin-top: 3px !important;
   margin-left: 3px !important;
   font-size: smaller !important;
   color: grey !important;
-  font-weight: 400
+  font-weight: 400;
 }

@@ -39,7 +39,7 @@ class ChatsContainer extends Component {
               <span className="glyphicon glyphicon-refresh" />{" "}
             </button> */}
         </div>
-        <div className="panel-body chat-list">
+        <div className="chat-list-panel-body">
           {/* Поиск по чатам */}
           <div className="input-group search-input">
             <input
