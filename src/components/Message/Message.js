@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Images from "../../theme/images"
 
 import AvatarHelper from "../../utils/avatarHelper";
 
@@ -35,10 +36,19 @@ export default class Message extends Component {
             {author ? author.name : "неизвестный"} {messageDateTime}
           </div>
 
-          {message.type == 2768654243000 ? ( //картинка
-            //<Image style={{width: 50, height: 50}} source={text} />
-            <img src={message.url} alt="альтернативный текст"></img>
-            // <Image style={{ width: 100, height: 100 }} source={{ uri: url }} />
+          {message.type == 2768909676000 ? ( //картинка
+            <div
+              className={
+                isMyMessage == true ? "right-side-message" : "left-side-message"
+              }
+            >
+              <img
+                className="message-picture"
+                //{url ? { uri: url } : Images.noPicture}
+                src={message.fileUrl!=null ? message.fileUrl : Images.noPicture }
+                alt="нажмите для увеличения"
+              />
+            </div>
           ) : (
             //  <Image source={{ uri: url }} style={{ width: 100, height: 100 }} />
             <div
