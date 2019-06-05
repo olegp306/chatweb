@@ -260,3 +260,17 @@ ul.chat-list {
   color: grey !important;
   font-weight: 400;
 }
+
+.message-picture{
+  height: 100px !important;
+  width: 100px !important;
+}
+
+.right-side-message{
+  float: right;
+}
+
+
+.left-side-message{
+  float: left;
+}
