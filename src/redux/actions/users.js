@@ -1,12 +1,9 @@
-// https://medium.freecodecamp.org/the-best-way-to-architect-your-redux-app-ad9bd16c8e2d
-
-import api from "../../api";
-import { getSession } from "../selectors";
-
 export const FETCH_USERS = "FETCH_USERS";
 export const IS_FETCHING_USERS = "IS_FETCHING_USERS";
 export const FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS";
 export const FETCH_USERS_FAIL = "FETCH_USERS_FAIL";
+
+
 
 export const RESET_USERS = "RESET_USERS";
 
