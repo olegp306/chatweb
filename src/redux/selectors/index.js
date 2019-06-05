@@ -12,6 +12,10 @@ export const getChats = store => store.chats.toJS()
 export const getChatApp = store => store.chatApp.toJS()
 export const getNewMessages = store => store.newMessages.toJS()
 
+export const getChatsFilter = store => store.chatsFilter.get("filter")
+
+
+
 
 
 

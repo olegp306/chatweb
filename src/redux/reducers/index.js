@@ -8,6 +8,7 @@ import message from "./message";
 import users from "./users";
 import chatApp from "./chatApp";
 import newMessages from "./newMessages";
+import chatsFilter from "./chatsFilter";
 
 
 
@@ -20,7 +21,8 @@ const root = combineReducers({
   messages,
   message,
   chatApp,
-  newMessages
+  newMessages,
+  chatsFilter
 });
 
 export default root;
