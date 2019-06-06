@@ -9,6 +9,8 @@ const images = {
     // avatarExample: require('./images/avatarExample.png'),
     // noUserPhoto: require('./images/noUserphoto.png'),
     noPicture: require('./images/noPicture.png'),
+    checked: require('./images/checked.png'),
+    upChecked: require('./images/unchecked.png'),
   }
   
   export default images;
