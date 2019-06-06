@@ -9,7 +9,7 @@ class UserSmall extends Component {
   }
   getUserPhoto(username){
     let avatar=new AvatarHelper();
-    return avatar.getUserPhoto(username,25);
+    return avatar.getUserPhoto(username,30);
   }
 
 
@@ -19,11 +19,11 @@ class UserSmall extends Component {
     }
     else{
         return (
-          <div>
+          <div className="small-user">
             <span className="chat-img chat-img pull-left">
               <img src={this.getUserPhoto(this.props.user.name)} alt="User Avatar" className="img-circle" />
             </span>
-            <a  id={this.props.user.id} href="#">{this.props.user.name} </a>
+            <a  className="user-name-to-add" id={this.props.user.id} href="#">{this.props.user.name.substr(0,29)} </a>
           </div>
         );
     }
