@@ -4,6 +4,15 @@ import UserForAdd from "../User/UserForAdd/UserForAdd"
 
 export default class UsersList extends Component { 
 
+    //при инициализации 1 раз
+    componentDidMount() {
+      window.$(document).on('click','.add-user-in-chat-panel',function(e){e.stopPropagation();});
+    }
+  
+    componentWillUnmount() {  
+      window.$(document).off('click','.add-user-in-chat-panel',function(e){e.stopPropagation();});
+    }
+
   renderUsersList = usersItems => {
     const{onClickUser,selectedUsers}=this.props;
 
@@ -42,10 +51,10 @@ export default class UsersList extends Component {
               </span>*/}
           </div>
         </div>
-        <div className="panel-body chat-list">        
+        <div className="panel-body chat-list add-user-in-chat-panel">        
 
           <div className="sidebar">
-            <span className="label label-default">Доступные контакты</span>
+            {/* <span className="label label-default">Доступные контакты</span> */}
             <ul className="nav nav-sidebar chat-list-grid">{this.renderUsersList(users.items)}</ul>
           </div>
         </div>
