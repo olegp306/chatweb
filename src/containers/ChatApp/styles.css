@@ -261,16 +261,51 @@ ul.chat-list {
   font-weight: 400;
 }
 
-.message-picture{
+.message-picture {
   height: 100px !important;
   width: 100px !important;
 }
 
-.right-side-message{
+.right-side-message {
   float: right;
 }
 
-
-.left-side-message{
+.left-side-message {
   float: left;
+}
+
+.small-user {
+  height: 35px;
+  padding-left: 10px;
+  font-size: 16px;
+}
+
+.add-users-panel-heading {
+  /* height: 55px !important; */
+  background-color: #4280f4ee !important;
+}
+
+.search-users-input {
+  padding-top: 7px !important;
+  width: 300px;
+  /* margin-left: -10px !important; */
+  /* margin-right: -10px !important; */
+}
+.add-users-panel-bottom {
+  float: right;
+  padding:3px;
+}
+
+.user-name-to-add{
+  vertical-align: text-top;
+    padding-left: 5px;
+}
+
+.checker-img-users-list{
+  height: 30px;
+  padding-right: 10px;
+}
+
+.chat-list-grid{
+  display: grid
 }
