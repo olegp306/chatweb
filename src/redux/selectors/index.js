@@ -5,6 +5,9 @@ export const getCurrentUserId = store => store.session.get("userId")
 export const getCurrentChat = store => store.chatApp.toJS().currentChat;
 
 export const getUsers = store => store.users.toJS()
+
+export const getSelectedUsers = store => store.usersList.get('selectedUsers')
+
 export const getMessages = store => store.messages.toJS()
 export const getChats = store => store.chats.toJS()
 
