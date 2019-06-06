@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {getCurrentChat} from "../../redux/selectors"
+import UsersList from "../UsersListContainer/UsersListContainer"
 
 class CurrentChatContainer extends Component {
 
@@ -34,12 +35,12 @@ class CurrentChatContainer extends Component {
             className="dropdown-menu slidedown user-dropdown-menu"
             //onClick={this.handleChildClick}
           >
-            {/* <UsersListWithCheck
-              chatUsers={this.props.users}
-              availableToAddUsers={this.props.availableToAddUsers}
-              currentUserId={this.props.currentUserId}
-              addUsersFn={this.props.addUsersFn}
-            /> */}
+            <UsersList
+              //chatUsers={this.props.users}
+              //availableToAddUsers={this.props.availableToAddUsers}
+              //currentUserId={this.props.currentUserId}
+              //addUsersFn={this.props.addUsersFn}
+            />
           </div>
         </div>
 
