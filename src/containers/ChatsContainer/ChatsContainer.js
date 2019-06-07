@@ -67,7 +67,7 @@ class ChatsContainer extends Component {
           <div className="input-group search-input">
             <input
               type="text"
-              className="form-control"
+              className="form-control search-chats-text"
               placeholder="Поиск ..."
               onChange={this.onChangeFilter}
               value={chatsFilter}            
