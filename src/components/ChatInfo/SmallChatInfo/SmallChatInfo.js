@@ -31,7 +31,7 @@ export default class SmallChat extends Component {
     } else {
       return (
         <li
-          className={isCurrentChat == true ? (chat.chatTypeId== chatOnWarningTypeId ? "active-warning-chat":"active") : ""}
+          className={isCurrentChat == true ? (chat.chatTypeId== chatOnWarningTypeId ? "active-warning":"active") : ""}
           //id={chat.id}
         >
           <a className= { chat.chatTypeId== chatOnWarningTypeId ? "small-chat-text-warning " : "small-chat-text"} 
@@ -49,9 +49,11 @@ export default class SmallChat extends Component {
             >              
               {unreadMessagesCount}
             </span>
-            <div className="last-message-text-in-sm-chat">
+            <div></div>
+            
+            <span className="last-message-text-in-sm-chat">
               {lastMessage} 
-            </div>
+            </span>
            
           </a>
         </li>

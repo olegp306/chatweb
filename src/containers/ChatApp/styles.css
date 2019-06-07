@@ -116,6 +116,14 @@ ul.chat-list {
   padding-right: 20px;
   padding-left: 20px;
 }
+.nav-sidebar > .active-warning > a,
+.nav-sidebar > .active-warning > a:hover,
+.nav-sidebar > .active-warning > a:focus {
+  color: rgb(224, 0, 0) !important;
+  font-weight: 600 !important;
+  background-color: #dbf4fd !important;
+}
+
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
@@ -319,45 +327,29 @@ ul.chat-list {
 }
 
 .small-chat-text-warning {
-  background-color: rgb(212, 99, 99);
-  font-size: 17px;
+  background-color: rgb(231, 222, 222);
+  /* font-size: 17px; */
+  color: rgb(206, 105, 105) !important;
+}
+
+.search-chats-text {
+  font-size: 28px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.search-chats-text:focus {
+  font-size: 28px;
+  text-align: center;
+  font-weight: 600;
+  background-color: #1f345cee !important;
   color: rgb(255, 255, 255) !important;
 }
 
- .active-warning-chat > a,
- .active-warning-chat > a:hover,
-.nav-sidebar > .active-warning-chat > a:focus {
-  /* color: rgb(255, 255, 255) !important; */
-  font-weight: 600 !important;
-  background-color: #ff0000 !important;
-}
-
-.search-chats-text
- {
-    font-size: 28px;
-    text-align: center;
-    font-weight: 600;
-    /* background-color: #4280f4ee  !important; 
-    color: rgb(255, 255, 255) !important;    */
-
-}
-
-.search-chats-text:focus
- {
-    font-size: 28px;
-    text-align: center;
-    font-weight: 600;
-    background-color: #1f345cee  !important; 
-    color: rgb(255, 255, 255) !important;   
-
-}
-
-.search-chats-text::placeholder
- {
-    font-size: 28px;
-    text-align: center;
-    font-weight: 600;
-    /* background-color: #4280f4ee  !important;  */
-    color: rgb(224, 221, 221) !important;   
-
+.search-chats-text::placeholder {
+  font-size: 28px;
+  text-align: center;
+  font-weight: 600;
+  /* background-color: #4280f4ee  !important;  */
+  color: rgb(224, 221, 221) !important;
 }
