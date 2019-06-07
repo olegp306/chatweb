@@ -3,6 +3,8 @@ import session from "./Session";
 import chats from "./chats";
 import currentChat from "./currentChat";
 import messages from "./messages";
+import unReadMessages from "./unReadMessages";
+
 import message from "./message";
 import users from "./users";
 import chatUsers from "./chatUsers";
@@ -22,6 +24,7 @@ const root = combineReducers({
   usersList,
   currentChat,
   messages,
+  unReadMessages,
   message,
   chatApp,
   newMessages,
