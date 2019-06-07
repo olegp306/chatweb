@@ -14,13 +14,14 @@ import {
 const initialState = Map({
   items: [],
   isFetching: false,  
+  fetched: false,
   error: null
 });
 
 export default function chatUsersReducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_CHAT_USERS:
-      return state.merge({ isFetching: false, error: null });
+      return state.merge({ isFetching: false, error: null , fetched: false});
 
     case IS_FETCHING_CHAT_USERS:
       return state.merge({ isFetching: true });
@@ -33,7 +34,7 @@ export default function chatUsersReducer(state = initialState, action) {
       });
 
     case FETCH_CHAT_USERS_FAIL:
-      return state.merge({ isFetching: false, error: action.payload });    
+      return state.merge({ isFetching: false, error: action.payload, fetched: false });    
 
     case RESET_CHAT_USERS:
       return { ...state, ...initialState };
