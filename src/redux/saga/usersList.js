@@ -1,51 +1,55 @@
 import { call, put, select } from "redux-saga/effects";
 
-import { add, isAdding, addSuccess, addFail } from "../actions/selectedUsers";
+import { add, isAdding, addSuccess, addFail } from "../actions/usersList";
 
-import { add as addMessages } from "../actions/message";
-
+import { changeNewMessage } from "../actions/newMessages";
+import { add as addNewMessage } from "../actions/message";
+import { fetch as fetchChatUsers } from "../actions/chatUsers";
 
 import api from "../../api";
 import {
   getCurrentUserId,
+  getUsers,
   getCurrentChat,
   getSelectedUsers
 } from "../selectors";
 
 function* addSelectesUsersToChatSaga() {
+  const store = yield select();
 
   yield put(isAdding());
-  const userId = getCurrentUserId(store);
 
   try {
-    const currentChatId = getCurrentChat(store);
+    const currentChat = getCurrentChat(store);
     const selectedUsers = getSelectedUsers(store);
-    const selectedUsersItems = selectedUsers.items;
+    const users = getUsers(store);
 
-    const requestAr = selectedUsersItems.map((item, index) => {
-      return { chatId: currentChatId, userId: item.id };
+    const requestAr = [];
+    selectedUsers.keySeq().forEach(k => {
+      if (selectedUsers.get(k) == true)
+        requestAr.push({ chatId: currentChat.id, userId: k });
     });
-   
 
     const response = yield call(api.addUsersToChat, requestAr);
 
     yield put(addSuccess(response.data));
 
-    const message = {
-      chatId: chat.id,
-      text: "Тетстовое сообщение тот-то добавил тех-то",
-      type: 2768777882000, //текст
-      tempFrontId: new Date() + chat.id + messageText,
-      userId: userId,
-      creationDate: new Date()
-    };   
+    let userNamesToAdd = "";
+    users.items.forEach(user => {
+      if (selectedUsers.get(user.id) == true)
+        userNamesToAdd = userNamesToAdd +  user.name+ ", \n";
+    });
 
-    yield put(addMessages(message));
-    //убрать выдеденеие с selectedUsers
-   
+    const messageText = "добавил(а) в чат: \n" + userNamesToAdd;
+    yield put(changeNewMessage(currentChat.id, messageText));
+    yield put(addNewMessage());
+
+    yield put(fetchChatUsers());
+    
+
   } catch (error) {
     yield put(addFail(error));
   }
 }
 
-export default addMessageSaga;
+export default addSelectesUsersToChatSaga;
