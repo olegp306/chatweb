@@ -293,19 +293,27 @@ ul.chat-list {
 }
 .add-users-panel-bottom {
   float: right;
-  padding:3px;
+  padding: 3px;
 }
 
-.user-name-to-add{
+.user-name-to-add {
   vertical-align: text-top;
-    padding-left: 5px;
+  padding-left: 5px;
 }
 
-.checker-img-users-list{
+.checker-img-users-list {
   height: 30px;
   padding-right: 10px;
 }
 
-.chat-list-grid{
-  display: grid
+.chat-list-grid {
+  display: grid;
+}
+
+.user-list-submit-selection {
+  float: right !important;
+  color: #515050 !important;
+  background-color: #ffffff !important ;
+  font-weight: 400 !important;
+  font-size: 18px !important;
 }
