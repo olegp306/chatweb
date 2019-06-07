@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 
+const chatOnWarningTypeId="2768909697000" //чат по замечание
+const chatOnRequest="2768031944000" //чат по заявке
+
+
 export default class SmallChat extends Component {
   
   componentDidMount() {}
@@ -27,10 +31,10 @@ export default class SmallChat extends Component {
     } else {
       return (
         <li
-          className={isCurrentChat == true ? "active" : ""}
+          className={isCurrentChat == true ? (chat.chatTypeId== chatOnWarningTypeId ? "active-warning-chat":"active") : ""}
           //id={chat.id}
         >
-          <a className="small-chat-text"
+          <a className= { chat.chatTypeId== chatOnWarningTypeId ? "small-chat-text-warning " : "small-chat-text"} 
             //id={chat.id}
             href="#"
             onClick={()=>onClickChat(chat)}

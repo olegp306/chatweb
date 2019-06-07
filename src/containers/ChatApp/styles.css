@@ -317,3 +317,47 @@ ul.chat-list {
   font-weight: 400 !important;
   font-size: 18px !important;
 }
+
+.small-chat-text-warning {
+  background-color: rgb(212, 99, 99);
+  font-size: 17px;
+  color: rgb(255, 255, 255) !important;
+}
+
+ .active-warning-chat > a,
+ .active-warning-chat > a:hover,
+.nav-sidebar > .active-warning-chat > a:focus {
+  /* color: rgb(255, 255, 255) !important; */
+  font-weight: 600 !important;
+  background-color: #ff0000 !important;
+}
+
+.search-chats-text
+ {
+    font-size: 28px;
+    text-align: center;
+    font-weight: 600;
+    /* background-color: #4280f4ee  !important; 
+    color: rgb(255, 255, 255) !important;    */
+
+}
+
+.search-chats-text:focus
+ {
+    font-size: 28px;
+    text-align: center;
+    font-weight: 600;
+    background-color: #1f345cee  !important; 
+    color: rgb(255, 255, 255) !important;   
+
+}
+
+.search-chats-text::placeholder
+ {
+    font-size: 28px;
+    text-align: center;
+    font-weight: 600;
+    /* background-color: #4280f4ee  !important;  */
+    color: rgb(224, 221, 221) !important;   
+
+}
