@@ -40,7 +40,7 @@ function* addSelectesUsersToChatSaga() {
         userNamesToAdd = userNamesToAdd +  user.name+ ", \n";
     });
 
-    const messageText = "добавил(а) в чат: \n" + userNamesToAdd;
+    const messageText = "в чат добавлены \n" + userNamesToAdd;
     yield put(changeNewMessage(currentChat.id, messageText));
     yield put(addNewMessage());
 
