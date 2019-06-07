@@ -9,8 +9,8 @@ import loginSaga from "../saga/Session";
 import chatsSaga from "../saga/chats";
 
 import usersSaga from "../saga/users";
+import chatUsersSaga from "../saga/chatUsers";
 import messagesSaga from "../saga/messages";
-
 
 import _ from "lodash";
 
@@ -25,6 +25,7 @@ function* fetchChatAppDataSaga(action) {
     yield* setInitialCurrentChatSaga();
 
     yield* messagesSaga();
+    yield* chatUsersSaga();
 
     yield put(fetchSuccess());
   } catch (error) {
@@ -32,31 +33,29 @@ function* fetchChatAppDataSaga(action) {
   }
 }
 
-
 function* setInitialCurrentChatSaga() {
   try {
     const store = yield select();
     const chats = getChats(store);
 
-    const chatsArr=chats.items.sort((a, b) => {
-      return  new Date(a.date)-new Date(b.date) ;
-    });    
+    const chatsArr = chats.items.sort((a, b) => {
+      return new Date(a.date) - new Date(b.date);
+    });
 
-      yield put(setCurrentChat(chatsArr[0]));
+    yield put(setCurrentChat(chatsArr[0]));
   } catch (error) {
     yield put(fetchFail(error));
   }
 }
 
 function* setCurrentChatSaga(chat) {
-  try {   
-    //yield put(setCurrentChat(chat));      
+  try {
+    //yield put(setCurrentChat(chat));
 
     yield* messagesSaga();
-
   } catch (error) {
     yield put(fetchFail(error));
   }
 }
 
-export { fetchChatAppDataSaga, setCurrentChatSaga }
+export { fetchChatAppDataSaga, setCurrentChatSaga };

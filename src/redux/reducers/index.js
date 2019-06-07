@@ -5,6 +5,7 @@ import currentChat from "./currentChat";
 import messages from "./messages";
 import message from "./message";
 import users from "./users";
+import chatUsers from "./chatUsers";
 import usersList from "./usersList";
 import chatApp from "./chatApp";
 import newMessages from "./newMessages";
@@ -17,6 +18,7 @@ const root = combineReducers({
   chats,
   //chat,
   users,
+  chatUsers,
   usersList,
   currentChat,
   messages,
