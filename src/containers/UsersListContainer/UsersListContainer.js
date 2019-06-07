@@ -30,9 +30,8 @@ const mapDispatchToProps = dispatch => {
 };
 
 class UsersListContainer extends Component {
-
   onClickHandler = userId => {
-    const { selectUser, unSelectUser, selectedUsers,  } = this.props;
+    const { selectUser, unSelectUser, selectedUsers } = this.props;
     console.log("select user with user id=" + userId);
     if (selectedUsers && selectedUsers.get(userId)) {
       unSelectUser(userId);
@@ -42,10 +41,14 @@ class UsersListContainer extends Component {
   };
 
   render() {
-    const { selectedUsers, users } = this.props;   
-   
+    const { selectedUsers, users } = this.props;
+
     return (
-      <UsersList users={users} selectedUsers = {selectedUsers} onClickUser={this.onClickHandler} />
+      <UsersList
+        users={users}
+        selectedUsers={selectedUsers}
+        onClickUser={this.onClickHandler}
+      />
     );
   }
 }
