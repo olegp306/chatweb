@@ -54,8 +54,6 @@ function* setInitialCurrentChatSaga() {
   }
 }
 
-
-
 function* setCurrentChatSaga(chat) {
   try {
     //yield put(setCurrentChat(chat));
@@ -66,20 +64,5 @@ function* setCurrentChatSaga(chat) {
     yield put(fetchFail(error));
   }
 }
-
-// sortChats = (chatItems) => {
-//   //сортировка чатов по last message or chat creation datetime
-//   const sortChats = chatItems.sort((a, b) => {
-//     const aDateTime = new Date(
-//       a.lastMessage ? a.lastMessage.creationDate : a.creationDate
-//     );
-//     const bDateTime = new Date(
-//       b.lastMessage ? b.lastMessage.creationDate : b.creationDate
-//     );   
-//     return bDateTime.getTime() - aDateTime.getTime();
-//   });
-
-//   return sortChats;
-// };
 
 export { fetchChatAppDataSaga, setCurrentChatSaga };
