@@ -19,19 +19,14 @@ console.log("Запуск GermesChat index.js");
 // 39098772000  Быконя chatId 2768027587000
 // 2690192400000 абармова chatId  2768089107000
 // 2767267939000 Медведева
+//2767798896000 Лушин
 
-export const  chatparams={  
-  'userId':'2767267939000'
-};
+// export const  chatparams={  
+//   'userId':'2767267939000'
+// };
 
-ReactDOM.render(
-    React.createElement(App, {chatparams:chatparams}, null),
-    document.getElementById('germes-chat')
-  );
-
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-// serviceWorker.unregister();
+// ReactDOM.render(
+//     React.createElement(App, {chatparams:chatparams}, null),
+//     document.getElementById('germes-chat')
+//   );
 
