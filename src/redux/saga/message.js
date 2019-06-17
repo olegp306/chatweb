@@ -32,7 +32,11 @@ function* addMessageSaga() {
 
     yield put(addNewMessageInMesssageList(message));
 
+    //yield put(setNewLastMessageForChat());
+
     yield put(cleanNewMessage(chat.id));
+
+
   } catch (error) {
     yield put(addFail(error));
   }
