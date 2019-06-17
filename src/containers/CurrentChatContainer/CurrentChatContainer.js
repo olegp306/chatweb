@@ -12,7 +12,7 @@ class CurrentChatContainer extends Component {
       return <div>Загрузка иформации о чате</div>
     }
     return (
-      <div>
+      <div  className="chat-title-container">
         <h3 className="panel-title text-center in-one-row">
           {currentChat.description}
           {/*Всего: кол-во человек в чате)*/}

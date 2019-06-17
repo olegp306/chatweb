@@ -272,8 +272,16 @@ ul.chat-list {
 }
 
 .message-picture {
+  padding: 2px;
   max-height: 125px !important;
   border-radius: 10px;
+}
+.message-picture:hover{
+  padding: 0px;
+  border-color: #00ffff;
+  border-width: 2px;
+  border-style: solid;
+  
 }
 
 .right-side-message {
@@ -354,4 +362,8 @@ ul.chat-list {
   font-weight: 600 !important;
   /* background-color: #4280f4ee  !important;  */
   color: rgb(224, 221, 221) !important;
+}
+
+.chat-title-container:hover{
+  color: #00ffff!important;
 }
