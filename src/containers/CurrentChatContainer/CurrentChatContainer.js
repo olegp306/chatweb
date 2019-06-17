@@ -1,19 +1,35 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {getCurrentChat} from "../../redux/selectors"
-import UsersList from "../UsersListContainer/UsersListContainer"
+import { getCurrentChat } from "../../redux/selectors";
+import UsersList from "../UsersListContainer/UsersListContainer";
 
-class CurrentChatContainer extends Component {
+class CurrentChatContainer extends Component { 
+  openRequestFomRnChat=()=>{      
+    const { currentChat } = this.props;
+    
+    if (window.Altsoft) {
+      window.Altsoft.Desktop.CreateWindow({
+        Url:
+          "5564/frmUpdRequest5564.aspx?ClassName=tblZajavki_Germes39098805000&OId="+currentChat.requestGermesId+"&FormLogic=UpdaterEdit&UpdSettingOId=1279172381000" ,
+        Parent: this
+      });
+    } else {
+      console.log(currentChat.requestGermesId );
+    }
+  }
 
   render() {
-    const {currentChat,chatUsersCount}=this.props;
+    const { currentChat, chatUsersCount } = this.props;
 
-    if(currentChat==null){
-      return <div>Загрузка иформации о чате</div>
+    if (currentChat == null) {
+      return <div>Загрузка иформации о чате</div>;
     }
     return (
-      <div  className="chat-title-container">
-        <h3 className="panel-title text-center in-one-row">
+      <div>
+        <h3
+          className="panel-title text-center in-one-row chat-title-container"
+          onClick={this.openRequestFomRnChat}
+        >
           {currentChat.description}
           {/*Всего: кол-во человек в чате)*/}
         </h3>
@@ -36,10 +52,10 @@ class CurrentChatContainer extends Component {
             //onClick={this.handleChildClick}
           >
             <UsersList
-              //chatUsers={this.props.users}
-              //availableToAddUsers={this.props.availableToAddUsers}
-              //currentUserId={this.props.currentUserId}
-              //addUsersFn={this.props.addUsersFn}
+            //chatUsers={this.props.users}
+            //availableToAddUsers={this.props.availableToAddUsers}
+            //currentUserId={this.props.currentUserId}
+            //addUsersFn={this.props.addUsersFn}
             />
           </div>
         </div>

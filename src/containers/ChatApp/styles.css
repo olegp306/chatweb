@@ -365,5 +365,11 @@ ul.chat-list {
 }
 
 .chat-title-container:hover{
-  color: #00ffff!important;
+  /* color: #00ffff!important; */
+  /* border: 1px; */
+  background-color: #dbf4fd;
+  color: black
+  /* border-color: #00ffff!important; */
+  /* border-style: solid; */
+  /* border-radius: 2px; */
 }
