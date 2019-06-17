@@ -272,14 +272,12 @@ ul.chat-list {
 }
 
 .message-picture {
-  height: 125px !important;
-  width: 125px !important;
+  max-height: 125px !important;
   border-radius: 10px;
 }
 
 .right-side-message {
   float: right;
-  
 }
 
 .left-side-message {
