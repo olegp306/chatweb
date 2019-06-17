@@ -36,12 +36,14 @@ export default class Message extends Component {
             {author ? author.name : "неизвестный"} {messageDateTime}
           </div>
 
-          {message.type == 2768909676000 ? ( //картинка
+          {message.type == 2768654243000 ? ( //картинка
+          <a class="fancybox" data-fancybox rel="group" href={message.fileUrl!=null ? message.fileUrl : Images.noPicture }>
             <div
               className={
                 isMyMessage == true ? "right-side-message" : "left-side-message"
               }
             >
+              
               <img
                 className="message-picture"
                 //{url ? { uri: url } : Images.noPicture}
@@ -49,6 +51,7 @@ export default class Message extends Component {
                 alt="нажмите для увеличения"
               />
             </div>
+            </a>
           ) : (
             //  <Image source={{ uri: url }} style={{ width: 100, height: 100 }} />
             <div
