@@ -29,7 +29,7 @@ class NewMessageContainer extends Component {
   };
 
   render() {
-    const { currentChat, newMessages, changeNewMessage } = this.props;
+    const { currentChat, newMessages, changeNewMessage , addTextMessage} = this.props;
     if (!currentChat) return <div>загрузка начальных данных</div>;
 
     const messageText =
@@ -52,7 +52,7 @@ class NewMessageContainer extends Component {
             />
             <span
               className="input-group-addon btn btn-warning btn-send-messsage "
-              onClick={this.handMessageAdd}
+              onClick={addTextMessage}
             >
               Отправить{" "}
             </span>
