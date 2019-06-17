@@ -68,6 +68,8 @@
 
 .btn-send-messsage {
   background-color: #f4aa42 !important;
+  float: right !important;
+  width: auto !important;
 }
 .refresh-btn {
   float: right;
@@ -327,29 +329,29 @@ ul.chat-list {
 }
 
 .small-chat-text-warning {
-  background-color: rgb(231, 222, 222);
+  background-color: rgb(231, 222, 222) !important;
   /* font-size: 17px; */
   color: rgb(206, 105, 105) !important;
 }
 
 .search-chats-text {
-  font-size: 28px;
-  text-align: center;
-  font-weight: 600;
+  font-size: 28px !important;
+  text-align: center !important;
+  font-weight: 600 !important;
 }
 
 .search-chats-text:focus {
-  font-size: 28px;
-  text-align: center;
-  font-weight: 600;
+  font-size: 28px !important;
+  text-align: center !important;
+  font-weight: 600 !important;
   background-color: #1f345cee !important;
   color: rgb(255, 255, 255) !important;
 }
 
 .search-chats-text::placeholder {
-  font-size: 28px;
-  text-align: center;
-  font-weight: 600;
+  font-size: 28px !important;
+  text-align: center !important;
+  font-weight: 600 !important;
   /* background-color: #4280f4ee  !important;  */
   color: rgb(224, 221, 221) !important;
 }
