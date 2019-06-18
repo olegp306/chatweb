@@ -1,22 +1,25 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getCurrentChat } from "../../redux/selectors";
-import UsersList from "../UsersListContainer/UsersListContainer";
+import UsersListWithSelectContainer from "../UsersListWithSelectContainer/UsersListWithSelectContainer";
+import UsersListContainer from "../UsersListContainer/UsersListContainer";
 
-class CurrentChatContainer extends Component { 
-  openRequestFomRnChat=()=>{      
+class CurrentChatContainer extends Component {
+  openRequestFomRnChat = () => {
     const { currentChat } = this.props;
-    
+
     if (window.Altsoft) {
       window.Altsoft.Desktop.CreateWindow({
         Url:
-          "5564/frmUpdRequest5564.aspx?ClassName=tblZajavki_Germes39098805000&OId="+currentChat.requestGermesId+"&FormLogic=UpdaterEdit&UpdSettingOId=1279172381000" ,
+          "5564/frmUpdRequest5564.aspx?ClassName=tblZajavki_Germes39098805000&OId=" +
+          currentChat.requestGermesId +
+          "&FormLogic=UpdaterEdit&UpdSettingOId=1279172381000",
         Parent: this
       });
     } else {
-      console.log(currentChat.requestGermesId );
+      console.log(currentChat.requestGermesId);
     }
-  }
+  };
 
   render() {
     const { currentChat, chatUsersCount } = this.props;
@@ -51,7 +54,7 @@ class CurrentChatContainer extends Component {
             className="dropdown-menu slidedown user-dropdown-menu"
             //onClick={this.handleChildClick}
           >
-            <UsersList
+            <UsersListWithSelectContainer
             //chatUsers={this.props.users}
             //availableToAddUsers={this.props.availableToAddUsers}
             //currentUserId={this.props.currentUserId}
@@ -69,10 +72,7 @@ class CurrentChatContainer extends Component {
             <span className="glyphicon glyphicon-user"> {chatUsersCount}</span>
           </button>
           <div className="dropdown-menu slidedown user-dropdown-menu">
-            {/* <UsersList
-              chatUsers={this.props.chatUsers}
-              currentUserId={this.props.currentUserId}
-            /> */}
+            <UsersListContainer />
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import UsersList from "../../components/UsersList/UsersList";
+import UsersListWithSelect from "../../components/UsersListWithSelect/UsersListWithSelect";
 import { selectUser, unSelectUser } from "../../redux/actions/usersList";
 import { add as addUserstoChat } from "../../redux/actions/usersList";
 import _ from "lodash";
@@ -33,9 +33,20 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-class UsersListContainer extends Component {
+class UsersListWithSelectContainer extends Component {
+  onClickHandler = userId => {
+    const { selectUser, unSelectUser, selectedUsers } = this.props;
+    console.log("select user with user id=" + userId);
+    if (selectedUsers && selectedUsers.get(userId)) {
+      unSelectUser(userId);
+    } else {
+      selectUser(userId);
+    }
+  };
+
   render() {
-    const { users, chatUsers } = this.props;    
+    const { selectedUsers, users, chatUsers, addUserstoChat } = this.props;
+    const chatUsersObj = _.keyBy(chatUsers.items, "id");
 
     if (
       users.isFetching == true ||
@@ -45,12 +56,20 @@ class UsersListContainer extends Component {
       return <div>users list is loading</div>;
     }
 
-  
+    let usersItemsForAdd = users;
+    usersItemsForAdd.items = users.items.filter(item => !chatUsersObj[item.id]);
 
-    return <UsersList chatUsers={chatUsers} />;
+    return (
+      <UsersListWithSelect
+        users={usersItemsForAdd}
+        selectedUsers={selectedUsers}
+        onClickUser={this.onClickHandler}
+        addUserstoChat={addUserstoChat}
+      />
+    );
   }
 }
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(UsersListContainer);
+)(UsersListWithSelectContainer);
