@@ -6,14 +6,19 @@ import {
   ADD_SELECTED_USERS_TO_CHAT,
   IS_ADDDING_SELECTED_USERS_TO_CHAT,
   ADDED_SELECTED_USERS_TO_CHAT,
-  ADD_SELECTED_USERS_TO_CHAT_FAIL
+  ADD_SELECTED_USERS_TO_CHAT_FAIL,
+  
+  SET_USERS_LIST_FILTER,
+  RESET_USERS_LIST_FILTER
 } from "../actions/usersListWithSelect";
 
 const initialState = Map({
   selectedUsers: Map(),
   isAdding: false,
   added: false,
-  error: null
+  error: null,
+
+  filter: null
 });
 
 export default function selectedUserReducer(state = initialState, action) {
@@ -44,6 +49,12 @@ export default function selectedUserReducer(state = initialState, action) {
 
     case ADD_SELECTED_USERS_TO_CHAT_FAIL:
       return state.merge({ isAdding: false, error: action.payload });
+
+    case SET_USERS_LIST_FILTER:
+      return state.merge({ filter: action.payload });
+
+    case RESET_USERS_LIST_FILTER:
+      return state.merge({ filter: null });
 
     // case RESET_CHATS:
     //   return { ...state, ...initialState };

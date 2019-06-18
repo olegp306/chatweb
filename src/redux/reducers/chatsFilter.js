@@ -10,7 +10,7 @@ const initialState = Map({
   filter: null
 });
 
-export default function messagesReducer(state = initialState, action) {
+export default function chatsListReducer(state = initialState, action) {
   switch (action.type) {
     case SET_CHATST_FILTER:
       return state.merge({ filter: action.payload });

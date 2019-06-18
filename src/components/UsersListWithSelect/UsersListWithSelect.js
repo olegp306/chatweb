@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import UserSmall from "../User/UserSmall/UserSmall";
 import UserForAdd from "../User/UserForAdd/UserForAdd";
 
 export default class UsersListWithSelect extends Component {
@@ -18,7 +17,6 @@ export default class UsersListWithSelect extends Component {
 
   renderUsersList = usersItems => {
     const { onClickUser, selectedUsers } = this.props;
-
     return usersItems.map((item, index) => {
       return (
         <UserForAdd
@@ -35,17 +33,20 @@ export default class UsersListWithSelect extends Component {
   };
 
   render() {
-    const { users, selectedUsers, addUsers, addUserstoChat } = this.props;
+    const {
+      users,      
+      addUserstoChat,
+      onChangeFilter
+    } = this.props;
 
     return (
       <div className="panel panel-primary chats-panel">
         <div className="panel-heading add-users-panel-heading">
           <h3 className="panel-title">
-            Добавьте участников
-            {/* <button className="btn btn-primary refresh-btn" onClick={this.props.updateDataFn}><span className="glyphicon glyphicon-refresh"></span> </button>*/}
+            Добавьте участников            
             <button
               type="button"
-              className="btn btn-primary user-list-submit-selection" 
+              className="btn btn-primary user-list-submit-selection"
               onClick={addUserstoChat}
             >
               готово
@@ -56,31 +57,17 @@ export default class UsersListWithSelect extends Component {
               type="text"
               className="form-control"
               placeholder="поиск"
-              onChange={this.handleSearch}
-              //value={this.state.searchQuery}
+              onChange={onChangeFilter}
             />
-            {/*<span className="input-group-btn">
-                <button className="btn btn-default"  type="button" onClick={this.clearSearchQuery} data-toggle="tooltip" data-placement="right" title="Очистить строку поиска" ><span className="glyphicon glyphicon-search"></span></button>
-              </span>*/}
           </div>
         </div>
         <div className="panel-body chat-list add-user-in-chat-panel">
           <div className="sidebar">
-            {/* <span className="label label-default">Доступные контакты</span> */}
             <ul className="nav nav-sidebar chat-list-grid">
               {this.renderUsersList(users.items)}
             </ul>
           </div>
         </div>
-        {/* <div className="add-users-panel-bottom">
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={addUserstoChat}
-        >
-          Добавить
-        </button>
-        </div> */}
       </div>
     );
   }
