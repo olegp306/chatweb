@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import UsersList from "../../components/UsersList/UsersList";
-import { selectUser, unSelectUser } from "../../redux/actions/usersList";
-import { add as addUserstoChat } from "../../redux/actions/usersList";
+import { selectUser, unSelectUser } from "../../redux/actions/usersListWithSelect";
+import { add as addUserstoChat } from "../../redux/actions/usersListWithSelect";
 import _ from "lodash";
 
 import {

@@ -8,7 +8,7 @@ import unReadMessages from "./unReadMessages";
 import message from "./message";
 import users from "./users";
 import chatUsers from "./chatUsers";
-import usersList from "./usersList";
+import usersListWithSelect from "./usersListWithSelect";
 import chatApp from "./chatApp";
 import newMessages from "./newMessages";
 import chatsFilter from "./chatsFilter";
@@ -21,7 +21,7 @@ const root = combineReducers({
   //chat,
   users,
   chatUsers,
-  usersList,
+  usersListWithSelect,
   currentChat,
   messages,
   unReadMessages,

@@ -8,7 +8,7 @@ export const getUsers = store => store.users.toJS();
 
 export const getChatUsers = store => store.chatUsers.toJS();
 
-export const getSelectedUsers = store => store.usersList.get("selectedUsers");
+export const getSelectedUsers = store => store.usersListWithSelect.get("selectedUsers");
 
 // export const getUsersForAddInChat = store =>   
 //   store.users.get("items").filter(item => !(store.chatUsers.toJS().items[item.id]));

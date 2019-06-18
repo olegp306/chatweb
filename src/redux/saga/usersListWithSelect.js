@@ -1,6 +1,6 @@
 import { call, put, select } from "redux-saga/effects";
 
-import { add, isAdding, addSuccess, addFail } from "../actions/usersList";
+import { add, isAdding, addSuccess, addFail } from "../actions/usersListWithSelect";
 
 import { changeNewMessage } from "../actions/newMessages";
 import { add as addNewMessage } from "../actions/message";

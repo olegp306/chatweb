@@ -9,7 +9,7 @@ import { FETCH_MESSAGES } from "../actions/messages";
 import { ADD_MESSAGE } from "../actions/message";
 
 import { FETCH_APPCHAT_DATA, SET_CURRENT_CHAT } from "../actions/chatApp";
-import { ADD_SELECTED_USERS_TO_CHAT } from "../actions/usersList";
+import { ADD_SELECTED_USERS_TO_CHAT } from "../actions/usersListWithSelect";
 
 
 import loginSaga from "./Session.js";
@@ -20,7 +20,7 @@ import chatUsersSaga from "./chatUsers";
 import messagesSaga from "./messages";
 import messageSaga from "./message";
 
-import addSelectesUsersToChat from "./usersList"
+import addSelectesUsersToChat from "./usersListWithSelect"
 
 import { fetchChatAppDataSaga, setCurrentChatSaga } from "./chatApp";
 

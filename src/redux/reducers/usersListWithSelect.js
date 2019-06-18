@@ -7,7 +7,7 @@ import {
   IS_ADDDING_SELECTED_USERS_TO_CHAT,
   ADDED_SELECTED_USERS_TO_CHAT,
   ADD_SELECTED_USERS_TO_CHAT_FAIL
-} from "../actions/usersList";
+} from "../actions/usersListWithSelect";
 
 const initialState = Map({
   selectedUsers: Map(),
