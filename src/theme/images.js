@@ -11,6 +11,8 @@ const images = {
     noPicture: require('./images/noPicture.png'),
     checked: require('./images/checked.png'),
     upChecked: require('./images/unchecked.png'),
+    addFile: require('./images/addFile.png'),
+    sendMessage: require('./images/sendMessage2.png'),
   }
   
   export default images;

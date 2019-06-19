@@ -369,7 +369,20 @@ ul.chat-list {
 
 .chat-title-container:hover{ 
   background-color:white !important;
-  color: black!important; 
-  
+  color: black!important;   
 }
+
+.add-file-icon{
+  max-height:52px;
+  max-width:52px;  
+  position: absolute;
+  right :20px;
+  top:18px;
+  opacity: 0.5;
+}
+.add-file-icon:hover{
+   opacity: 1
+}
+
+
 
