@@ -9,7 +9,7 @@ import {
   changeNewMessage,
   cleanNewMessage
 } from "../../redux/actions/newMessages";
-import { add as addTextMessageAction } from "../../redux/actions/message";
+import { add as addTextMessageAction } from "../../redux/entities/message/actions";
 
 class NewMessageContainer extends Component {
   onKeyPressHandler = event => {

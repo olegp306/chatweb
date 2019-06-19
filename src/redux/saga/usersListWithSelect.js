@@ -3,7 +3,7 @@ import { call, put, select } from "redux-saga/effects";
 import { add, isAdding, addSuccess, addFail } from "../actions/usersListWithSelect";
 
 import { changeNewMessage } from "../actions/newMessages";
-import { add as addNewMessage } from "../actions/message";
+import { add as addNewMessage } from "../entities/message/actions";
 import { fetch as fetchChatUsers } from "../actions/chatUsers";
 
 import api from "../../api";

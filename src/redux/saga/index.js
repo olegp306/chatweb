@@ -6,7 +6,7 @@ import { FETCH_USERS } from "../actions/users";
 import { FETCH_CHAT_USERS } from "../actions/chatUsers";
 
 import { FETCH_MESSAGES } from "../actions/messages";
-import { ADD_MESSAGE } from "../actions/message";
+import { ADD_MESSAGE } from "../entities/message/actions";
 
 import { FETCH_APPCHAT_DATA, SET_CURRENT_CHAT } from "../actions/chatApp";
 import { ADD_SELECTED_USERS_TO_CHAT } from "../actions/usersListWithSelect";
@@ -18,7 +18,7 @@ import chatsSaga from "./chats";
 import usersSaga from "./users";
 import chatUsersSaga from "./chatUsers";
 import messagesSaga from "./messages";
-import messageSaga from "./message";
+import messageSaga from "../entities/message/saga";
 
 import addSelectesUsersToChat from "./usersListWithSelect"
 

@@ -1,11 +1,11 @@
 import { call, put, select } from "redux-saga/effects";
 
-import { add, isAdding, addSuccess, addFail } from "../actions/message";
-import { cleanNewMessage } from "../actions/newMessages";
-import { addNewMessageInMesssageList } from "../actions/messages";
+import { add, isAdding, addSuccess, addFail } from "../message/actions";
+import { cleanNewMessage } from "../../actions/newMessages";
+import { addNewMessageInMesssageList } from "../../actions/messages"
 
-import api from "../../api";
-import { getCurrentUserId, getCurrentChat, getNewMessages } from "../selectors";
+import api from "../../../api";
+import { getCurrentUserId, getCurrentChat, getNewMessages } from "../../selectors";
 
 function* addMessageSaga() {
   yield put(isAdding());

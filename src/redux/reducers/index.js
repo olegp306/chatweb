@@ -5,7 +5,7 @@ import currentChat from "./currentChat";
 import messages from "./messages";
 import unReadMessages from "./unReadMessages";
 
-import message from "./message";
+import message from "../entities/message/reducer";
 import users from "./users";
 import chatUsers from "./chatUsers";
 import usersListWithSelect from "./usersListWithSelect";
