@@ -2,7 +2,7 @@ import { takeLatest } from "redux-saga/effects";
 
 import { LOGIN_REQUEST, LOGIN_BY_USERID } from "../actions/Session";
 import { FETCH_CHATS } from "../entities/chats/actions";
-import { FETCH_USERS } from "../actions/users";
+import { FETCH_USERS } from "../entities/users/actions";
 import { FETCH_CHAT_USERS } from "../actions/chatUsers";
 
 import { FETCH_MESSAGES } from "../entities/messages/actions";
@@ -14,7 +14,7 @@ import { ADD_SELECTED_USERS_TO_CHAT } from "../actions/usersListWithSelect";
 import loginSaga from "./Session.js";
 import chatsSaga from "../entities/chats/saga";
 
-import usersSaga from "./users";
+import usersSaga from "../entities/users/saga";
 import chatUsersSaga from "./chatUsers";
 import messagesSaga from "../entities/messages/saga";
 import messageSaga from "../entities/message/saga";

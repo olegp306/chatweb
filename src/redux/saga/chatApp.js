@@ -8,7 +8,7 @@ import loginSaga from "../saga/Session";
 
 import chatsSaga from "../entities/chats/saga";
 
-import usersSaga from "../saga/users";
+import usersSaga from "../entities/users/saga";
 import chatUsersSaga from "../saga/chatUsers";
 import messagesSaga from "../entities/messages/saga";
 
