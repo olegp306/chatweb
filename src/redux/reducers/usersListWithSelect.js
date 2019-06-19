@@ -7,7 +7,7 @@ import {
   IS_ADDDING_SELECTED_USERS_TO_CHAT,
   ADDED_SELECTED_USERS_TO_CHAT,
   ADD_SELECTED_USERS_TO_CHAT_FAIL,
-  
+
   SET_USERS_LIST_FILTER,
   RESET_USERS_LIST_FILTER
 } from "../actions/usersListWithSelect";
@@ -44,7 +44,8 @@ export default function selectedUserReducer(state = initialState, action) {
       return state.merge({
         isAdding: false,
         added: true,
-        item: action.payload
+        item: action.payload,
+        selectedUsers:Map()
       });
 
     case ADD_SELECTED_USERS_TO_CHAT_FAIL:
