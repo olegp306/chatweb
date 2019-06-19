@@ -6,7 +6,7 @@ import { getChats } from "../selectors";
 
 import loginSaga from "../saga/Session";
 
-import chatsSaga from "../saga/chats";
+import chatsSaga from "../entities/chats/saga";
 
 import usersSaga from "../saga/users";
 import chatUsersSaga from "../saga/chatUsers";

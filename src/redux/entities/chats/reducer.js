@@ -1,5 +1,3 @@
-// https://medium.freecodecamp.org/the-best-way-to-architect-your-redux-app-ad9bd16c8e2d
-// This reducer pattern defines the changes possible in its search state when the search API is called.
 import { Map } from "immutable";
 
 import {
@@ -8,7 +6,7 @@ import {
   FETCH_CHATS_SUCCESS,
   FETCH_CHATS_FAIL,
   RESET_CHATS
-} from "../actions/chats";
+} from "../chats/actions";
 
 const initialState = Map({
   items: [],
@@ -38,7 +36,7 @@ export default function chatsReducer(state = initialState, action) {
 
     case RESET_CHATS:
       return { ...state, ...initialState };
-      
+
     default:
       return state;
   }

@@ -8,7 +8,7 @@ import NewMessageContainer from "../NewMessageContainer/NewMessageContainer";
 import { connect } from "react-redux";
 
 import { login, loginByUserId } from "../../redux/actions/Session";
-import { fetch as fetchChats } from "../../redux/actions/chats";
+import { fetch as fetchChats } from "../../redux/entities/chats/actions";
 import { fetch as fetchChatAppData } from "../../redux/actions/chatApp";
 
 import api from "../../api";

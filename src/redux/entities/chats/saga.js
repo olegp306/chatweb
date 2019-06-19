@@ -1,8 +1,8 @@
 import { call, put, select } from "redux-saga/effects";
 
-import { isFetching, fetchSuccess, fetchFail } from "../actions/chats";
-import api from "../../api";
-import { getSession } from "../selectors";
+import { isFetching, fetchSuccess, fetchFail } from "../chats/actions";
+import api from "../../../api";
+import { getSession } from "../../selectors";
 
 function* fetchChatsSaga(action) {
   yield put(isFetching());  

@@ -5,7 +5,7 @@ import {
   setChatsFilter,
   resetChatsFilter
 } from "../../redux/actions/chatsFilter";
-import { fetch as fetchChats } from "../../redux/actions/chats";
+import { fetch as fetchChats } from "../../redux/entities/chats/actions";
 import { setCurrentChat } from "../../redux/actions/chatApp";
 import {
   getChats,
