@@ -2,7 +2,7 @@ import { call, put, select } from "redux-saga/effects";
 
 import { add, isAdding, addSuccess, addFail } from "../message/actions";
 import { cleanNewMessage } from "../../actions/newMessages";
-import { addNewMessageInMesssageList } from "../../actions/messages"
+import { addNewMessageInMesssageList } from "../messages/actions"
 
 import api from "../../../api";
 import { getCurrentUserId, getCurrentChat, getNewMessages } from "../../selectors";

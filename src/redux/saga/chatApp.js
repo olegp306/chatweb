@@ -10,7 +10,7 @@ import chatsSaga from "../saga/chats";
 
 import usersSaga from "../saga/users";
 import chatUsersSaga from "../saga/chatUsers";
-import messagesSaga from "../saga/messages";
+import messagesSaga from "../entities/messages/saga";
 
 import unReadmessagesSaga from "../saga/unReadMessages";
 

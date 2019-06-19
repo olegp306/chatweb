@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import session from "./Session";
 import chats from "./chats";
 import currentChat from "./currentChat";
-import messages from "./messages";
+import messages from "../entities/messages/reducer";
 import unReadMessages from "./unReadMessages";
 
 import message from "../entities/message/reducer";

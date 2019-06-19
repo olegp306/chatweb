@@ -5,19 +5,18 @@ import { FETCH_CHATS } from "../actions/chats";
 import { FETCH_USERS } from "../actions/users";
 import { FETCH_CHAT_USERS } from "../actions/chatUsers";
 
-import { FETCH_MESSAGES } from "../actions/messages";
+import { FETCH_MESSAGES } from "../entities/messages/actions";
 import { ADD_MESSAGE } from "../entities/message/actions";
 
 import { FETCH_APPCHAT_DATA, SET_CURRENT_CHAT } from "../actions/chatApp";
 import { ADD_SELECTED_USERS_TO_CHAT } from "../actions/usersListWithSelect";
-
 
 import loginSaga from "./Session.js";
 import chatsSaga from "./chats";
 
 import usersSaga from "./users";
 import chatUsersSaga from "./chatUsers";
-import messagesSaga from "./messages";
+import messagesSaga from "../entities/messages/saga";
 import messageSaga from "../entities/message/saga";
 
 import addSelectesUsersToChat from "./usersListWithSelect"
