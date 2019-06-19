@@ -1,8 +1,3 @@
-// https://medium.freecodecamp.org/the-best-way-to-architect-your-redux-app-ad9bd16c8e2d
-
-import api from "../../api";
-import { getSession } from "../selectors";
-
 export const FETCH_APPCHAT_DATA = "FETCH_APPCHAT_DATA";
 export const FETCH_APPCHAT_DATA_SUCCESS = "FETCH_APPCHAT_DATA_SUCCESS";
 export const FETCH_APPCHAT_DATA_FAIL = "FETCH_APPCHAT_DATA_FAIL";

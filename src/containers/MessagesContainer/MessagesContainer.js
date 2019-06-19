@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import MessageList from "../../components/MessagesList/MessageList";
-import { fetch as fetchMessages } from "../../redux/actions/messages";
+import { fetch as fetchMessages } from "../../redux/entities/messages/actions";
 import {
   getUsers,
   getMessages,

@@ -1,24 +1,16 @@
 import React, { Component } from "react";
 
+const chatOnWarningTypeId="2768909697000" //чат по замечание
+const chatOnRequest="2768031944000" //чат по заявке
+
+
 export default class SmallChat extends Component {
-  // constructor(props) {
-  //   super(props);
-
-  //     this.state={chatInfo:this.props.chatInfo,
-  //       isCurrentChat: this.props.isCurrentChat,
-  //       changeCurrentChatFn:this.props.changeCurrentChatFn,
-  //       unreadMessagesCount:this.props.unreadMessagesCount
-  //      } ;
-  // }
-
+  
   componentDidMount() {}
 
   componentWillReceiveProps(nextProps) {
-    // this.setState({chatInfo:nextProps.chatInfo,
-    //   isCurrentChat: nextProps.isCurrentChat,
-    //   changeCurrentChatFn:nextProps.changeCurrentChatFn,
-    //   unreadMessagesCount:nextProps.unreadMessagesCount });
   }
+
 
   handOnChatClick = e => {
     if (e.target.id) {
@@ -28,36 +20,41 @@ export default class SmallChat extends Component {
 
   render() {
     const {
-      key,
-      chatInfo,
+      chat,      
       isCurrentChat,
       unreadMessagesCount,
       onClickChat
     } = this.props;
-    if (!chatInfo) {
+    const lastMessage= (chat.lastMessage ?  chat.lastMessage.text.slice(0, 40) + ( chat.lastMessage.text.length>40 ? " ...":"")  : "" );
+    if (!chat) {
       return <div>Chats are downloading</div>;
     } else {
       return (
         <li
-          className={isCurrentChat == true ? "active" : ""}
-          id={chatInfo.id}
+          className={isCurrentChat == true ? (chat.chatTypeId== chatOnWarningTypeId ? "active-warning":"active") : ""}
+          //id={chat.id}
         >
-          <a
-            id={chatInfo.id}
+          <a className= { chat.chatTypeId== chatOnWarningTypeId ? "small-chat-text-warning " : "small-chat-text"} 
+            //id={chat.id}
             href="#"
-            onClick={()=>onClickChat(chatInfo)}
+            onClick={()=>onClickChat(chat)}
           >
-            {chatInfo.name}
+            {chat.name}
             <span
               className={
                 unreadMessagesCount == 0
                   ? "hidden"
                   : "unread-message-count"
               }
-            >
-              {" "}
+            >              
               {unreadMessagesCount}
             </span>
+            <div></div>
+            
+            <span className="last-message-text-in-sm-chat">
+              {lastMessage} 
+            </span>
+           
           </a>
         </li>
       );

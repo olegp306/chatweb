@@ -1,26 +1,34 @@
 import { combineReducers } from "redux";
 import session from "./Session";
-import chats from "./chats";
-import chat from "./chat";
+import chats from "../entities/chats/reducer";
 import currentChat from "./currentChat";
-import messages from "./messages";
-import message from "./message";
-import users from "./users";
+import messages from "../entities/messages/reducer";
+import unReadMessages from "../entities/unReadMessages/reducer";
+
+import message from "../entities/message/reducer";
+import users from "../entities/users/reducer";
+import chatUsers from "./chatUsers";
+import usersListWithSelect from "./usersListWithSelect";
 import chatApp from "./chatApp";
 import newMessages from "./newMessages";
+import chatsFilter from "./chatsFilter";
 
 
 
 const root = combineReducers({
   session,
   chats,
-  chat,
+  //chat,
   users,
+  chatUsers,
+  usersListWithSelect,
   currentChat,
   messages,
+  unReadMessages,
   message,
   chatApp,
-  newMessages
+  newMessages,
+  chatsFilter
 });
 
 export default root;

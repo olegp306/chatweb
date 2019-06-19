@@ -8,12 +8,11 @@ import NewMessageContainer from "../NewMessageContainer/NewMessageContainer";
 import { connect } from "react-redux";
 
 import { login, loginByUserId } from "../../redux/actions/Session";
-import { fetch as fetchChats } from "../../redux/actions/chats";
+import { fetch as fetchChats } from "../../redux/entities/chats/actions";
 import { fetch as fetchChatAppData } from "../../redux/actions/chatApp";
 
-
 import api from "../../api";
-require('./styles.css');
+require("./styles.css");
 
 class ChatApp extends Component {
   componentDidMount() {
@@ -25,48 +24,16 @@ class ChatApp extends Component {
         <div className="row">
           <div className="col-xs-3 no-padding-right">
             <ChatsContainer />
-
-            {/* <ChatsList
-              chats={this.state.chats}
-              currentChatId={this.state.currentChatId}
-              changeCurrentChatFn={this.changeCurrentChat}
-              updateDataFn={this.updateData}
-              unreadMessages={this.state.unreadMessages}
-            /> */}
           </div>
           <div className="col-xs-9 xs-padding-left">
             <div className="panel panel-primary messages-panel">
               <div className="panel-heading chat-panel-heading">
                 <CurrentChatContainer />
-              
-                {/* <BigChatInfo
-                  chatInfo={this.state.chats[this.state.currentChatId]}
-                  addUsersFn={this.addUsers}
-                  chatUsers={this.state.chatUsers}
-                  availableToAddUsers={this.state.availableToAddUsers}
-                  currentUserId={this.props.userId}
-                /> */}
               </div>
               <MessagesContainer />
-              
-              {/* <MessagesList
-                currentChatId={this.state.currentChatId}
-                currentUserId={this.props.userId}
-                messages={this.state.messages}
-                unreadMessages={chatUnreadMessages}
-                users={this.state.chatUsers}
-                updateDataFn={this.updateData}
-                messagesWasReadFn={this.messagesWasRead}
-              /> */}
-            </div>
-          </div>
-          
-          <NewMessageContainer />
-          {/* <SendNewMessage
-            addMessageFn={this.addMessagge}
-            newMessageText={this.state.newMessageText}
-            updateDataFn={this.updateData}
-          /> */}
+            </div>         
+            <NewMessageContainer />         
+          </div>             
         </div>
       </div>
     );
@@ -74,7 +41,7 @@ class ChatApp extends Component {
 }
 const mapStateToProps = store => {
   return {
-    currentChat: store.currentChat   
+    currentChat: store.currentChat
   };
 };
 

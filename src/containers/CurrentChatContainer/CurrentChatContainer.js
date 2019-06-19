@@ -1,18 +1,38 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {getCurrentChat} from "../../redux/selectors"
+import { getCurrentChat, getChatUsers } from "../../redux/selectors";
+import UsersListWithSelectContainer from "../UsersListWithSelectContainer/UsersListWithSelectContainer";
+import UsersListContainer from "../UsersListContainer/UsersListContainer";
 
 class CurrentChatContainer extends Component {
+  openRequestFomRnChat = () => {
+    const { currentChat } = this.props;
+
+    if (window.Altsoft) {
+      window.Altsoft.Desktop.CreateWindow({
+        Url:
+          "5564/frmUpdRequest5564.aspx?ClassName=tblZajavki_Germes39098805000&OId=" +
+          currentChat.requestGermesId +
+          "&FormLogic=UpdaterEdit&UpdSettingOId=1279172381000",
+        Parent: this
+      });
+    } else {
+      console.log(currentChat.requestGermesId);
+    }
+  };
 
   render() {
-    const {currentChat,chatUsersCount}=this.props;
+    const { currentChat, chatUsers } = this.props;
 
-    if(currentChat==null){
-      return <div>Загрузка иформации о чате</div>
+    if (currentChat == null) {
+      return <div>Загрузка иформации о чате</div>;
     }
     return (
       <div>
-        <h3 className="panel-title text-center in-one-row">
+        <h3
+          className="panel-title text-center in-one-row chat-title-container"
+          onClick={this.openRequestFomRnChat}
+        >
           {currentChat.description}
           {/*Всего: кол-во человек в чате)*/}
         </h3>
@@ -30,16 +50,8 @@ class CurrentChatContainer extends Component {
               Добавить
             </span>
           </button>
-          <div
-            className="dropdown-menu slidedown user-dropdown-menu"
-            //onClick={this.handleChildClick}
-          >
-            {/* <UsersListWithCheck
-              chatUsers={this.props.users}
-              availableToAddUsers={this.props.availableToAddUsers}
-              currentUserId={this.props.currentUserId}
-              addUsersFn={this.props.addUsersFn}
-            /> */}
+          <div className="dropdown-menu slidedown user-dropdown-menu">
+            <UsersListWithSelectContainer />
           </div>
         </div>
 
@@ -49,13 +61,13 @@ class CurrentChatContainer extends Component {
             className="btn btn-default btn-xs dropdown-toggle"
             data-toggle="dropdown"
           >
-            <span className="glyphicon glyphicon-user"> {chatUsersCount}</span>
+            <span className="glyphicon glyphicon-user">
+              {" "}
+              {chatUsers.items.length}
+            </span>
           </button>
           <div className="dropdown-menu slidedown user-dropdown-menu">
-            {/* <UsersList
-              chatUsers={this.props.chatUsers}
-              currentUserId={this.props.currentUserId}
-            /> */}
+            <UsersListContainer />
           </div>
         </div>
       </div>
@@ -64,7 +76,8 @@ class CurrentChatContainer extends Component {
 }
 const mapStateToProps = store => {
   return {
-    currentChat: getCurrentChat(store)
+    currentChat: getCurrentChat(store),
+    chatUsers: getChatUsers(store)
   };
 };
 

@@ -1,36 +1,23 @@
-export const getSession = store => store.session.toJS()
+export const getSession = store => store.session.toJS();
 
-export const getCurrentUserId = store => store.session.get("userId")
+export const getCurrentUserId = store => store.session.get("userId");
 
-export const getCurrentChat = store => store.chatApp.toJS().currentChat;
+export const getCurrentChat = store => store.chatApp.get("currentChat");
 
-export const getUsers = store => store.users.toJS()
-export const getMessages = store => store.messages.toJS()
-export const getChats = store => store.chats.toJS()
+export const getUsers = store => store.users.toJS();
 
+export const getChatUsers = store => store.chatUsers.toJS();
 
-export const getChatApp = store => store.chatApp.toJS()
-export const getNewMessages = store => store.newMessages.toJS()
+export const getSelectedUsers = store =>
+  store.usersListWithSelect.get("selectedUsers");
 
+export const getUsersListFilter = store =>
+  store.usersListWithSelect.get("filter");
 
+export const getMessages = store => store.messages.toJS();
+export const getChats = store => store.chats.toJS();
 
+export const getChatApp = store => store.chatApp.toJS();
+export const getNewMessages = store => store.newMessages.toJS();
 
-///export const messages = store => store.messages.toJS()
-
-
-
-
-
-// export const getEmployeeId = store => store.session.get('userId')
-
-// export const getIsTicketAdding = store => store.ticket.get('isAdding')
-
-// export const getIsTicketAdded = store => store.ticket.get('added')
-
-// export const getIsTicketAddingFailed = store => store.ticket.get('error')
-
-// export const getIsApplicant = store => store.session.get('roles').includes('companyGuest')
-
-// export const getCompanies = store => store.companies.toJS()
-
-// export const getEmployees = store => store.employees.toJS()
+export const getChatsFilter = store => store.chatsFilter.get("filter");

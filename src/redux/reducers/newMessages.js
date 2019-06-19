@@ -8,12 +8,10 @@ const initialState =new Map({
 export default function newMessagesReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_NEW_MESSAGE:
-        return state.mergeIn(['items',action.payload.chatId],{"message": action.payload.message } )  
-        //return state.mergeIn(['messages',action.payload.chatId], action.payload.message)
-      //return state.updateIn(["messages"], action.payload.message );
+        return state.mergeIn(['items',action.payload.chatId],{"message": action.payload.message } )       
 
     case CLEAN_NEW_MESSAGE:
-      return state.merge(["messages", action.payload.chatId], "");
+      return state.mergeIn(["items", action.payload.chatId], {"message": "" });
 
     default:
       return state;
