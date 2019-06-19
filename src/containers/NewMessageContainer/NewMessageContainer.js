@@ -14,6 +14,11 @@ import { add as addTextMessageAction } from "../../redux/entities/message/action
 import Images from "../../theme/images";
 
 class NewMessageContainer extends Component {
+
+  onClickChooseFile=()=>{
+    this.refs.fileUploader.click();
+  }
+
   onKeyPressHandler = event => {
     //отправляем как скайпе по Enter + CTRL
     if (event.charCode == 13 && event.ctrlKey == true) {
@@ -31,11 +36,7 @@ class NewMessageContainer extends Component {
   };
 
   render() {
-    const {
-      currentChat,
-      newMessages,
-      addTextMessage
-    } = this.props;
+    const { currentChat, newMessages, addTextMessage } = this.props;
     if (!currentChat) return <div>загрузка начальных данных</div>;
 
     const messageText =
@@ -48,11 +49,23 @@ class NewMessageContainer extends Component {
         <div className="navbar-inner">
           <div style={{ position: "relative" }}>
             {messageText == "" ? (
-              <img
-                className="add-file-icon"
-                src={Images.addFile}
-                alt="добавить файлы"
-              />
+              <div>
+                <input
+                  type="file"
+                  ref="fileUploader"
+                  id="input-file-for-chat"
+                  name="image"
+                  accept="image/*"
+                  capture
+                  style={{display:'none'}}
+                />
+                <img
+                  className="add-file-icon"
+                  src={Images.addFile}
+                  alt="добавить файлы"
+                  onClick={this.onClickChooseFile}
+                />
+              </div>
             ) : (
               <img
                 className="add-file-icon"
