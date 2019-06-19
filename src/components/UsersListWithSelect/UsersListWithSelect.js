@@ -40,7 +40,7 @@ export default class UsersListWithSelect extends Component {
     } = this.props;
 
     return (
-      <div className="panel panel-primary chats-panel">
+      <div className="panel panel-primary chats-panel ">
         <div className="panel-heading add-users-panel-heading">
           <h3 className="panel-title">
             Добавьте участников            
@@ -52,7 +52,7 @@ export default class UsersListWithSelect extends Component {
               готово
             </button>
           </h3>
-          <div className="input-group search-users-input">
+          <div className="input-group search-users-input  add-user-in-chat-panel">
             <input
               type="text"
               className="form-control"
@@ -61,7 +61,7 @@ export default class UsersListWithSelect extends Component {
             />
           </div>
         </div>
-        <div className="panel-body chat-list add-user-in-chat-panel">
+        <div className="panel-body chat-list  add-user-in-chat-panel">
           <div className="sidebar">
             <ul className="nav nav-sidebar chat-list-grid">
               {this.renderUsersList(users.items)}
