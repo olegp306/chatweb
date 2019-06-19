@@ -7,8 +7,12 @@ console.log("api loaded");
 const PRODUCTION_SIGNALR_URL = "http://localhost:5000";
 const DEVELOPMENT_SIGNALR_URL = "http://localhost:89/";
 
-const PRODUCTION_API_URL = "http://service.allwingroup.ru:3652/germes/v1";
-const DEVELOPMENT_API_URL = "http://192.168.1.67/ApiService/germes/v1";
+// https://apitest.allwingroup.ru/germes/v1
+// https://service.allwingroup.ru:3652/germes/v1
+// http://192.168.1.67/ApiService/germes/v1
+
+const PRODUCTION_API_URL = "https://apitest.allwingroup.ru/germes/v1";
+const DEVELOPMENT_API_URL = "https://apitest.allwingroup.ru/germes/v1";
 
 const signalrUrl =
   process.env.NODE_ENV === "production"
@@ -131,7 +135,7 @@ const addUsersToChat=(users) =>{
   return axios.post("/userschats", users).then(checkStatus);
 }
 
-const getUsersByChatId=(chatId)=> {
+const fetchChatUsers=(chatId)=> {
   return axios.get("/users/chatId/" + chatId).then(checkStatus);
 }
 
@@ -146,7 +150,7 @@ const addMessage=(message)=> {
   return axios.post("/messages/", message).then(checkStatus);
 }
 
-const getUnreadMessage=(userId) =>{
+const fetchUnreadMessage=(userId) =>{
   return axios.get("/messsagesreadstatuses/userId/" + userId).then(checkStatus);
 }
 
@@ -162,11 +166,11 @@ export default {
   getChatByChatId, 
   fetchUserChats, 
   fetchUsers,
+  fetchChatUsers,
   addUsersToChat, 
-  getUsersByChatId,   
   fetchMessages,
   addMessage,
-  getUnreadMessage,
+  fetchUnreadMessage,
   updateMessagesReadStatus,
   toAssociativeArray
 }
