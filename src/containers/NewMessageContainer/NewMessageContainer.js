@@ -9,15 +9,67 @@ import {
   changeNewMessage,
   cleanNewMessage
 } from "../../redux/actions/newMessages";
-import { add as addTextMessageAction } from "../../redux/entities/message/actions";
+import { add as addMessageAction } from "../../redux/entities/message/actions";
 
 import Images from "../../theme/images";
+import ImageTools from "../../utils/ImageTools";
 
 class NewMessageContainer extends Component {
+  sendImageMessage = (file, blob) => {
+    const { currentChat, currentUserId } = this.props;
+    const currentChatId = currentChat.id ? currentChat.id : "";
 
-  onClickChooseFile=()=>{
+    let fileMessage = {
+      type: 2768909676000, //картинка
+      file: file,
+      blob: blob,
+      fileUrl: file.uri,
+      text: "добавлено изображение",
+      userId: currentUserId,
+      chatId: currentChatId,
+      tempFrontId: file.uri + new Date(),
+      creationDate: new Date()
+    };
+
+    this.props.postFileMessage(fileMessage);
+
+    //добавить сообщение в список с крутилкой
+    //как сообщение дойдет до сервера убрать крутилку
+  };
+
+  resizeImgFile = file => {
+    ImageTools.resize(
+      file,
+      {
+        width: 320, // maximum width
+        height: 240 // maximum height
+      },
+      (blob, didItResize) => {
+        // didItResize will be true if it managed to resize it, otherwise false (and will return the original file as 'blob')
+        //document.getElementById('preview').src = window.URL.createObjectURL(blob);
+        // you can also now upload this blob using an XHR.
+
+        console.log(`Resize with dataUrl=${window.URL.createObjectURL(blob)}`);
+        console.log(`file dataUrl=${window.URL.createObjectURL(file)}`);
+      }
+    );
+  };
+
+  onChangeInputFile = event => {
+    const filesAr = event.target.files;
+
+    for (let index = 0; index < filesAr.length; index++) {
+      const file = filesAr[index];
+      this.resizeImgFile(file);
+    }
+
+    console.log(`Выбраны файлы${event.target.files}`);
+  };
+
+  onClickChooseFile = () => {
+    console.log(`onClickChooseFile`);
     this.refs.fileUploader.click();
-  }
+  };
 
   onKeyPressHandler = event => {
     //отправляем как скайпе по Enter + CTRL
@@ -31,8 +83,8 @@ class NewMessageContainer extends Component {
 
   onChangeNewMessage = event => {
     const { currentChat, changeNewMessage } = this.props;
-    const message = event.target.value;
-    changeNewMessage(currentChat.id, message);
+    const messageText = event.target.value;    
+    changeNewMessage({ type: 2768777882000, messageText: messageText , chatId:currentChat.id});
   };
 
   render() {
@@ -41,7 +93,7 @@ class NewMessageContainer extends Component {
 
     const messageText =
       currentChat != null && newMessages.items[currentChat.id]
-        ? newMessages.items[currentChat.id].message
+        ? newMessages.items[currentChat.id].messageText
         : "";
 
     return (
@@ -56,8 +108,9 @@ class NewMessageContainer extends Component {
                   id="input-file-for-chat"
                   name="image"
                   accept="image/*"
-                  capture
-                  style={{display:'none'}}
+                  multiple
+                  style={{ display: "none" }}
+                  onChange={this.onChangeInputFile}
                 />
                 <img
                   className="add-file-icon"
@@ -108,10 +161,10 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    changeNewMessage: (chatId, message) =>
-      dispatch(changeNewMessage(chatId, message)),
+    changeNewMessage: message => dispatch(changeNewMessage(message)),
     cleanNewMessage: chatId => dispatch(cleanNewMessage(chatId)),
-    addTextMessage: () => dispatch(addTextMessageAction())
+    addTextMessage: () => dispatch(addMessageAction()),
+    //postFileMessage: message => dispatch(postFileMessage(message))
   };
 };
 export default connect(
