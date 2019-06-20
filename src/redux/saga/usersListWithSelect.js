@@ -1,6 +1,11 @@
 import { call, put, select } from "redux-saga/effects";
 
-import { add, isAdding, addSuccess, addFail } from "../actions/usersListWithSelect";
+import {
+  add,
+  isAdding,
+  addSuccess,
+  addFail
+} from "../actions/usersListWithSelect";
 
 import { changeNewMessage } from "../actions/newMessages";
 import { add as addNewMessage } from "../entities/message/actions";
@@ -37,16 +42,21 @@ function* addSelectesUsersToChatSaga() {
     let userNamesToAdd = "";
     users.items.forEach(user => {
       if (selectedUsers.get(user.id) == true)
-        userNamesToAdd = userNamesToAdd +  user.name+ ", \n";
+        userNamesToAdd = userNamesToAdd + user.name + ", \n";
     });
 
     const messageText = "в чат добавлены \n" + userNamesToAdd;
-    yield put(changeNewMessage(currentChat.id, messageText));
+    
+    yield put(
+      changeNewMessage({
+        type: 2768777882000,
+        messageText: messageText,
+        chatId: currentChat.id
+      })
+    );
     yield put(addNewMessage());
 
     yield put(fetchChatUsers());
-    
-
   } catch (error) {
     yield put(addFail(error));
   }

@@ -15,7 +15,7 @@ function* addMessageSaga() {
   const newMessages = getNewMessages(store);
   const userId = getCurrentUserId(store);
 
-  const messageText = newMessages.items[chat.id].message;
+  const messageText = newMessages.items[chat.id].messageText;
   try {
     const message = {
       chatId: chat.id,
