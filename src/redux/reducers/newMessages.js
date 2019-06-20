@@ -14,7 +14,7 @@ export default function newMessagesReducer(state = initialState, action) {
     }
 
     case CLEAN_NEW_MESSAGE:
-      return state.mergeIn(["items", action.payload.chatId],  {messageText:"", type:"", chatId:""} );
+      return state.mergeIn(["items", action.payload.chatId],  {messageText:"", type:"", chatId:"", blob:null} );
 
     default:
       return state;
