@@ -38,6 +38,7 @@ class NewMessageContainer extends Component {
   };
 
   resizeImgFile = file => {
+    const { addMessage,currentChat,changeNewMessage } = this.props;
     ImageTools.resize(
       file,
       {
@@ -51,6 +52,16 @@ class NewMessageContainer extends Component {
 
         console.log(`Resize with dataUrl=${window.URL.createObjectURL(blob)}`);
         console.log(`file dataUrl=${window.URL.createObjectURL(file)}`);
+
+        changeNewMessage({
+          type: 2768654243000,
+          messageText: "file content" + file.name,
+          chatId: currentChat.id,
+          file: file,
+          blob: blob          
+        });
+
+        //addMessage();
       }
     );
   };
@@ -74,21 +85,26 @@ class NewMessageContainer extends Component {
   onKeyPressHandler = event => {
     //отправляем как скайпе по Enter + CTRL
     if (event.charCode == 13 && event.ctrlKey == true) {
-      const { addTextMessage } = this.props;
+      const { addMessage } = this.props;
 
-      addTextMessage();
+      addMessage();
       event.preventDefault();
     }
   };
 
   onChangeNewMessage = event => {
     const { currentChat, changeNewMessage } = this.props;
-    const messageText = event.target.value;    
-    changeNewMessage({ type: 2768777882000, messageText: messageText , chatId:currentChat.id});
+    const messageText = event.target.value;
+
+    changeNewMessage({
+      type: 2768777882000,
+      messageText: messageText,
+      chatId: currentChat.id
+    });
   };
 
   render() {
-    const { currentChat, newMessages, addTextMessage } = this.props;
+    const { currentChat, newMessages, addMessage } = this.props;
     if (!currentChat) return <div>загрузка начальных данных</div>;
 
     const messageText =
@@ -124,7 +140,7 @@ class NewMessageContainer extends Component {
                 className="add-file-icon"
                 src={Images.sendMessage}
                 alt="отправить сообщение"
-                onClick={addTextMessage}
+                onClick={addMessage}
               />
             )}
 
@@ -163,7 +179,7 @@ const mapDispatchToProps = dispatch => {
   return {
     changeNewMessage: message => dispatch(changeNewMessage(message)),
     cleanNewMessage: chatId => dispatch(cleanNewMessage(chatId)),
-    addTextMessage: () => dispatch(addMessageAction()),
+    addMessage: () => dispatch(addMessageAction())
     //postFileMessage: message => dispatch(postFileMessage(message))
   };
 };
