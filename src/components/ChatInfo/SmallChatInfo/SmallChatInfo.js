@@ -25,7 +25,7 @@ export default class SmallChat extends Component {
       unreadMessagesCount,
       onClickChat
     } = this.props;
-    const lastMessage= (chat.lastMessage ?  chat.lastMessage.text.slice(0, 40) + ( chat.lastMessage.text.length>40 ? " ...":"")  : "" );
+    const lastMessage= (chat.lastMessage &&  chat.lastMessage.text?  chat.lastMessage.text.slice(0, 40) + ( chat.lastMessage.text.length>40 ? " ...":"")  : "" );
     if (!chat) {
       return <div>Chats are downloading</div>;
     } else {
