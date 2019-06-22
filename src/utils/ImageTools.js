@@ -72,6 +72,7 @@ var ImageTools = (function () {
             var image = document.createElement('img');
 
             image.onload = function (imgEvt) {
+                console.log('image.onload = function (imgEvt) {')
                 var width = image.width;
                 var height = image.height;
                 var isTooLarge = false;
@@ -111,6 +112,8 @@ var ImageTools = (function () {
                     callback(blob, true);
                 }
             };
+
+            console.log('ImageTools._loadImage(image, file);')
             ImageTools._loadImage(image, file);
 
             return true;
@@ -161,6 +164,7 @@ var ImageTools = (function () {
                 };
                 reader.readAsDataURL(file);
             } else {
+                console.log('_loadImage image.src = URL.createObjectURL(file);')
                 image.src = URL.createObjectURL(file);
                 if (callback) {
                     callback();
