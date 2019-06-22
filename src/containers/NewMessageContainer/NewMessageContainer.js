@@ -38,7 +38,7 @@ class NewMessageContainer extends Component {
   };
 
   resizeImgFile = file => {
-    const { addMessage,currentChat,changeNewMessage } = this.props;
+    const { addMessage, currentChat, changeNewMessage } = this.props;
     ImageTools.resize(
       file,
       {
@@ -53,14 +53,6 @@ class NewMessageContainer extends Component {
         console.log(`Resize with dataUrl=${window.URL.createObjectURL(blob)}`);
         console.log(`file dataUrl=${window.URL.createObjectURL(file)}`);
 
-        changeNewMessage({
-          type: 2768654243000,
-          messageText: "file content" + file.name,
-          chatId: currentChat.id,
-          file: file,
-          blob: blob          
-        });
-
         //addMessage();
       }
     );
@@ -68,11 +60,23 @@ class NewMessageContainer extends Component {
 
   onChangeInputFile = event => {
     const filesAr = event.target.files;
+    let filesNames = "";
 
     for (let index = 0; index < filesAr.length; index++) {
       const file = filesAr[index];
-      this.resizeImgFile(file);
+      //this.resizeImgFile(file);
+      filesNames =
+        filesNames + file.name + (index != filesAr.length -1? ", " : " .");
     }
+
+    const { currentChat, changeNewMessage } = this.props;
+    changeNewMessage({
+      type: 2768654243000,
+      messageText: "Файлы:" + filesNames,
+      chatId: currentChat.id,
+      files: filesAr,
+      filesNames: filesNames
+    });
 
     console.log(`Выбраны файлы${event.target.files}`);
   };
