@@ -4,6 +4,7 @@ import { add, isAdding, addSuccess, addFail } from "../message/actions";
 import { cleanNewMessage } from "../../actions/newMessages";
 import { addNewMessageInMesssageList } from "../messages/actions";
 import ImageTools from "../../../utils/ImageTools";
+import imageCompression from "browser-image-compression";
 
 import api from "../../../api";
 import {
@@ -11,6 +12,23 @@ import {
   getCurrentChat,
   getNewMessages
 } from "../../selectors";
+
+function imageCompressionHandler(imageFile, options) {
+  return imageCompression(imageFile, options)
+    .then(function(compressedFile) {
+      return compressedFile; // write your own logic
+    })
+    .catch(function(error) {
+      console.log(error.message);
+    });
+}
+
+function blobToFile(theBlob, fileName) {
+  //A Blob() is almost a File() - it's just missing the two properties below which we will add
+  theBlob.lastModifiedDate = new Date();
+  theBlob.name = fileName;
+  return theBlob;
+}
 
 function* addMessageSaga() {
   yield put(isAdding());
@@ -28,30 +46,53 @@ function* addMessageSaga() {
       for (let i = 0; i < newMessage.files.length; i++) {
         const file = newMessage.files[i];
 
-        
-        // let { blob } = yield call(
-        //   ImageTools.resize,
-        //   file,
-        //   {
-        //     width: 1280, // maximum width
-        //     height: 960 // maximum height
-        //   },
-        //   (blob, didItResize) => {
-        //     console.log(`CallBack ImageTools.resize${blob}`);
-        //   }
-        // );
+        // МАЛЕНЬКАЯ сжатая картинка
+        const smallImgOptions = {
+          maxSizeMB: 1,
+          maxWidthOrHeight: 320,
+          useWebWorker: true
+        };
+        console.log("originalFile instanceof Blob", file instanceof Blob); // true
+        console.log(`smallImg originalFile size ${file.size / 1024 / 1024} MB`);
+        let smallCompressedBLob = yield call(
+          imageCompressionHandler,
+          file,
+          smallImgOptions
+        );
+        const smallCompressedFile = new File(
+          [smallCompressedBLob],
+          "small" + file.name,
+          { lastModified: Date.now() }
+        );
+        const responseSmallImg = yield call(api.postFile, smallCompressedFile);
 
+        const smallImgFileId = responseSmallImg.data[0].id;
 
-        //сжатая картинка        
-        //const file = newMessage.file;
-        //const blob = newMessage.blob;
-        // blob.lastModifiedDate = new Date();
-        // blob.name = file.name;
-        // const response = yield call(api.postFile, fileFormBlob);
+        // БОЛЬШАЯ сжатая картинка
+        const bigImgOptions = {
+          maxSizeMB: 1,
+          maxWidthOrHeight: 1920,
+          useWebWorker: true
+        };
+        console.log(" originalFile instanceof Blob", file instanceof Blob); // true
+        console.log(`bigImg originalFile size ${file.size / 1024 / 1024} MB`);
+        const bigCompressedBlob = yield call(
+          imageCompressionHandler,
+          file,
+          bigImgOptions
+        );
+        const bigCompressedFile = new File(
+          [bigCompressedBlob],
+          "big" + file.name,
+          { lastModified: Date.now() }
+        );        
+        const responseBigImg = yield call(api.postFile, bigCompressedFile);
+
+        const bigImgFileId = responseBigImg.data[0].id;
 
         //оригинальная картинка
-        const postFIleResponse = yield call(api.postFile, file);
-        const fileId = postFIleResponse.data[0].id;
+        //const postFIleResponse = yield call(api.postFile, file);
+        //const fileId = postFIleResponse.data[0].id;
 
         const message = {
           chatId: chat.id,
@@ -60,11 +101,10 @@ function* addMessageSaga() {
           tempFrontId: new Date() + chat.id + newMessage.messageText,
           userId: userId,
           creationDate: new Date(),
-          fileId: fileId
+          // fileId: fileId,
+          fileId: bigImgFileId,
+          smallImgFileId: smallImgFileId
         };
-
-
-        
 
         const response = yield call(api.addMessage, message);
 
