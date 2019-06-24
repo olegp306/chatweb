@@ -7,11 +7,13 @@ import {
 } from "../../redux/actions/chatsFilter";
 import { fetch as fetchChats } from "../../redux/entities/chats/actions";
 import { setCurrentChat } from "../../redux/actions/chatApp";
+import { fetch as fetchChatAppData } from "../../redux/actions/chatApp";
 import {
   getChats,
   //getCurrentChat,
   getChatApp,
-  getChatsFilter
+  getChatsFilter,
+  getCurrentUserId
 } from "../../redux/selectors/index";
 import { connect } from "react-redux";
 
@@ -19,7 +21,8 @@ const mapStateToProps = store => {
   return {
     chatApp: getChatApp(store),
     chats: getChats(store),
-    chatsFilter: getChatsFilter(store)
+    chatsFilter: getChatsFilter(store),
+    currentUserId:getCurrentUserId(store)
   };
 };
 
@@ -28,7 +31,8 @@ const mapDispatchToProps = dispatch => {
     fetchChats: userId => dispatch(fetchChats(userId)),
     onClickChat: chat => dispatch(setCurrentChat(chat)),
     setChatsFilter: filter => dispatch(setChatsFilter(filter)),
-    resetChatsFilter: () => dispatch(resetChatsFilter())
+    resetChatsFilter: () => dispatch(resetChatsFilter()),
+    fetchChatAppData: userId => dispatch(fetchChatAppData(userId))
   };
 };
 
@@ -39,6 +43,11 @@ class ChatsContainer extends Component {
 
     setChatsFilter(filter);
   };
+
+  refreshDataHandler=()=>{
+    const {currentUserId, fetchChatAppData }= this.props
+    fetchChatAppData(currentUserId);
+  }
 
   render() {
     const { chats, chatApp, onClickChat, chatsFilter } = this.props;
@@ -54,13 +63,13 @@ class ChatsContainer extends Component {
     return (
       <div className="panel panel-primary chats-panel">
         <div className="panel-heading chat-panel-heading">
-          <div className="chat-list-title"> Чаты / Замечания</div>
-          {/* <button
+          <div className="chat-list-title"> Чаты / Замечания</div>          
+          <button
               className="btn btn-primary refresh-btn"
-              onClick={this.props.updateDataFn}
+              onClick={ this.refreshDataHandler }
             >
               <span className="glyphicon glyphicon-refresh" />{" "}
-            </button> */}
+            </button>
         </div>
         <div className="chat-list-panel-body">
           {/* Поиск по чатам */}

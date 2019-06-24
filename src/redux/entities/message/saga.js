@@ -52,8 +52,6 @@ function* addMessageSaga() {
           maxWidthOrHeight: 320,
           useWebWorker: true
         };
-        console.log("originalFile instanceof Blob", file instanceof Blob); // true
-        console.log(`smallImg originalFile size ${file.size / 1024 / 1024} MB`);
         let smallCompressedBLob = yield call(
           imageCompressionHandler,
           file,
@@ -74,8 +72,6 @@ function* addMessageSaga() {
           maxWidthOrHeight: 1920,
           useWebWorker: true
         };
-        console.log(" originalFile instanceof Blob", file instanceof Blob); // true
-        console.log(`bigImg originalFile size ${file.size / 1024 / 1024} MB`);
         const bigCompressedBlob = yield call(
           imageCompressionHandler,
           file,
@@ -85,7 +81,7 @@ function* addMessageSaga() {
           [bigCompressedBlob],
           "big" + file.name,
           { lastModified: Date.now() }
-        );        
+        );
         const responseBigImg = yield call(api.postFile, bigCompressedFile);
 
         const bigImgFileId = responseBigImg.data[0].id;
@@ -103,7 +99,7 @@ function* addMessageSaga() {
           creationDate: new Date(),
           // fileId: fileId,
           fileId: bigImgFileId,
-          smallImgFileId: smallImgFileId
+          smallFilePreviewId: smallImgFileId
         };
 
         const response = yield call(api.addMessage, message);

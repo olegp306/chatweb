@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Images from "../../theme/images"
+import Images from "../../theme/images";
 
 import AvatarHelper from "../../utils/avatarHelper";
 
@@ -37,20 +37,34 @@ export default class Message extends Component {
           </div>
 
           {message.type == 2768654243000 ? ( //картинка
-          <a class="fancybox" data-fancybox rel="group" href={message.fileUrl!=null ? message.fileUrl : Images.noPicture }>
-            <div
-              className={
-                isMyMessage == true ? "right-side-message" : "left-side-message"
+            <a
+              class="fancybox"
+              data-fancybox
+              rel="group"
+              href={
+                message.fileUrl != null ? message.fileUrl : Images.noPicture
               }
             >
-              
-              <img
-                className="message-picture"
-                //{url ? { uri: url } : Images.noPicture}
-                src={message.fileUrl!=null ? message.fileUrl : Images.noPicture }
-                alt="нажмите для увеличения"
-              />
-            </div>
+              <div
+                className={
+                  isMyMessage == true
+                    ? "right-side-message"
+                    : "left-side-message"
+                }
+              >
+                <img
+                  className="message-picture"
+                  //{url ? { uri: url } : Images.noPicture}
+                  src={
+                    message.smallFilePreviewUrl != null
+                      ? message.smallFilePreviewUrl
+                      : message.fileUrl != null
+                      ? message.fileUrl
+                      : Images.noPicture
+                  }
+                  alt="нажмите для увеличения"
+                />
+              </div>
             </a>
           ) : (
             //  <Image source={{ uri: url }} style={{ width: 100, height: 100 }} />
