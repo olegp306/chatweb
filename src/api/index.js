@@ -12,7 +12,7 @@ const DEVELOPMENT_SIGNALR_URL = "http://localhost:89/";
 // http://192.168.1.67/ApiService/germes/v1
 
 const PRODUCTION_API_URL = "https://apitest.allwingroup.ru/germes/v1";
-const DEVELOPMENT_API_URL = "https://apitest.allwingroup.ru/germes/v1";
+const DEVELOPMENT_API_URL = "http://192.168.1.67/ApiService/germes/v1";
 
 const signalrUrl =
   process.env.NODE_ENV === "production"
@@ -77,8 +77,7 @@ export function initializeSignalR(
     .fail(() => console.log("Could not connect user ID=" + userId));
 }
 
-
-const toAssociativeArray=(data, idFieldName)=> {
+const toAssociativeArray = (data, idFieldName) => {
   if (!idFieldName) {
     var idFieldName = "id";
   }
@@ -90,9 +89,9 @@ const toAssociativeArray=(data, idFieldName)=> {
   }
   //console.log(map);
   return map;
-}
+};
 
-const checkStatus=(response) =>{
+const checkStatus = response => {
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
@@ -104,14 +103,14 @@ const checkStatus=(response) =>{
   const error = new Error(response.statusText);
   error.response = response;
   throw error;
-}
+};
 
-const authenticateByUserId=(userId) =>{
+const authenticateByUserId = userId => {
   return axios.post("/authbyappkey/token", {
     userid: userId,
     appkey: CLIENT_ID
   });
-}
+};
 
 const login = (user, password) => {
   const body = `grant_type=password&username=${user}&password=${password}`;
@@ -121,57 +120,81 @@ const login = (user, password) => {
   return axios.post("auth/token", body, conf).then(checkStatus);
 };
 
-const setAuthHeader = (token) => axios.defaults.headers.authorization = `Bearer ${token}`
+const setAuthHeader = token =>
+  (axios.defaults.headers.authorization = `Bearer ${token}`);
 
-const getChatByChatId=(chatId) =>{
+const getChatByChatId = chatId => {
   return axios.get("/chats/chat/" + chatId).then(checkStatus);
-}
+};
 
-const fetchUserChats=(userId) =>{
+const fetchUserChats = userId => {
   return axios.get("/chats/user/" + userId).then(checkStatus);
-}
+};
 
-const addUsersToChat=(users) =>{
+const addUsersToChat = users => {
   return axios.post("/userschats", users).then(checkStatus);
-}
+};
 
-const fetchChatUsers=(chatId)=> {
+const fetchChatUsers = chatId => {
   return axios.get("/users/chatId/" + chatId).then(checkStatus);
-}
+};
 
-const fetchUsers=(chatId) =>{
+const fetchUsers = chatId => {
   return axios.get("/users/availabletoadd/" + chatId).then(checkStatus);
-}
+};
 
-const fetchMessages=(chatId)=> {
+const fetchMessages = chatId => {
   return axios.get("/messages/chatid/" + chatId).then(checkStatus);
-}
-const addMessage=(message)=> {
+};
+const addMessage = message => {
   return axios.post("/messages/", message).then(checkStatus);
-}
+};
 
-const fetchUnreadMessage=(userId) =>{
+const fetchUnreadMessage = userId => {
   return axios.get("/messsagesreadstatuses/userId/" + userId).then(checkStatus);
-}
+};
 
-const  updateMessagesReadStatus=(readMessages)=> {
+const updateMessagesReadStatus = readMessages => {
   return axios.put("/messsagesreadstatuses", readMessages).then(checkStatus);
-}
+};
 
+const postFile = file => {
+  var bodyFormData = new FormData();
+  
+  bodyFormData.append('name', file.name)
+  bodyFormData.append('file', file)
 
-export default { 
-  authenticateByUserId, 
+  // bodyFormData.append("file", {
+  //   uri: URL.createObjectURL(file),
+  //   type: "image/jpeg", // or photo.type
+  //   name: "file.name"
+  // });
+
+ // bodyFormData.append("file", {
+  //   name: file.name,
+  //   file: file,
+  //   // type: "image/jpeg", // or photo.type
+  //   // name: "fromWebApp.jpeg"
+  // });
+
+  return axios.post("/files", bodyFormData, {
+    headers: { "Content-Type": "multipart/form-data" }
+  });
+};
+
+export default {
+  authenticateByUserId,
   login,
   setAuthHeader,
-  getChatByChatId, 
-  fetchUserChats, 
+  getChatByChatId,
+  fetchUserChats,
   fetchUsers,
   fetchChatUsers,
-  addUsersToChat, 
+  addUsersToChat,
   fetchMessages,
   addMessage,
   fetchUnreadMessage,
   updateMessagesReadStatus,
-  toAssociativeArray
-}
-
+  toAssociativeArray,
+  postFile
+};

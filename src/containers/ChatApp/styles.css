@@ -370,6 +370,7 @@ ul.chat-list {
 .chat-title-container:hover{ 
   background-color:white !important;
   color: black!important;   
+  cursor:pointer;
 }
 
 .add-file-icon{
