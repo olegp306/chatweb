@@ -99,7 +99,7 @@ function* addMessageSaga() {
           creationDate: new Date(),
           // fileId: fileId,
           fileId: bigImgFileId,
-          smallImgFileId: smallImgFileId
+          smallFilePreviewId: smallImgFileId
         };
 
         const response = yield call(api.addMessage, message);
