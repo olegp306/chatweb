@@ -14,3 +14,38 @@ export function cleanNewMessage(chatId) {
     payload: { chatId }
   };
 }
+
+export const ADD_NEW_MESSAGE = 'ADD_NEW_MESSAGE'
+export const IS_ADDING_NEW_MESSAGE = 'IS_ADDING_NEW_MESSAGE'
+export const ADDED_NEW_MESSAGE = 'ADDED_NEW_MESSAGE'
+export const ADD_NEW_MESSAGE_FAIL = 'ADD_NEW_MESSAGE_FAIL'
+
+
+
+export const add = () => {
+    return {
+        type: ADD_NEW_MESSAGE,        
+    }
+}
+
+export const isAdding = () => {
+    return {
+        type: IS_ADDING_NEW_MESSAGE,        
+    }
+}
+
+export const addSuccess = (payload) => {
+    return {
+        type: ADDED_NEW_MESSAGE,
+        payload:payload
+    }
+}
+
+export const addFail = (error) => {
+    return {
+        type: ADD_NEW_MESSAGE_FAIL,
+        payload: error
+    }
+}
+
+

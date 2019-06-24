@@ -1,7 +1,13 @@
 import { call, put, select } from "redux-saga/effects";
 
 import { add, isAdding, addSuccess, addFail } from "../message/actions";
-import { cleanNewMessage } from "../../actions/newMessages";
+import {
+  cleanNewMessage,
+  add as addNewMessage,
+  isAdding as isAddingNewMessage,
+  addSuccess as addNewMessageSuccess,
+  addFail as addFailNewMessage
+} from "../../actions/newMessages";
 import { addNewMessageInMesssageList } from "../messages/actions";
 import ImageTools from "../../../utils/ImageTools";
 import imageCompression from "browser-image-compression";
@@ -31,7 +37,10 @@ function blobToFile(theBlob, fileName) {
 }
 
 function* addMessageSaga() {
+  
   yield put(isAdding());
+
+  //yield put(addingNewMessage());
 
   const store = yield select();
   const chat = getCurrentChat(store);
