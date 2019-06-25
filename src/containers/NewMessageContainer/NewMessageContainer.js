@@ -37,34 +37,12 @@ class NewMessageContainer extends Component {
     //как сообщение дойдет до сервера убрать крутилку
   };
 
-  resizeImgFile = file => {
-    const { addMessage, currentChat, changeNewMessage } = this.props;
-    ImageTools.resize(
-      file,
-      {
-        width: 320, // maximum width
-        height: 240 // maximum height
-      },
-      (blob, didItResize) => {
-        // didItResize will be true if it managed to resize it, otherwise false (and will return the original file as 'blob')
-        //document.getElementById('preview').src = window.URL.createObjectURL(blob);
-        // you can also now upload this blob using an XHR.
-
-        console.log(`Resize with dataUrl=${window.URL.createObjectURL(blob)}`);
-        console.log(`file dataUrl=${window.URL.createObjectURL(file)}`);
-
-        //addMessage();
-      }
-    );
-  };
-
   onChangeInputFile = event => {
     const filesAr = event.target.files;
     let filesNames = "";
 
     for (let index = 0; index < filesAr.length; index++) {
-      const file = filesAr[index];
-      //this.resizeImgFile(file);
+      const file = filesAr[index];      
       filesNames =
         filesNames + file.name + (index != filesAr.length -1? ", " : " .");
     }
