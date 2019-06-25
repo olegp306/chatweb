@@ -118,11 +118,11 @@ class NewMessageContainer extends Component {
                   onClick={this.onClickChooseFile}
                 />
               </div>
-            ) : ((newMessages.isAdding) ?
+            ) : ((newMessages.isAdding==true) ?
               <img
                 className="add-file-icon"
                 src={Images.loading}
-                alt="отправить сообщение"
+                alt="идет отправка сообщения"
                 //onClick={addMessage}
               />
               :

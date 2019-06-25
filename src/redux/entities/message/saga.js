@@ -113,11 +113,9 @@ function* addMessageSaga() {
 
         yield put(addSuccess(response.data));
         yield put(addNewMessageInMesssageList(message));
-        
 
         // todo lastMessagein chat in chatsList
-      }
-      yield put(addNewMessageSuccess(chat.id));
+      }     
 
       yield put(cleanNewMessage(chat.id));
     } else if (newMessage.type == "2768777882000") {
@@ -137,6 +135,7 @@ function* addMessageSaga() {
       yield put(addNewMessageInMesssageList(message));
       yield put(cleanNewMessage(chat.id));
     }
+    yield put(addNewMessageSuccess(chat.id));
   } catch (error) {
     yield put(addFail(error));
   }
