@@ -115,11 +115,12 @@ class NewMessageContainer extends Component {
       currentChat != null && newMessages.items[currentChat.id]
         ? newMessages.items[currentChat.id].messageText
         : "";
+       
 
     return (
       <div className="send-new-message-box row-fluid">
         <div className="navbar-inner">
-          <div style={{ position: "relative" }}>
+          <div style={{ position: "relative" }}>           
             {messageText == "" ? (
               <div>
                 <input
@@ -139,13 +140,20 @@ class NewMessageContainer extends Component {
                   onClick={this.onClickChooseFile}
                 />
               </div>
-            ) : (
+            ) : ((newMessages.isAdding) ?
               <img
                 className="add-file-icon"
-                src={Images.sendMessage}
+                src={Images.loading}
                 alt="отправить сообщение"
-                onClick={addMessage}
+                //onClick={addMessage}
               />
+              :
+              <img
+              className="add-file-icon"
+              src={Images.sendMessage}
+              alt="отправить сообщение"
+              onClick={addMessage}
+            />
             )}
 
             <textarea
@@ -156,15 +164,7 @@ class NewMessageContainer extends Component {
               value={messageText}
               onKeyPress={this.onKeyPressHandler}
               onChange={this.onChangeNewMessage}
-            />
-            {/* <span
-              className="input-group-addon btn btn-warning btn-send-messsage "
-              onClick={addTextMessage}
-            >
-              Отправить{" "}
-            </span> */}
-            {/*  </div>
-            </div>*/}
+            />           
           </div>
         </div>
       </div>

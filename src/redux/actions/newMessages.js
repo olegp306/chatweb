@@ -22,15 +22,17 @@ export const ADD_NEW_MESSAGE_FAIL = 'ADD_NEW_MESSAGE_FAIL'
 
 
 
-export const add = () => {
+export const add = (payload) => {
     return {
-        type: ADD_NEW_MESSAGE,        
+        type: ADD_NEW_MESSAGE,     
+        payload:payload   
     }
 }
 
-export const isAdding = () => {
+export const isAdding = (payload) => {
     return {
         type: IS_ADDING_NEW_MESSAGE,        
+        payload:payload
     }
 }
 

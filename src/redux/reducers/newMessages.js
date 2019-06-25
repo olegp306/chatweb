@@ -10,7 +10,10 @@ import {
 //import {getCurrentChat} from "../selectors"
 
 const initialState = new Map({
-  items: new Map({})
+  items: new Map({}),
+  isAdding: false,  
+  addded: false,
+  error: null
 });
 
 export default function newMessagesReducer(state = initialState, action) {
@@ -29,26 +32,22 @@ export default function newMessagesReducer(state = initialState, action) {
       });
 
     case ADD_NEW_MESSAGE:
-      return state.mergeIn(["items", action.payload.chatId], {
-        isAdding: false,
-        error: null
-      });
+        return state.merge({ isAdding: false, error: null });
+
 
     case IS_ADDING_NEW_MESSAGE:
-      return state.merge(["items", action.payload.chatId], { isAdding: true });
+        return state.merge({ isAdding: true });
 
     case ADDED_NEW_MESSAGE:
       return state.merge({
         isAdding: false,
-        added: true,
-        item: action.payload
+        added: true,        
       });
 
     case ADD_NEW_MESSAGE_FAIL:
-      return state.merge(["items", action.payload.chatId], {
-        isAdding: false,
-        error: action.payload
-      });
+        return state.merge({ isAdding: false, error: action.payload });
+  
+      
 
     default:
       return state;
