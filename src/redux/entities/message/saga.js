@@ -29,23 +29,19 @@ function imageCompressionHandler(imageFile, options) {
     });
 }
 
-function blobToFile(theBlob, fileName) {
-  //A Blob() is almost a File() - it's just missing the two properties below which we will add
-  theBlob.lastModifiedDate = new Date();
-  theBlob.name = fileName;
-  return theBlob;
-}
-
 function* addMessageSaga() {
   
   yield put(isAdding());
-
-  //yield put(addingNewMessage());
 
   const store = yield select();
   const chat = getCurrentChat(store);
   const newMessages = getNewMessages(store);
   const userId = getCurrentUserId(store);
+
+  
+  yield put(addNewMessage(chat.id));  
+  yield put(isAddingNewMessage(chat.id));    
+
 
   const newMessage = newMessages.items[chat.id];
   try {
@@ -57,7 +53,7 @@ function* addMessageSaga() {
 
         // МАЛЕНЬКАЯ сжатая картинка
         const smallImgOptions = {
-          maxSizeMB: 1,
+          maxSizeMB: 0.05,
           maxWidthOrHeight: 320,
           useWebWorker: true
         };
@@ -77,7 +73,7 @@ function* addMessageSaga() {
 
         // БОЛЬШАЯ сжатая картинка
         const bigImgOptions = {
-          maxSizeMB: 1,
+          maxSizeMB: 0.5,
           maxWidthOrHeight: 1920,
           useWebWorker: true
         };
@@ -107,17 +103,22 @@ function* addMessageSaga() {
           userId: userId,
           creationDate: new Date(),
           // fileId: fileId,
-          fileId: bigImgFileId,
-          smallFilePreviewId: smallImgFileId
+          fileId: bigImgFileId,   
+          fileUrl:  responseBigImg.data[0].url,     
+          smallFilePreviewId: smallImgFileId,
+          smallFilePreviewUrl: responseSmallImg.data[0].url,
         };
 
         const response = yield call(api.addMessage, message);
 
         yield put(addSuccess(response.data));
         yield put(addNewMessageInMesssageList(message));
+        
 
         // todo lastMessagein chat in chatsList
       }
+      yield put(addNewMessageSuccess(chat.id));
+
       yield put(cleanNewMessage(chat.id));
     } else if (newMessage.type == "2768777882000") {
       const message = {
