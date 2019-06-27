@@ -274,8 +274,12 @@ ul.chat-list {
 .message-picture {
   padding: 2px;
   max-height: 125px !important;
+  min-height: 125px !important;
+  min-width:  100px !important;
   border-radius: 10px;
+  background: transparent url('../../theme/images/loading2.gif') no-repeat scroll center center;
 }
+
 .message-picture:hover{
   padding: 0px;
   border-color: #00ffff;
@@ -384,6 +388,13 @@ ul.chat-list {
 .add-file-icon:hover{
    opacity: 1
 }
+.avatar-in-message{
+  height: 50px !important;
+  width: 50px !important;
+  border: 1px !important;
+  border-color: gray !important;
+  border-style: solid !important;
 
+}
 
 
