@@ -12,6 +12,22 @@ export default class Message extends Component {
   render() {
     const { author, message, isMyMessage, isNewMessage } = this.props;
     const messageDateTime = new Date(message.creationDate).toLocaleTimeString();
+
+    const fileUrl =
+      message.fileUrl != null ? message.fileUrl : Images.noPicture;
+    const smallFilePreviewUrl =
+      message.smallFilePreviewUrl != null
+        ? message.smallFilePreviewUrl
+        : message.fileUrl != null
+        ? message.fileUrl
+        : Images.noPicture;
+
+    const authorImgUrl =
+      author && author.avatarUrl
+        ? author.avatarUrl
+        : ((author && author.name) ? this.getUserPhoto(author.name):this.getUserPhoto('неизвестный'));
+
+    const extension = fileUrl.substring(fileUrl.lastIndexOf("."));
     return (
       <div className={isNewMessage == true ? "message new-message" : "message"}>
         <div
@@ -19,13 +35,7 @@ export default class Message extends Component {
             isMyMessage == true ? "chat-img pull-right" : "chat-img pull-left"
           }
         >
-          <img
-            src={
-              author ? this.getUserPhoto(author.name) : this.getUserPhoto("???")
-            }
-            alt="User Avatar"
-            className="img-circle"
-          />
+          <img src={authorImgUrl} alt="User Avatar" className="img-circle avatar-in-message" />
         </div>
         <div className="chat-body clearfix ">
           <div
@@ -37,14 +47,7 @@ export default class Message extends Component {
           </div>
 
           {message.type == 2768654243000 ? ( //картинка
-            <a
-              class="fancybox"
-              data-fancybox
-              rel="group"
-              href={
-                message.fileUrl != null ? message.fileUrl : Images.noPicture
-              }
-            >
+            <a class="fancybox" data-fancybox rel="group" href={fileUrl}>
               <div
                 className={
                   isMyMessage == true
@@ -52,18 +55,7 @@ export default class Message extends Component {
                     : "left-side-message"
                 }
               >
-                <img
-                  className="message-picture"
-                  //{url ? { uri: url } : Images.noPicture}
-                  src={
-                    message.smallFilePreviewUrl != null
-                      ? message.smallFilePreviewUrl
-                      : message.fileUrl != null
-                      ? message.fileUrl
-                      : Images.noPicture
-                  }
-                  alt="нажмите для увеличения"
-                />
+                <img className="message-picture" src={smallFilePreviewUrl} />
               </div>
             </a>
           ) : (
