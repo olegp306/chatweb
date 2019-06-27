@@ -63,13 +63,16 @@ class ChatsContainer extends Component {
     return (
       <div className="panel panel-primary chats-panel">
         <div className="panel-heading chat-panel-heading">
-          <div className="chat-list-title"> Чаты / Замечания</div>          
+          <div className="chat-list-title">
+             Чаты / Замечания
           <button
               className="btn btn-primary refresh-btn"
               onClick={ this.refreshDataHandler }
             >
               <span className="glyphicon glyphicon-refresh" />{" "}
             </button>
+          </div>          
+          
         </div>
         <div className="chat-list-panel-body">
           {/* Поиск по чатам */}
