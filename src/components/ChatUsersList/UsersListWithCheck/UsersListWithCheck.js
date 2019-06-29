@@ -127,7 +127,7 @@ class UsersListWithCheck extends Component {
 
     return (
       <div className="panel panel-primary chats-panel">
-        <div className="panel-heading chat-panel-heading">
+        <div className="panel-heading chats-panel-heading">
           <h3 className="panel-title">Добавьте участников
             {/* <button className="btn btn-primary refresh-btn" onClick={this.props.updateDataFn}><span className="glyphicon glyphicon-refresh"></span> </button>*/}
 

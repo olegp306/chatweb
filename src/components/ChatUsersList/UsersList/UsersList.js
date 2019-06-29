@@ -41,7 +41,7 @@ export default class UsersList extends Component {
 
     return (
       <div className="panel panel-primary chats-panel">
-        <div className="panel-heading chat-panel-heading">
+        <div className="panel-heading chats-panel-heading">
           <h3 className="panel-title">Участники чата</h3>
         </div>
         <div className="panel-body chat-list">

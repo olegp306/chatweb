@@ -27,7 +27,7 @@ class ChatApp extends Component {
           </div>
           <div className="col-xs-9 xs-padding-left">
             <div className="panel panel-primary messages-panel">
-              <div className="panel-heading chat-panel-heading">
+              <div className="panel-heading messages-panel-heading">
                 <CurrentChatContainer />
               </div>
               <MessagesContainer />
