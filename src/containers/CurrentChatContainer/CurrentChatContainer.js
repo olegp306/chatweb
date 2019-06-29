@@ -29,6 +29,21 @@ class CurrentChatContainer extends Component {
     }
     return (
       <div>
+        {/* <div> */}
+        <div className="title-chat-name">
+          <button className="btn btn-primary" type="button">
+            <h3
+              className="panel-title title-chat-name-text"
+              onClick={this.openRequestFomRnChat}
+            >
+              {currentChat.description}{" "}
+            </h3>
+          </button>
+        </div>
+        {/* </div> */}
+
+        {/* <div> */}
+
         <div className="btn-group pull-right">
           <button
             type="button"
@@ -47,18 +62,7 @@ class CurrentChatContainer extends Component {
           </div>
         </div>
 
-        <div className="btn-group pull-center">
-          <button className="btn btn-primary" type="submit">
-            <h3
-              className="panel-title text-center in-one-row"
-              onClick={this.openRequestFomRnChat}
-            >
-              {currentChat.description}{" "}
-            </h3>
-          </button>
-        </div>
-
-        <div className="btn-group pull-left">
+        <div className="btn-group  pull-left">
           <button
             type="button"
             className="btn btn-default btn-xs dropdown-toggle"
@@ -66,7 +70,7 @@ class CurrentChatContainer extends Component {
           >
             <span className="glyphicon glyphicon-user">
               {" "}
-              {chatUsers.items.length}
+              {chatUsers.items.length} участников
             </span>
           </button>
           <div className="dropdown-menu slidedown user-dropdown-menu">
@@ -74,6 +78,7 @@ class CurrentChatContainer extends Component {
           </div>
         </div>
       </div>
+      // </div>
     );
   }
 }
