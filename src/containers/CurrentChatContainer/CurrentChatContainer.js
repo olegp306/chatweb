@@ -29,14 +29,6 @@ class CurrentChatContainer extends Component {
     }
     return (
       <div>
-        <h3
-          className="panel-title text-center in-one-row chat-title-container"
-          onClick={this.openRequestFomRnChat}
-        >
-          {currentChat.description}
-          {/*Всего: кол-во человек в чате)*/}
-        </h3>
-
         <div className="btn-group pull-right">
           <button
             type="button"
@@ -53,6 +45,17 @@ class CurrentChatContainer extends Component {
           <div className="dropdown-menu slidedown user-dropdown-menu">
             <UsersListWithSelectContainer />
           </div>
+        </div>
+
+        <div className="btn-group pull-center">
+          <button className="btn btn-primary" type="submit">
+            <h3
+              className="panel-title text-center in-one-row"
+              onClick={this.openRequestFomRnChat}
+            >
+              {currentChat.description}{" "}
+            </h3>
+          </button>
         </div>
 
         <div className="btn-group pull-left">
