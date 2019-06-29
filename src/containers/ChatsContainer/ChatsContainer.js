@@ -65,19 +65,16 @@ class ChatsContainer extends Component {
         <div className="panel-heading chats-panel-heading">
 
         <div className="title-chat-name">
-          <button className="btn btn-primary" type="button">
+          <button className="btn title-btn" type="button">
             <h3
-              className="panel-title title-chat-name-text"
+              className="panel-title title-chat-list-text"
               onClick={this.refreshDataHandler}
             >
               {" Чаты / Замечания"}
             </h3>
           </button>
         </div>
-        </div>
-        <div className="chat-list-panel-body">
-          {/* Поиск по чатам */}
-          <div className="input-group search-input">
+        <div className="input-group search-input">
             <input
               type="text"
               className="form-control search-chats-text"
@@ -87,6 +84,11 @@ class ChatsContainer extends Component {
             />
           </div>
 
+        </div>
+
+        <div className="chat-list-panel-body">
+          {/* Поиск по чатам */}
+          
           <ChatsList
             chats={chats}
             filteredChatsItems={filteredChatsItems}
