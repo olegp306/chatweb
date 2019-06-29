@@ -391,10 +391,23 @@ ul.chat-list {
 .avatar-in-message{
   height: 50px !important;
   width: 50px !important;
+  max-width: 50px !important;
+  max-height: 50px !important;
   border: 1px !important;
   border-color: gray !important;
   border-style: solid !important;
+}
 
+.avatar-in-users-list{
+  padding: 1px;
+  height: 30px !important;
+  width: 30px !important;
+  max-width: 30px;
+  max-height: 30px;
+  /* border: 1px !important;
+  border-color: rgb(201, 201, 201) !important;
+  border-style: solid !important; */
+  background: transparent url('../../theme/images/loading2.gif') no-repeat scroll center center;
 }
 
 
