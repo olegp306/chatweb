@@ -13,7 +13,8 @@ const images = {
     noPicture: require('./images/noPicture.png'),
     checked: require('./images/checked.png'),
     upChecked: require('./images/unchecked.png'),
-    loading: require('./images/loading64(2).gif'),
+    loading64: require('./images/loading64.gif'),
+    loading32: require('./images/loading32.gif'),
    
   }
   
