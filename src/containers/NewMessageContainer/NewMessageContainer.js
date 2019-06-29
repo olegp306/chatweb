@@ -49,7 +49,7 @@ class NewMessageContainer extends Component {
 
     const { currentChat, changeNewMessage } = this.props;
     changeNewMessage({
-      type: 2768654243000,
+      type: 2768909676000,
       messageText: "Файлы:" + filesNames,
       chatId: currentChat.id,
       files: filesAr,

@@ -39,6 +39,7 @@ function isImage(filename) {
   var ext = getExtension(filename);
   switch (ext.toLowerCase()) {
     case "jpg":
+    case "jpeg":
     case "gif":
     case "bmp":
     case "png":
@@ -62,7 +63,7 @@ function* addMessageSaga() {
   const newMessage = newMessages.items[chat.id];
   try {
     //если картинка то отсылаем картинку на сервер и ждем id картинки с сервера
-    if (newMessage.type == "2768654243000") {
+    if (newMessage.type == "2768909676000") {
       //can be array of files
       for (let i = 0; i < newMessage.files.length; i++) {
         const file = newMessage.files[i];
@@ -131,7 +132,7 @@ function* addMessageSaga() {
             smallFilePreviewUrl: responseSmallImg.data[0].url
           };         
         }
-        else{
+        else{ // файл
           const responseFile = yield call(api.postFile, file);
 
           const fileId = responseFile.data[0].id;
