@@ -11,9 +11,10 @@ class UserSmall extends Component {
   }
 
   getUserPhoto(username) {
-    // let avatar = new AvatarHelper();
-    // return avatar.getUserPhoto(username, 30);
     return createAvatarHelper(username,30)
+  }
+  addDefaultSrc(ev,name){    
+    ev.target.src = createAvatarHelper(name,60)
   }
 
   render() {
@@ -34,6 +35,7 @@ class UserSmall extends Component {
               src={authorImgUrl}
               alt="User Avatar"
               className="img-circle avatar-in-users-list"
+              onError={(ev)=>this.addDefaultSrc(ev,user.name)}
             />
           </span>
           <a className="user-name-to-add" id={this.props.user.id} href="#">

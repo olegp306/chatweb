@@ -9,8 +9,11 @@ export default class Message extends Component {
     // let avatar = new AvatarHelper();
     // return avatar.getUserPhoto(username);
     return LetterAvatar(username,60)
-
   };
+
+  addDefaultSrc(ev,name){    
+    ev.target.src = LetterAvatar(name,60)
+  }
 
   render() {
     const { author, message, isMyMessage, isNewMessage } = this.props;
@@ -38,7 +41,7 @@ export default class Message extends Component {
             isMyMessage == true ? "chat-img pull-right" : "chat-img pull-left"
           }
         >
-          <img src={authorImgUrl} alt="User Avatar" className="img-circle avatar-in-message" />
+          <img src={authorImgUrl} alt="User Avatar" className="img-circle avatar-in-message" onError={(ev)=>this.addDefaultSrc(ev,author.name)} />
         </div>
         <div className="chat-body clearfix ">
           <div
