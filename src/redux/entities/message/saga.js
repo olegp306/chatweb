@@ -29,8 +29,26 @@ function imageCompressionHandler(imageFile, options) {
     });
 }
 
+
+function getExtension(filename) {
+    var parts = filename.split('.');
+    return parts[parts.length - 1];
+}
+
+function isImage(filename) {
+  var ext = getExtension(filename);
+  switch (ext.toLowerCase()) {
+    case "jpg":
+    case "gif":
+    case "bmp":
+    case "png":
+      //etc
+      return true;
+  }
+  return false;
+}
+
 function* addMessageSaga() {
-  
   yield put(isAdding());
 
   const store = yield select();
@@ -38,10 +56,8 @@ function* addMessageSaga() {
   const newMessages = getNewMessages(store);
   const userId = getCurrentUserId(store);
 
-  
-  yield put(addNewMessage(chat.id));  
-  yield put(isAddingNewMessage(chat.id));    
-
+  yield put(addNewMessage(chat.id));
+  yield put(isAddingNewMessage(chat.id));
 
   const newMessage = newMessages.items[chat.id];
   try {
@@ -57,65 +73,94 @@ function* addMessageSaga() {
           maxWidthOrHeight: 320,
           useWebWorker: true
         };
-        let smallCompressedBLob = yield call(
-          imageCompressionHandler,
-          file,
-          smallImgOptions
-        );
-        const smallCompressedFile = new File(
-          [smallCompressedBLob],
-          "small" + file.name,
-          { lastModified: Date.now() }
-        );
-        const responseSmallImg = yield call(api.postFile, smallCompressedFile);
+        let message={};
 
-        const smallImgFileId = responseSmallImg.data[0].id;
+        if (isImage(file.name)) {
+          let smallCompressedBLob = yield call(
+            imageCompressionHandler,
+            file,
+            smallImgOptions
+          );
+          const smallCompressedFile = new File(
+            [smallCompressedBLob],
+            "small" + file.name,
+            { lastModified: Date.now() }
+          );
+          const responseSmallImg = yield call(
+            api.postFile,
+            smallCompressedFile
+          );
 
-        // БОЛЬШАЯ сжатая картинка
-        const bigImgOptions = {
-          maxSizeMB: 0.5,
-          maxWidthOrHeight: 1920,
-          useWebWorker: true
-        };
-        const bigCompressedBlob = yield call(
-          imageCompressionHandler,
-          file,
-          bigImgOptions
-        );
-        const bigCompressedFile = new File(
-          [bigCompressedBlob],
-          "big" + file.name,
-          { lastModified: Date.now() }
-        );
-        const responseBigImg = yield call(api.postFile, bigCompressedFile);
+          const smallImgFileId = responseSmallImg.data[0].id;
 
-        const bigImgFileId = responseBigImg.data[0].id;
+          // БОЛЬШАЯ сжатая картинка
+          const bigImgOptions = {
+            maxSizeMB: 0.5,
+            maxWidthOrHeight: 1920,
+            useWebWorker: true
+          };
+          const bigCompressedBlob = yield call(
+            imageCompressionHandler,
+            file,
+            bigImgOptions
+          );
+          const bigCompressedFile = new File(
+            [bigCompressedBlob],
+            "big" + file.name,
+            { lastModified: Date.now() }
+          );
+          const responseBigImg = yield call(api.postFile, bigCompressedFile);
 
-        //оригинальная картинка
-        //const postFIleResponse = yield call(api.postFile, file);
-        //const fileId = postFIleResponse.data[0].id;
+          const bigImgFileId = responseBigImg.data[0].id;
 
-        const message = {
-          chatId: chat.id,
-          text: newMessage.messageText,
-          type: newMessage.type,
-          tempFrontId: new Date() + chat.id + newMessage.messageText,
-          userId: userId,
-          creationDate: new Date(),
-          // fileId: fileId,
-          fileId: bigImgFileId,   
-          fileUrl:  responseBigImg.data[0].url,     
-          smallFilePreviewId: smallImgFileId,
-          smallFilePreviewUrl: responseSmallImg.data[0].url,
-        };
+          //оригинальная картинка
+          //const postFIleResponse = yield call(api.postFile, file);
+          //const fileId = postFIleResponse.data[0].id;
+
+          message = {
+            chatId: chat.id,
+            text: newMessage.messageText,
+            type: newMessage.type,
+            tempFrontId: new Date() + chat.id + newMessage.messageText,
+            userId: userId,
+            creationDate: new Date(),
+            // fileId: fileId,
+            fileId: bigImgFileId,
+            fileUrl: responseBigImg.data[0].url,
+            smallFilePreviewId: smallImgFileId,
+            smallFilePreviewUrl: responseSmallImg.data[0].url
+          };         
+        }
+        else{
+          const responseFile = yield call(api.postFile, file);
+
+          const fileId = responseFile.data[0].id;
+          const url = responseFile.data[0].url;
+          const messageTypeId=2768842251000 // файл
+
+          message = {
+            chatId: chat.id,
+            text: newMessage.messageText,
+            type: messageTypeId,
+            tempFrontId: new Date() + chat.id + newMessage.messageText,
+            userId: userId,
+            creationDate: new Date(),
+            // fileId: fileId,
+            fileId: fileId,
+            fileUrl: url,
+            // smallFilePreviewId: responseFile.data[0].url
+            // smallFilePreviewUrl: responseSmallImg.data[0].url
+          };
+        }
 
         const response = yield call(api.addMessage, message);
 
         yield put(addSuccess(response.data));
         yield put(addNewMessageInMesssageList(message));
 
+
         // todo lastMessagein chat in chatsList
-      }     
+      }
 
       yield put(cleanNewMessage(chat.id));
     } else if (newMessage.type == "2768777882000") {
