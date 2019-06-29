@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import Images from "../../theme/images";
 
-import AvatarHelper from "../../utils/avatarHelper";
+//import AvatarHelper from "../../utils/avatarHelper";
+import LetterAvatar from "../../utils/avatarHelper2";
 
 export default class Message extends Component {
   getUserPhoto = username => {
-    let avatar = new AvatarHelper();
-    return avatar.getUserPhoto(username);
+    // let avatar = new AvatarHelper();
+    // return avatar.getUserPhoto(username);
+    return LetterAvatar(username,60)
+
   };
 
   render() {
