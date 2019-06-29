@@ -31,7 +31,7 @@ class CurrentChatContainer extends Component {
       <div>
         {/* <div> */}
         <div className="title-chat-name">
-          <button className="btn btn-primary" type="button">
+          <button className="btn title-btn" type="button">
             <h3
               className="panel-title title-chat-name-text"
               onClick={this.openRequestFomRnChat}

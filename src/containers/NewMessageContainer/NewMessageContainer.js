@@ -137,8 +137,8 @@ class NewMessageContainer extends Component {
             <textarea
               placeholder="Введите сообщение здесь.... (отправить Ctrl + Enter) "
               rows={4}
-              className="form-control custom-control resize-none"
-              rows="4"
+              className="form-control custom-control resize-none new-message-textarea"
+              rows="3"
               value={messageText}
               onKeyPress={this.onKeyPressHandler}
               onChange={this.onChangeNewMessage}

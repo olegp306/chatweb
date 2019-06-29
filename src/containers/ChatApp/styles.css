@@ -59,17 +59,6 @@
   background-color: #f0f4f8  !important;
 } */
 
-.chats-panel-heading {
-  height: 75px !important;
-  /* background-color: #4280f4ee !important; */
-  background-color: #f0f4f8 !important;
-}
-
-.messages-panel-heading {
-  height: 75px !important;
-  /* background-color: #4280f4ee !important; */
-  background-color: #ffffff !important;
-}
 
 .no-padding-right {
   padding-right: 0px !important ;
@@ -270,14 +259,15 @@ ul.chat-list {
 }
 .small-chat-text {
   color: grey !important;
+  font-size:19px;
 }
 
 .last-message-text-in-sm-chat {
   margin-top: 3px !important;
-  margin-left: 3px !important;
-  font-size: smaller !important;
+  margin-left: 3px !important;  
   color: grey !important;
   font-weight: 400;
+  font-size:12px  !important;
 }
 
 .message-picture {
@@ -353,12 +343,14 @@ ul.chat-list {
   background-color: rgb(231, 222, 222) !important;
   /* font-size: 17px; */
   color: rgb(206, 105, 105) !important;
+  font-size:19px;
 }
 
 .search-chats-text {
   font-size: 28px !important;
   text-align: center !important;
   font-weight: 600 !important;
+  border-radius: 15px !important;
 }
 
 .search-chats-text:focus {
@@ -426,7 +418,37 @@ ul.chat-list {
 }
 
 .title-chat-name-text {
-  font-size: 20px;
+  font-size: 24px;
   white-space: nowrap;
+  color:#2B2C33
 }
 
+.title-chat-list-text{
+  font-size: 20px;
+  white-space: nowrap;
+  color:#2B2C33
+}
+
+.chats-panel-heading {
+  height: 90px !important;
+  /* background-color: #4280f4ee !important; */
+  background-color: #f0f4f8 !important;
+}
+
+.messages-panel-heading {
+  height: 90px !important;
+  /* background-color: #4280f4ee !important; */
+  background-color: #ffffff !important;
+}
+/* #326794 */
+
+.title-btn {
+  color: #fff;
+  background-color: #F0F4F8;
+  /* border-color: #2e6da4; */
+}
+.new-message-textarea {
+height: auto;
+background-color: #F0F4F8;
+font-size: 19px
+}
