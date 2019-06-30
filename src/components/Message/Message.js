@@ -6,7 +6,7 @@ import LetterAvatar from "../../utils/avatarHelper2";
 
 export default class Message extends Component {
   getFilename = url => {
-    return url.substring(url.lastIndexOf('/')+1);
+    return url.substring(url.lastIndexOf("/") + 1);
   };
 
   getExtension = filename => {
@@ -72,8 +72,7 @@ export default class Message extends Component {
                 : "message-text-block"
             }
           >
-            {message.text}
-            ( скачать )
+            {message.text}( скачать )
           </div>
         </a>
       );
@@ -117,8 +116,14 @@ export default class Message extends Component {
   };
 
   render() {
-    const { author, message, isMyMessage, isNewMessage } = this.props;
-    const messageDateTime = new Date(message.creationDate).toLocaleTimeString();
+    const { author, message, isMyMessage, isNewMessage,showDateTime } = this.props;
+    const options = {
+      weekday: "long",
+      year: "numeric",
+      month:"long",
+      day:"numeric"}
+ 
+    const messageDateTime = new Date(message.creationDate).toLocaleTimeString('ru-ru',options);
 
     const fileUrl =
       message.fileUrl != null ? message.fileUrl : Images.noPicture;
@@ -145,12 +150,14 @@ export default class Message extends Component {
             isMyMessage == true ? "chat-img pull-right" : "chat-img pull-left"
           }
         >
-          <img
-            src={authorImgUrl}
-            alt="User Avatar"
-            className="img-circle avatar-in-message"
-            onError={ev => this.addDefaultSrc(ev, author.name)}
-          />
+          {isMyMessage != true ? (
+            <img
+              src={authorImgUrl}
+              alt="User Avatar"
+              className="img-circle avatar-in-message"
+              onError={ev => this.addDefaultSrc(ev, author.name)}
+            />
+          ) : null}
         </div>
         <div className="chat-body clearfix ">
           <div
@@ -158,13 +165,13 @@ export default class Message extends Component {
               isMyMessage == true ? "my-message-author" : "message-author"
             }
           >
-            {author ? author.name : "неизвестный"} {messageDateTime}
+            {(isMyMessage !=true ? (author ? author.name : "неизвестный"): "") + " "}  {showDateTime==true ? messageDateTime : ""}
           </div>
           {this.renderMessage(
             message,
             fileUrl,
             smallFilePreviewUrl,
-            isMyMessage
+            isMyMessage,
           )}
         </div>
       </div>
