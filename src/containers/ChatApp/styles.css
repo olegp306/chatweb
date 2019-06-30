@@ -130,9 +130,12 @@ ul.chat-list {
 .nav-sidebar > .active-warning > a,
 .nav-sidebar > .active-warning > a:hover,
 .nav-sidebar > .active-warning > a:focus {
-  color: rgb(224, 0, 0) !important;
+  color: rgb(80, 80, 80) !important;
   font-weight: 600 !important;
   background-color: #dbf4fd !important;
+  /* color: rgb(224, 0, 0) !important;
+  font-weight: 600 !important;
+  background-color: #dbf4fd !important; */
 }
 
 .nav-sidebar > .active > a,
@@ -347,10 +350,11 @@ ul.chat-list {
 }
 
 .small-chat-text-warning {
-  background-color: rgb(231, 222, 222) !important;
-  /* font-size: 17px; */
-  color: rgb(206, 105, 105) !important;
+ 
   font-size:19px;
+  /* border-bottom-color:rgb(206, 105, 105);
+  border-bottom-width: thin;
+  border-bottom-style: solid; */
 }
 
 .search-chats-text {
@@ -363,18 +367,19 @@ ul.chat-list {
 
 .search-chats-text:focus {
   font-size: 28px !important;
-  text-align: center !important;
+  /* text-align: center !important; */
   font-weight: 600 !important;
+  background: linear-gradient(to right,#0079D4, #00B9F1);
   background-color: #1f345cee !important;
   color: rgb(255, 255, 255) !important;
 }
 
-.search-chats-text::placeholder {
+.search-chats-text:focus::placeholder {
   font-size: 28px !important;
   text-align: center !important;
   font-weight: 600 !important;
   /* background-color: #4280f4ee  !important;  */
-  color: rgb(224, 221, 221) !important;
+  color: #4DB0E8 !important;
 }
 
 .chat-title-container {
@@ -460,9 +465,54 @@ ul.chat-list {
   /* border-color: #2e6da4; */
 }
 .new-message-textarea {
+  margin-top: 25px;
 height: auto;
 border-radius: 20px;
 border: 0;
 background-color: #F0F4F8;
 font-size: 19px
 }
+
+.chats-list-title{
+background-color: #F0F4F8 !important;
+color: gray;
+font-size: 11px;
+font-weight: 600;
+padding-top: 5px;
+padding-left: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: rgb(202, 202, 202);   
+}
+
+.type-chat-text-in-sm-chat-red{
+  position: absolute;
+  padding-left: 4px;
+  padding-right: 4px;
+  font-size: 10px;
+  background-color: red;
+  border-radius: 5px;
+  right: 20px;
+  bottom: 2px;
+  opacity: 0.5;
+  color:white
+}
+.type-chat-text-in-sm-chat-green{
+  position: absolute;
+  padding-left: 4px;
+  padding-right: 4px;
+  font-size: 10px;
+  background-color:green;
+  border-radius: 5px;
+  right: 20px;
+  bottom: 2px;
+  opacity: 0.5;
+  color:white
+}
+.title-user-list-button{
+color: darkslategray !important;;
+font-weight: 600 !important;;
+}
+

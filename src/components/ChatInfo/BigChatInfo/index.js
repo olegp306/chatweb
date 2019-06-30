@@ -66,7 +66,7 @@ export default  class BigChatInfo extends Component {
 
         <div className="btn-group pull-left">
           <button type="button" className="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-              <span className="glyphicon glyphicon-user"> {chatUsersCount}</span>
+              <span className="glyphicon glyphicon-user title-user-list-button"> {chatUsersCount}</span>
           </button>
           <div className="dropdown-menu slidedown user-dropdown-menu" >
             <UsersList
