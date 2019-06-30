@@ -46,25 +46,23 @@
   height: 550px;
   padding-right: 10px;
   padding-left: 10px;
-  background-color: #F0F4F8;
+  background-color: #f0f4f8;
 }
 
 .chats-panel {
   margin-bottom: 5px !important ;
   border: 0 !important;
-  
 }
 
 .messages-panel {
   margin-bottom: 5px !important ;
-  border: 0px;
+  border: 0px !important;
 }
 /* 
 .chat-panel-heading {
   weight: 75px  !important;  
   background-color: #f0f4f8  !important;
 } */
-
 
 .no-padding-right {
   padding-right: 0px !important ;
@@ -269,15 +267,15 @@ ul.chat-list {
 }
 .small-chat-text {
   color: grey !important;
-  font-size:19px;
+  font-size: 19px;
 }
 
 .last-message-text-in-sm-chat {
   margin-top: 3px !important;
-  margin-left: 3px !important;  
+  margin-left: 3px !important;
   color: grey !important;
   font-weight: 400;
-  font-size:12px  !important;
+  font-size: 12px !important;
 }
 
 .message-picture {
@@ -350,15 +348,11 @@ ul.chat-list {
 }
 
 .small-chat-text-warning {
- 
-  font-size:19px;
-  /* border-bottom-color:rgb(206, 105, 105);
-  border-bottom-width: thin;
-  border-bottom-style: solid; */
+  font-size: 19px;
 }
 
 .search-chats-text {
-  height: 45px;
+  height: 45px !important;
   font-size: 28px !important;
   text-align: center !important;
   font-weight: 600 !important;
@@ -369,7 +363,7 @@ ul.chat-list {
   font-size: 28px !important;
   /* text-align: center !important; */
   font-weight: 600 !important;
-  background: linear-gradient(to right,#0079D4, #00B9F1);
+  background: linear-gradient(to right, #0079d4, #00b9f1) !important;
   background-color: #1f345cee !important;
   color: rgb(255, 255, 255) !important;
 }
@@ -379,10 +373,7 @@ ul.chat-list {
   text-align: center !important;
   font-weight: 600 !important;
   /* background-color: #4280f4ee  !important;  */
-  color: #4DB0E8 !important;
-}
-
-.chat-title-container {
+  color: #4db0e8 !important;
 }
 
 .chat-title-container:hover {
@@ -426,20 +417,20 @@ ul.chat-list {
 }
 
 .title-chat-name {
-  text-align: center;
-  padding-bottom: 4px;
+  text-align: center !important;
+  padding-bottom: 4px !important;
 }
 
 .title-chat-name-text {
-  font-size: 24px;
-  white-space: nowrap;
-  color:#2B2C33
+  font-size: 24px !important;
+  white-space: nowrap !important;
+  color: #2b2c33 !important;
 }
 
-.title-chat-list-text{
-  font-size: 20px;
-  white-space: nowrap;
-  color:#2B2C33
+.title-chat-list-text {
+  font-size: 20px !important;
+  white-space: nowrap !important;
+  color: #2b2c33 !important;
 }
 
 .chats-panel-heading {
@@ -454,40 +445,40 @@ ul.chat-list {
   height: 90px !important;
   /* background-color: #4280f4ee !important; */
   background-color: #ffffff !important;
-  border-color: #DADADC !important;
+  border-color: #dadadc !important;
   /* border:0px !important */
 }
 /* #326794 */
 
 .title-btn {
   color: #fff;
-  background-color: #F0F4F8;
+  background-color: #f0f4f8;
   /* border-color: #2e6da4; */
 }
 .new-message-textarea {
-  margin-top: 25px;
-height: auto;
-border-radius: 20px;
-border: 0;
-background-color: #F0F4F8;
-font-size: 19px
+  margin-top: 25px !important;
+  height: auto !important;
+  border-radius: 20px !important;
+  border: 0 !important;
+  background-color: #f0f4f8 !important;
+  font-size: 19px !important;
 }
 
-.chats-list-title{
-background-color: #F0F4F8 !important;
-color: gray;
-font-size: 11px;
-font-weight: 600;
-padding-top: 5px;
-padding-left: 10px;
+.chats-list-title {
+  background-color: #f0f4f8 !important;
+  color: gray;
+  font-size: 11px;
+  font-weight: 600;
+  padding-top: 5px;
+  padding-left: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: rgb(202, 202, 202);   
+  background-color: rgb(202, 202, 202);
 }
 
-.type-chat-text-in-sm-chat-red{
+.type-chat-text-in-sm-chat-red {
   position: absolute;
   padding-left: 4px;
   padding-right: 4px;
@@ -497,22 +488,27 @@ padding-left: 10px;
   right: 20px;
   bottom: 2px;
   opacity: 0.5;
-  color:white
+  color: white;
 }
-.type-chat-text-in-sm-chat-green{
+.type-chat-text-in-sm-chat-green {
   position: absolute;
   padding-left: 4px;
   padding-right: 4px;
   font-size: 10px;
-  background-color:green;
+  background-color: green;
   border-radius: 5px;
   right: 20px;
   bottom: 2px;
   opacity: 0.5;
-  color:white
+  color: white;
 }
-.title-user-list-button{
-color: darkslategray !important;;
-font-weight: 600 !important;;
+.title-user-list-button {
+  color: darkslategray !important;
+  font-weight: 600 !important;
 }
 
+.loading-messages-indicator {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
