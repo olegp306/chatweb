@@ -81,7 +81,7 @@
 }
 
 .search-input {
-  margin-top: -7px;
+   margin-top: 5px;
   /* padding-bottom: 5px !important; */
   margin-left: -10px !important;
   margin-right: -10px !important;
@@ -262,7 +262,7 @@ ul.chat-list {
   text-align: right;
   background: #dbf4fd !important; /* Цвет фона */
   padding: 15px !important; /* Поля вокруг текста */
-  margin-bottom: 10px !important; /* Отступ снизу */
+  margin-bottom: 1px !important; /* Отступ снизу */
   border-radius: 8px !important;
 }
 .small-chat-text {
@@ -417,24 +417,26 @@ ul.chat-list {
 }
 
 .title-chat-name {
-  text-align: center !important;
-  padding-bottom: 4px !important;
+  /* text-align: right !important; */
+  /* padding-top: -5px !important; */
+  padding-bottom: 10px !important;
 }
 
 .title-chat-name-text {
+
   font-size: 24px !important;
   white-space: nowrap !important;
   color: #2b2c33 !important;
 }
 
 .title-chat-list-text {
-  font-size: 20px !important;
+  font-size: 16px !important;
   white-space: nowrap !important;
   color: #2b2c33 !important;
 }
 
 .chats-panel-heading {
-  height: 90px !important;
+  height: 100px !important;
   /* background-color: #4280f4ee !important; */
   background-color: #f0f4f8 !important;
   border: 0 !important;
@@ -442,7 +444,7 @@ ul.chat-list {
 }
 
 .messages-panel-heading {
-  height: 90px !important;
+  height: 100px !important;
   /* background-color: #4280f4ee !important; */
   background-color: #ffffff !important;
   border-color: #dadadc !important;
@@ -505,10 +507,29 @@ ul.chat-list {
 .title-user-list-button {
   color: darkslategray !important;
   font-weight: 600 !important;
+  font-size: 15px;
 }
 
 .loading-messages-indicator {
   display: block !important;
   margin-left: auto !important;
   margin-right: auto !important;
+}
+
+.user-info-medium-container{
+  /* position: absolute;   */
+  margin-top:-7px;
+  top: 2px;
+  color: gray !important; 
+}
+.user-info-medium-container-autor-name{
+  vertical-align: center;
+  padding-left: 10px;
+  font-size: 14px;
+  color: #2e2e2e;
+  white-space:nowrap;
+  
+}
+.xs-padding-left {
+  padding-left: 0px !important;
 }
