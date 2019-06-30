@@ -1,25 +1,14 @@
 import React, { Component } from "react";
 import _ from "lodash";
 import Message from "../Message/Message";
+import Images from "../../theme/images";
 
 export default class MessagesList extends Component {
   //при инициализации 1 раз
   componentDidMount() {
     this.scrollTolastMessage();
   }
-
-  componentWillReceiveProps(nextProps) {
-    // if(!this.readNewMessagesTimerId){
-    //   clearTimeout (this.timerId);
-    // }
-    // this.setState({
-    //   users:nextProps.users,
-    //   messages:nextProps.messages,
-    //   currentUserId:nextProps.currentUserId,
-    //   unreadMessages:nextProps.unreadMessages,
-    //   messagesWasReadFn:nextProps.messagesWasReadFn
-    // });
-  }
+ 
   //каждый раз после изменения props после render
   componentDidUpdate(prevProps, prevState) {
     this.scrollTolastMessage();
@@ -38,7 +27,11 @@ export default class MessagesList extends Component {
     if (users.isFetching || messages.isFetching) {
       return (
         <div id="messagesList" className="panel-body">
-          <p>MessagesList Loading....</p>;
+          <img
+          className="loading-messages-indicator"
+            src={Images.loading64}
+            alt="идет отправка сообщения"            
+          />
         </div>
       );
     } else {
@@ -50,8 +43,7 @@ export default class MessagesList extends Component {
             </ul>
           </div>
         );
-      }
-      //console.log(this.props.data);
+      }      
 
       let messagesListView = new Array();
       let usersObjArr = {};
@@ -60,13 +52,9 @@ export default class MessagesList extends Component {
         usersObjArr[user.id] = user;
       }
 
-      //const usersObjArr=_.map(users.items, 'id');
-
+      
       for (let i = 0; i < messages.items.length; i++) {
         const message = messages.items[i];
-
-        //let isNewMessage = unreadMessages[message.id] ? true : false;
-
         let isMyMessage = message.userId == currentUserId ? true : false;
 
         messagesListView.push(
@@ -74,8 +62,7 @@ export default class MessagesList extends Component {
             key={message.id}
             message={message}
             author={usersObjArr[message.userId]}
-            isMyMessage={isMyMessage}
-            //isNewMessage={isNewMessage}
+            isMyMessage={isMyMessage}            
           />
         );
       }
