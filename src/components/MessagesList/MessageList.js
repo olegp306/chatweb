@@ -8,7 +8,7 @@ export default class MessagesList extends Component {
   componentDidMount() {
     this.scrollTolastMessage();
   }
- 
+
   //каждый раз после изменения props после render
   componentDidUpdate(prevProps, prevState) {
     this.scrollTolastMessage();
@@ -28,9 +28,9 @@ export default class MessagesList extends Component {
       return (
         <div id="messagesList" className="panel-body">
           <img
-          className="loading-messages-indicator"
+            className="loading-messages-indicator"
             src={Images.loading64}
-            alt="идет отправка сообщения"            
+            alt="идет отправка сообщения"
           />
         </div>
       );
@@ -43,7 +43,7 @@ export default class MessagesList extends Component {
             </ul>
           </div>
         );
-      }      
+      }
 
       let messagesListView = new Array();
       let usersObjArr = {};
@@ -52,17 +52,32 @@ export default class MessagesList extends Component {
         usersObjArr[user.id] = user;
       }
 
-      
       for (let i = 0; i < messages.items.length; i++) {
         const message = messages.items[i];
         let isMyMessage = message.userId == currentUserId ? true : false;
+        let showDateTime = true;
+
+        //let isInGroupOfMessagesByTime=messages.items[i];
+        if (i == 0 || i == messages.items.length - 1) {
+          showDateTime = false;
+        } else {
+          let prevMessageDateTime = new Date(
+            messages.items[i - 1].creationDate
+          );
+          let currentMessageDateTime = new Date(message.creationDate);
+          showDateTime =
+            currentMessageDateTime - prevMessageDateTime < 300000 //мин
+              ? false
+              : true;
+        }
 
         messagesListView.push(
           <Message
             key={message.id}
             message={message}
             author={usersObjArr[message.userId]}
-            isMyMessage={isMyMessage}            
+            isMyMessage={isMyMessage}
+            showDateTime={showDateTime}
           />
         );
       }
