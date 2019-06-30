@@ -47,11 +47,11 @@ class CurrentChatContainer extends Component {
         <div className="btn-group pull-right">
           <button
             type="button"
-            className="btn btn-default btn-xs dropdown-toggle"
+            className="btn btn-default btn-sm dropdown-toggle"
             data-toggle="dropdown"
           >
             <span
-              className="glyphicon glyphicon-plus"
+              className="glyphicon glyphicon-plus title-user-list-button"
               title="Добавить новых участников в чат"
             >
               Добавить
@@ -65,7 +65,7 @@ class CurrentChatContainer extends Component {
         <div className="btn-group  pull-left">
           <button
             type="button"
-            className="btn btn-default btn-xs dropdown-toggle"
+            className="btn btn-default btn-sm dropdown-toggle"
             data-toggle="dropdown"
           >
             <span className="glyphicon glyphicon-user title-user-list-button">
