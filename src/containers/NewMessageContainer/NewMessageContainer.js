@@ -42,9 +42,9 @@ class NewMessageContainer extends Component {
     let filesNames = "";
 
     for (let index = 0; index < filesAr.length; index++) {
-      const file = filesAr[index];      
+      const file = filesAr[index];
       filesNames =
-        filesNames + file.name + (index != filesAr.length -1? ", " : " .");
+        filesNames + file.name + (index != filesAr.length - 1 ? ", " : " .");
     }
 
     const { currentChat, changeNewMessage } = this.props;
@@ -87,18 +87,39 @@ class NewMessageContainer extends Component {
 
   render() {
     const { currentChat, newMessages, addMessage } = this.props;
-    if (!currentChat) return <div>загрузка начальных данных</div>;
+    if (!currentChat){
+    return(<div className="send-new-message-box row-fluid">
+      <div className="navbar-inner">
+        <div style={{ position: "relative" }}>
+          <img
+            className="add-file-icon"
+            src={Images.loading64gbgray}
+            alt="идет отправка сообщения"
+            //onClick={addMessage}
+          />
+          <textarea disabled
+              placeholder="Введите сообщение здесь.... (отправить Ctrl + Enter) "
+              rows={4}
+              className="form-control custom-control resize-none new-message-textarea"
+              rows="3"
+              //value={messageText}
+              onKeyPress={this.onKeyPressHandler}
+              onChange={this.onChangeNewMessage}
+            />
+        </div>
+      </div>
+    </div>)
+    }
 
     const messageText =
       currentChat != null && newMessages.items[currentChat.id]
         ? newMessages.items[currentChat.id].messageText
         : "";
-       
 
     return (
       <div className="send-new-message-box row-fluid">
         <div className="navbar-inner">
-          <div style={{ position: "relative" }}>           
+          <div style={{ position: "relative" }}>
             {messageText == "" ? (
               <div>
                 <input
@@ -118,20 +139,20 @@ class NewMessageContainer extends Component {
                   onClick={this.onClickChooseFile}
                 />
               </div>
-            ) : ((newMessages.isAdding==true) ?
+            ) : newMessages.isAdding == true ? (
               <img
                 className="add-file-icon"
                 src={Images.loading64gbgray}
                 alt="идет отправка сообщения"
                 //onClick={addMessage}
               />
-              :
+            ) : (
               <img
-              className="add-file-icon"
-              src={Images.sendMessage}
-              alt="отправить сообщение"
-              onClick={addMessage}
-            />
+                className="add-file-icon"
+                src={Images.sendMessage}
+                alt="отправить сообщение"
+                onClick={addMessage}
+              />
             )}
 
             <textarea
@@ -142,7 +163,7 @@ class NewMessageContainer extends Component {
               value={messageText}
               onKeyPress={this.onKeyPressHandler}
               onChange={this.onChangeNewMessage}
-            />           
+            />
           </div>
         </div>
       </div>
