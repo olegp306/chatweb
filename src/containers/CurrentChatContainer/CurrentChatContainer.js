@@ -68,7 +68,7 @@ class CurrentChatContainer extends Component {
             className="btn btn-default btn-xs dropdown-toggle"
             data-toggle="dropdown"
           >
-            <span className="glyphicon glyphicon-user">
+            <span className="glyphicon glyphicon-user title-user-list-button">
               {" "}
               {chatUsers.items.length} участников
             </span>
