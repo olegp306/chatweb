@@ -121,7 +121,7 @@ class NewMessageContainer extends Component {
             ) : ((newMessages.isAdding==true) ?
               <img
                 className="add-file-icon"
-                src={Images.loading64}
+                src={Images.loading64gbgray}
                 alt="идет отправка сообщения"
                 //onClick={addMessage}
               />

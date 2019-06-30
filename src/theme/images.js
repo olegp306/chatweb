@@ -14,8 +14,9 @@ const images = {
     checked: require('./images/checked.png'),
     upChecked: require('./images/unchecked.png'),
     loading64: require('./images/loading64.gif'),
+    loading64gbgray: require('./images/loading64gbgray.gif'),
     loading32: require('./images/loading32.gif'),
-   
+       
   }
   
   export default images;
