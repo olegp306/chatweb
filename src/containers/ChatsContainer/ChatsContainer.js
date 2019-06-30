@@ -85,10 +85,8 @@ class ChatsContainer extends Component {
           </div>
 
         </div>
-
+<div className="chats-list-title">Недавние чаты:</div>
         <div className="chat-list-panel-body">
-          {/* Поиск по чатам */}
-          
           <ChatsList
             chats={chats}
             filteredChatsItems={filteredChatsItems}
