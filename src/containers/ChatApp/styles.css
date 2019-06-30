@@ -35,9 +35,9 @@
 .panel-body {
   overflow-y: auto;
   overflow-x: hidden;
-  height: 450px;
-  padding-left: 5%;
-  padding-right: 5%;
+  height: 450px !important;
+  padding-left: 4% !important;
+  padding-right: 4% !important;
 }
 
 .chat-list-panel-body {
