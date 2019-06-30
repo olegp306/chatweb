@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import ChatsList from "../../components/ChatsList/ChatsList";
+import UserInfoMedium from "../../components/User/UserInfoMedium/UserInfoMedium";
 import {
   setChatsFilter,
   resetChatsFilter
@@ -22,7 +23,7 @@ const mapStateToProps = store => {
     chatApp: getChatApp(store),
     chats: getChats(store),
     chatsFilter: getChatsFilter(store),
-    currentUserId:getCurrentUserId(store)
+    currentUserId: getCurrentUserId(store)
   };
 };
 
@@ -44,48 +45,50 @@ class ChatsContainer extends Component {
     setChatsFilter(filter);
   };
 
-  refreshDataHandler=()=>{
-    const {currentUserId, fetchChatAppData }= this.props
+  refreshDataHandler = () => {
+    const { currentUserId, fetchChatAppData } = this.props;
     fetchChatAppData(currentUserId);
-  }
+  };
 
   render() {
     const { chats, chatApp, onClickChat, chatsFilter } = this.props;
-    const filterString=(chatsFilter!=null ? chatsFilter.toLowerCase():"");
-    let filteredChatsItems = chats.items.filter((item) => {
+    const filterString = chatsFilter != null ? chatsFilter.toLowerCase() : "";
+    let filteredChatsItems = chats.items.filter(item => {
       return (
         item.name.toLowerCase().indexOf(filterString) !== -1
         //item.name.toLowerCase().indexOf((chatsFilter!=null ? chatsFilter.toLowerCase():'')) !== -1
       );
     });
-    
 
     return (
       <div className="panel panel-primary chats-panel">
         <div className="panel-heading chats-panel-heading">
-
-        <div className="title-chat-name">
-          <button className="btn title-btn" type="button">
-            <h3
-              className="panel-title title-chat-list-text"
-              onClick={this.refreshDataHandler}
-            >
-              {" Чаты / Замечания"}
-            </h3>
-          </button>
-        </div>
-        <div className="input-group search-input">
+          <div >
+            <div className="user-info-medium-container" onClick={this.refreshDataHandler}>
+              <UserInfoMedium />
+            </div>
+            {/* <div>
+              <button className="btn title-btn" type="button">
+                <h3
+                  className="panel-title title-chat-list-text"
+                  onClick={this.refreshDataHandler}
+                >
+                  {" обновить чаты"}
+                </h3>
+              </button>
+            </div> */}
+          </div>
+          <div className="input-group search-input">
             <input
               type="text"
               className="form-control search-chats-text"
               placeholder="Поиск ..."
               onChange={this.onChangeFilter}
-              value={chatsFilter}            
+              value={chatsFilter}
             />
           </div>
-
         </div>
-<div className="chats-list-title">Недавние чаты:</div>
+        <div className="chats-list-title">Недавние чаты:</div>
         <div className="chat-list-panel-body">
           <ChatsList
             chats={chats}
