@@ -30,7 +30,7 @@ export default class SmallChat extends Component {
         <li
           className={
             isCurrentChat == true
-              ? chat.chatTypeId == chatOnWarningTypeId
+              ? chat.chatTypeId == chatTypes['2768909697000'].id
                 ? "active-warning"
                 : "active"
               : ""
@@ -38,7 +38,7 @@ export default class SmallChat extends Component {
         >
           <a
             className={
-              chat.chatTypeId == chatOnWarningTypeId
+              chat.chatTypeId == chatTypes['2768909697000'].id
                 ? "small-chat-text-warning "
                 : "small-chat-text"
             }
