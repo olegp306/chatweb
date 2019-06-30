@@ -59,7 +59,7 @@ export default class MessagesList extends Component {
 
         //let isInGroupOfMessagesByTime=messages.items[i];
         if (i == 0 || i == messages.items.length - 1) {
-          showDateTime = false;
+          showDateTime = true;
         } else {
           let prevMessageDateTime = new Date(
             messages.items[i - 1].creationDate
