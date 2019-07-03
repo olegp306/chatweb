@@ -192,22 +192,30 @@ ul.chat-list {
 }
 
 .unread-message-count {
+  padding-left: 3px;
+  padding-right: 3px;  
   float: right;
+  /* margin: 0px;
+  border: 1px; 
+  border-style: solid; */
+  border-radius: 15px;
+  background-color: #F44336;
+  color: white;
+
   font-weight: bold;
-  color: darkred;
   font-size: medium;
-  animation: fading 5s;
+  animation: fading 2s;
   animation-iteration-count: 1;
 }
 @keyframes fading {
   0% {
-    color: white;
+    background-color: white;
   }
   50% {
-    color: orangered;
+    background-color: rgb(255, 118, 118);
   }
   100% {
-    color: darkred;
+    background-color: #F44336;
   }
 }
 .hidden {
