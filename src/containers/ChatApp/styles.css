@@ -541,3 +541,16 @@ ul.chat-list {
 .xs-padding-left {
   padding-left: 0px !important;
 }
+
+.unread-message-title{  
+    margin-bottom: 12px;
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    /* font-weight: 600; */
+    color: #3393DD;
+    border-bottom: #3393DD;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+    padding-bottom: 2px;
+}

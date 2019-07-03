@@ -141,7 +141,7 @@ export default class Message extends Component {
         ? this.getUserPhoto(author.name)
         : this.getUserPhoto("неизвестный");
 
-    const extension = fileUrl.substring(fileUrl.lastIndexOf("."));
+    //const extension = fileUrl.substring(fileUrl.lastIndexOf("."));
 
     return (
       <div className={isNewMessage == true ? "message new-message" : "message"}>

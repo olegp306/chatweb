@@ -23,6 +23,7 @@ export default class MessagesList extends Component {
 
   render() {
     const { users, messages, unreadMessages, currentUserId } = this.props;
+    const unreadMessagesObj = _.keyBy(unreadMessages.items, "id");
 
     if (users.isFetching || messages.isFetching) {
       return (
@@ -52,10 +53,12 @@ export default class MessagesList extends Component {
         usersObjArr[user.id] = user;
       }
 
+      let isNewMessagesTitleShow = false;
       for (let i = 0; i < messages.items.length; i++) {
         const message = messages.items[i];
         let isMyMessage = message.userId == currentUserId ? true : false;
         let showDateTime = true;
+        let isNewMessage = unreadMessagesObj.hasOwnProperty([message.id]);
 
         //let isInGroupOfMessagesByTime=messages.items[i];
         if (i == 0 || i == messages.items.length - 1) {
@@ -71,6 +74,11 @@ export default class MessagesList extends Component {
               : true;
         }
 
+        if (!isNewMessagesTitleShow && isNewMessage) {
+          messagesListView.push(<span className="unread-message-title">Непрочитанные сообщения</span>);
+          isNewMessagesTitleShow = true;
+        }
+
         messagesListView.push(
           <Message
             key={message.id}
@@ -78,6 +86,7 @@ export default class MessagesList extends Component {
             author={usersObjArr[message.userId]}
             isMyMessage={isMyMessage}
             showDateTime={showDateTime}
+            isNewMessage={isNewMessage}
           />
         );
       }

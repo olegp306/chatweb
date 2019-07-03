@@ -7,7 +7,8 @@ import {
   getMessages,
   getCurrentUserId,
   getCurrentChat,
-  getChatApp
+  getChatApp,
+  getUnreadMessages
 } from "../../redux/selectors/index";
 
 const mapStateToProps = store => {
@@ -15,7 +16,7 @@ const mapStateToProps = store => {
     users: getUsers(store),
     messages: getMessages(store),
     currentUserId: getCurrentUserId(store),
-    // currentChat: getCurrentChat(store),
+    unreadMessages: getUnreadMessages(store),
     chatApp: getChatApp(store)
   };
 };
