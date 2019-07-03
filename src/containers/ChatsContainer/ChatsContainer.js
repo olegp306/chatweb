@@ -14,16 +14,19 @@ import {
   //getCurrentChat,
   getChatApp,
   getChatsFilter,
-  getCurrentUserId
+  getCurrentUserId,
+  getUnreadMessages
 } from "../../redux/selectors/index";
 import { connect } from "react-redux";
+import _ from "lodash";
 
 const mapStateToProps = store => {
   return {
     chatApp: getChatApp(store),
     chats: getChats(store),
     chatsFilter: getChatsFilter(store),
-    currentUserId: getCurrentUserId(store)
+    currentUserId: getCurrentUserId(store),
+    unreadMessages: getUnreadMessages(store)
   };
 };
 
@@ -50,8 +53,18 @@ class ChatsContainer extends Component {
     fetchChatAppData(currentUserId);
   };
 
+
   render() {
-    const { chats, chatApp, onClickChat, chatsFilter } = this.props;
+    const {
+      chats,
+      chatApp,
+      onClickChat,
+      chatsFilter,
+      unreadMessages
+    } = this.props;
+
+    const countOfUnreadMessages = _.groupBy(unreadMessages.items, "chatId");
+
     const filterString = chatsFilter != null ? chatsFilter.toLowerCase() : "";
     let filteredChatsItems = chats.items.filter(item => {
       return (
@@ -63,20 +76,13 @@ class ChatsContainer extends Component {
     return (
       <div className="panel panel-primary chats-panel">
         <div className="panel-heading chats-panel-heading">
-          <div >
-            <div className="user-info-medium-container" onClick={this.refreshDataHandler}>
+          <div>
+            <div
+              className="user-info-medium-container"
+              onClick={this.refreshDataHandler}
+            >
               <UserInfoMedium />
             </div>
-            {/* <div>
-              <button className="btn title-btn" type="button">
-                <h3
-                  className="panel-title title-chat-list-text"
-                  onClick={this.refreshDataHandler}
-                >
-                  {" обновить чаты"}
-                </h3>
-              </button>
-            </div> */}
           </div>
           <div className="input-group search-input">
             <input
@@ -92,6 +98,8 @@ class ChatsContainer extends Component {
         <div className="chat-list-panel-body">
           <ChatsList
             chats={chats}
+            countOfUnreadMessages={countOfUnreadMessages}
+            unreadMessages={unreadMessages}
             filteredChatsItems={filteredChatsItems}
             currentChat={chatApp.currentChat}
             onClickChat={onClickChat}

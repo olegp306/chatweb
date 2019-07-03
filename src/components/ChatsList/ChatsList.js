@@ -22,16 +22,15 @@ export default class ChatsList extends Component {
   };
 
   renderSortedChatsList = chatItems => {
-    const { currentChat, onClickChat } = this.props;
-    const unreadMessagesCount = null;
-
+    const { currentChat, onClickChat,countOfUnreadMessages } = this.props;
+   
     return chatItems.map((item,index) => {
       return (
         <SmallChat
           chat={item}
           key={index}
           isCurrentChat={item.id == currentChat.id}
-          unreadMessagesCount={unreadMessagesCount}
+          unreadMessagesCount={countOfUnreadMessages.hasOwnProperty([item.id]) ? countOfUnreadMessages[item.id].length: 0}
           onClickChat={onClickChat}
         />
       );
@@ -39,15 +38,14 @@ export default class ChatsList extends Component {
   };
 
   render() {
-    const { chats, currentChat, filteredChatsItems } = this.props;
+    const { chats, currentChat, filteredChatsItems,unreadMessages } = this.props;
 
-    if (chats.isFetching || currentChat == null) {
+    if (chats.isFetching || currentChat == null || unreadMessages.fetched==false) {
       return <p>ChatsList Loading....</p>;
     }
 
     const sorteredChats = this.sortChats(filteredChatsItems);
-    //const sorteredChats = chats.items
-
+    
     return (
       <div className="sidebar">
         <ul className="nav nav-sidebar chat-list">
