@@ -48,7 +48,7 @@ const reducer = (state = initialState, action) => {
       return state.merge({
         token,
         userId,
-        avatarUrl:avatarUrl.replace("/UserSettings/0/Docs/","/UserSettings/5564/Docs/"),
+        avatarUrl,
         contractorId,
         userName,
         roles,

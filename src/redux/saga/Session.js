@@ -22,13 +22,13 @@ function* loginSaga(action) {
     
     yield call(api.setAuthHeader, loginResponse.data.accessToken);
 
-    const { id, contractorId, employee, accessToken } = loginResponse.data;
+    const { id, contractorId, employee, accessToken,  } = loginResponse.data;
 
     const session = {
       token: accessToken,
       userId: employee.id,
       contractorId: contractorId,
-      avatarUrl: employee.avatar.url,
+      avatarUrl: employee.avatar.url.replace("/UserSettings/0/Docs/","/UserSettings/"+employee.instanceId+"/Docs/"),
       userName: employee.name,
       roles: employee.extInfo
     };
