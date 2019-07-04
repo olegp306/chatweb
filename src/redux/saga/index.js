@@ -8,6 +8,8 @@ import { FETCH_CHAT_USERS } from "../actions/chatUsers";
 import { FETCH_MESSAGES } from "../entities/messages/actions";
 import { ADD_MESSAGE } from "../entities/message/actions";
 
+import { UPDATE_MESSAGES_READ_STATUS } from "../entities/unReadMessages/actions";
+
 import { FETCH_APPCHAT_DATA, SET_CURRENT_CHAT } from "../actions/chatApp";
 import { ADD_SELECTED_USERS_TO_CHAT } from "../actions/usersListWithSelect";
 
@@ -19,9 +21,12 @@ import chatUsersSaga from "./chatUsers";
 import messagesSaga from "../entities/messages/saga";
 import messageSaga from "../entities/message/saga";
 
+import {updateReadMessagesStatus as updateReadMessagesStatusSaga} from "../entities/unReadMessages/saga"
+
 import addSelectesUsersToChat from "./usersListWithSelect"
 
 import { fetchChatAppDataSaga, setCurrentChatSaga } from "./chatApp";
+
 
 
 
@@ -41,6 +46,11 @@ function* sagaWatcher() {
   yield takeLatest(ADD_SELECTED_USERS_TO_CHAT, addSelectesUsersToChat);
 
   yield takeLatest(FETCH_CHAT_USERS, chatUsersSaga);
+
+  yield takeLatest(UPDATE_MESSAGES_READ_STATUS, updateReadMessagesStatusSaga);
+
+  
+  
 
   
   
