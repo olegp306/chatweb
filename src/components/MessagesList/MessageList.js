@@ -9,6 +9,27 @@ export default class MessagesList extends Component {
     this.scrollTolastMessage();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.readNewMessagesTimerId) {
+      clearTimeout(this.readNewMessagesTimerId);
+    }
+
+    const { unreadMessagesByChatId, currentChat, unreadMessages } = nextProps;
+
+    if (
+      currentChat != null &&
+      unreadMessages.isFetching != true &&
+      unreadMessages.fetched != false &&
+      unreadMessages.isUpdating != true &&
+      unreadMessagesByChatId.hasOwnProperty([currentChat.id]) &&
+      unreadMessagesByChatId[currentChat.id].length > 0
+    ) {
+      this.readNewMessagesTimerId = setTimeout(() => {
+        this.messagesWasRead();
+      }, 5000);
+    }
+  }
+
   //каждый раз после изменения props после render
   componentDidUpdate(prevProps, prevState) {
     this.scrollTolastMessage();
@@ -21,17 +42,40 @@ export default class MessagesList extends Component {
     }
   };
 
+  messagesWasRead = readedMessages => {
+    const { unreadMessagesByChatId, currentChat } = this.props;
+
+    if (
+      unreadMessagesByChatId.hasOwnProperty([currentChat.id]) &&
+      unreadMessagesByChatId[currentChat.id].length > 0
+    ) {
+      const { updateMessagesStatus } = this.props;
+      updateMessagesStatus();
+      // console.log("отправляем инфо о прочитанных");
+    }
+    console.log(readedMessages);
+  };
+
   render() {
-    const { users, messages, unreadMessages, currentUserId } = this.props;
+    const {
+      users,
+      currentChat,
+      messages,
+      unreadMessages,
+      currentUserId
+    } = this.props;
     const unreadMessagesObj = _.keyBy(unreadMessages.items, "id");
 
-    if (users.isFetching || messages.isFetching) {
+    if (
+      (users.isFetching || messages.isFetching || currentChat == null,
+      unreadMessages.fetched != true)
+    ) {
       return (
         <div id="messagesList" className="panel-body">
           <img
             className="loading-messages-indicator"
             src={Images.loading64}
-            alt="идет отправка сообщения"
+            alt="идет загрузка сообщении"
           />
         </div>
       );
@@ -60,7 +104,6 @@ export default class MessagesList extends Component {
         let showDateTime = true;
         let isNewMessage = unreadMessagesObj.hasOwnProperty([message.id]);
 
-        //let isInGroupOfMessagesByTime=messages.items[i];
         if (i == 0 || i == messages.items.length - 1) {
           showDateTime = true;
         } else {
@@ -75,7 +118,11 @@ export default class MessagesList extends Component {
         }
 
         if (!isNewMessagesTitleShow && isNewMessage) {
-          messagesListView.push(<span className="unread-message-title">Непрочитанные сообщения</span>);
+          messagesListView.push(
+            <span className="unread-message-title">
+              Непрочитанные сообщения
+            </span>
+          );
           isNewMessagesTitleShow = true;
         }
 
@@ -90,10 +137,6 @@ export default class MessagesList extends Component {
           />
         );
       }
-
-      // this.readNewMessagesTimerId = setTimeout(() => {
-      //   this.state.messagesWasReadFn(unreadMessages);
-      // }, 5000);
 
       return (
         <div id="messagesList" className="panel-body">

@@ -1,5 +1,5 @@
 // This reducer pattern defines the changes possible in its search state when the search API is called.
-import { Map ,List} from "immutable";
+import { Map, List } from "immutable";
 
 import {
   FETCH_MESSAGES,
@@ -14,7 +14,10 @@ const initialState = Map({
   items: List(),
   isFetching: false,
   fetched: false,
-  error: null
+  error: null,
+
+  isAdding: false,
+  added: false
 });
 
 export default function messagesReducer(state = initialState, action) {
@@ -37,8 +40,10 @@ export default function messagesReducer(state = initialState, action) {
       return state.merge({ isFetching: false, error: action.payload });
 
     case ADD_NEW_MESSAGE_IN_MESSAGES_LIST:
-        return state.updateIn(['items'] , items => items.push(action.payload.message) )
-       
+      return state.updateIn(["items"], items =>
+        items.push(action.payload.message)
+      );
+
     case RESET_MESSAGES:
       return { ...state, ...initialState };
 

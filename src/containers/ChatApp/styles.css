@@ -192,20 +192,18 @@ ul.chat-list {
 }
 
 .unread-message-count {
+  min-width: 23px;
   padding-left: 3px;
-  padding-right: 3px;  
+  padding-right: 3px;
   float: right;
-  /* margin: 0px;
-  border: 1px; 
-  border-style: solid; */
   border-radius: 15px;
   background-color: #F44336;
   color: white;
-
   font-weight: bold;
   font-size: medium;
   animation: fading 2s;
   animation-iteration-count: 1;
+  text-align: center;
 }
 @keyframes fading {
   0% {
@@ -546,11 +544,28 @@ ul.chat-list {
     margin-bottom: 12px;
     display: block;
     text-align: center;
-    font-size: 12px;
+    font-size: 1px;
     /* font-weight: 600; */
     color: #3393DD;
     border-bottom: #3393DD;
     border-bottom-style: solid;
     border-bottom-width: thin;
     padding-bottom: 2px;
+}
+
+
+.messages-list{
+  animation: fading 1s;
+  animation-iteration-count: 1;
+}
+@keyframes fading {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
 }
