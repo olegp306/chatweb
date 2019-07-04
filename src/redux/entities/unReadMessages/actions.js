@@ -19,7 +19,6 @@ export function isFetching() {
   };
 }
 
-
 export function fetchSuccess(payload) {
   return {
     type: FETCH_UNREAD_MESSAGES_SUCCESS,
@@ -35,6 +34,41 @@ export function fetchFail(error) {
     //currentPage: args.pageCount
   };  
 }
+
+
+export const UPDATE_MESSAGES_READ_STATUS = 'UPDATE_MESSAGES_READ_STATUS'
+export const IS_UPDATING_MESSAGES_READ_STATUS = 'IS_UPDATING_MESSAGES_READ_STATUS'
+export const UPDATED_MESSAGES_READ_STATUS = 'UPDATED_MESSAGES_READ_STATUS'
+export const UPDATE_MESSAGES_READ_STATUS_FAIL = 'UPDATE_MESSAGES_READ_STATUS_FAIL'
+
+
+export const update = () => {
+    return {
+        type: UPDATE_MESSAGES_READ_STATUS,        
+    }
+}
+
+export const isUpdating = () => {
+    return {
+        type: IS_UPDATING_MESSAGES_READ_STATUS,        
+    }
+}
+
+export const updateSuccess = (payload) => {
+    return {
+        type: UPDATED_MESSAGES_READ_STATUS,
+        payload:payload
+    }
+}
+
+export const updateFail = (error) => {
+    return {
+        type: UPDATE_MESSAGES_READ_STATUS_FAIL,
+        payload: error
+    }
+}
+
+
 
 
 export function reset() {

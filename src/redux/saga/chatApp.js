@@ -12,7 +12,7 @@ import usersSaga from "../entities/users/saga";
 import chatUsersSaga from "../saga/chatUsers";
 import messagesSaga from "../entities/messages/saga";
 
-import unReadmessagesSaga from "../entities/unReadMessages/saga";
+import {fetchUnReadMessagesSaga as unReadmessagesSaga} from "../entities/unReadMessages/saga";
 
 import _ from "lodash";
 
