@@ -53,3 +53,5 @@ export default{
 
 }
   
+export const INITIAL_UPDATE_TIME=10000;
+export const INITIAL_TIME_TO_READ_UNREAD_CHAT_MESSSAGE=3000;
