@@ -1,4 +1,4 @@
-import { takeLatest } from "redux-saga/effects";
+import { takeLatest ,call} from "redux-saga/effects";
 
 import { LOGIN_REQUEST, LOGIN_BY_USERID } from "../actions/Session";
 import { FETCH_CHATS } from "../entities/chats/actions";
@@ -10,7 +10,13 @@ import { ADD_MESSAGE } from "../entities/message/actions";
 
 import { UPDATE_MESSAGES_READ_STATUS } from "../entities/unReadMessages/actions";
 
-import { FETCH_APPCHAT_DATA, SET_CURRENT_CHAT } from "../actions/chatApp";
+import {
+  FETCH_APPCHAT_DATA,
+  SET_CURRENT_CHAT,
+  NEW_MESSAGE_RECIEVED,
+  NEW_CHAT_RECIEVED,
+  NEW_MESSAGE_STATUS_INFO_RECIEVED
+} from "../actions/chatApp";
 import { ADD_SELECTED_USERS_TO_CHAT } from "../actions/usersListWithSelect";
 
 import loginSaga from "./Session.js";
@@ -21,14 +27,11 @@ import chatUsersSaga from "./chatUsers";
 import messagesSaga from "../entities/messages/saga";
 import messageSaga from "../entities/message/saga";
 
-import {updateReadMessagesStatus as updateReadMessagesStatusSaga} from "../entities/unReadMessages/saga"
+import { updateReadMessagesStatus as updateReadMessagesStatusSaga } from "../entities/unReadMessages/saga";
 
-import addSelectesUsersToChat from "./usersListWithSelect"
+import addSelectesUsersToChat from "./usersListWithSelect";
 
 import { fetchChatAppDataSaga, setCurrentChatSaga } from "./chatApp";
-
-
-
 
 function* sagaWatcher() {
   yield takeLatest(LOGIN_REQUEST, loginSaga);
@@ -40,6 +43,10 @@ function* sagaWatcher() {
 
   yield takeLatest(FETCH_APPCHAT_DATA, fetchChatAppDataSaga);
   yield takeLatest(SET_CURRENT_CHAT, setCurrentChatSaga);
+  
+  yield takeLatest(NEW_MESSAGE_RECIEVED, newMessageRecievedSaga);
+  // yield takeLatest(NEW_CHAT_RECIEVED, setCurrentChatSaga);
+  // yield takeLatest(NEW_MESSAGE_STATUS_INFO_RECIEVED, setCurrentChatSaga);
 
   yield takeLatest(ADD_MESSAGE, messageSaga);
 
@@ -49,13 +56,6 @@ function* sagaWatcher() {
 
   yield takeLatest(UPDATE_MESSAGES_READ_STATUS, updateReadMessagesStatusSaga);
 
-  
-  
-
-  
-  
-
-  
   // yield takeLatest(FETCH_MESSAGES, messagesSaga)
   // yield [
   //   takeLatest(LOGIN_REQUEST, loginSaga),
@@ -64,6 +64,12 @@ function* sagaWatcher() {
 
   //   //takeLatest(FETCH_COMPANIES_REQUEST, fetchCompaniesSaga)
   // ];
+}
+
+function* newMessageRecievedSaga(action) {
+  yield call(messagesSaga);
+  yield call (updateReadMessagesStatusSaga);
+yield 
 }
 
 export default sagaWatcher;

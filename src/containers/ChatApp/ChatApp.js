@@ -10,6 +10,13 @@ import { connect } from "react-redux";
 import { login, loginByUserId } from "../../redux/actions/Session";
 import { fetch as fetchChats } from "../../redux/entities/chats/actions";
 import { fetch as fetchChatAppData } from "../../redux/actions/chatApp";
+import {
+  getCurrentUserId,
+  getChats,
+  getCurrentChat
+} from "../../redux/selectors";
+
+import { initializeSignalR } from "../../signalr/signalr";
 
 import api from "../../api";
 require("./styles.css");
@@ -18,6 +25,42 @@ class ChatApp extends Component {
   componentDidMount() {
     this.props.fetchChatAppData(this.props.chatparams.userId);
   }
+
+  // componentWillReceiveProps = nextProps => {
+   
+  // };
+
+  // сюда приходят данные с Сервера о новом сообщении
+  handleNewMessage = newMessage => {
+    console.log("handleNewMessage" + newMessage);
+  };
+
+  // сюда приходят данные с Сервера о новом чате
+  handleNewChat = newChat => null;
+
+  // сюда приходят данные с Сервера о новом статусе прочтения сообщении
+  handleNewMessageStatus = readMessages => {
+    if (readMessages) {
+      let newUnreadmessages = this.state.unreadMessages;
+
+      for (let i = 0; i < readMessages.length; i++) {
+        let item = readMessages[i];
+
+        if (
+          item.userId == this.state.currentUserId &&
+          newUnreadmessages[item.messageId]
+        ) {
+          let deleteresult = delete newUnreadmessages[item.messageId];
+          console.log(item.messageId);
+        }
+      }
+
+      this.setState({
+        unreadMessages: newUnreadmessages
+      });
+    }
+  };
+
   render() {
     return (
       <div className="bootstrap">
@@ -31,9 +74,9 @@ class ChatApp extends Component {
                 <CurrentChatContainer />
               </div>
               <MessagesContainer />
-            </div>         
-            <NewMessageContainer />         
-          </div>             
+            </div>
+            <NewMessageContainer />
+          </div>
         </div>
       </div>
     );
@@ -41,7 +84,9 @@ class ChatApp extends Component {
 }
 const mapStateToProps = store => {
   return {
-    currentChat: store.currentChat
+    currentChat: getCurrentChat(store),
+    currentUserId: getCurrentUserId(store),
+    chats: getChats(store)
   };
 };
 
