@@ -17,9 +17,7 @@ import {
       case SET_CURRENT_CHAT:
         return state.merge({
             currentChat: action.payload       
-        });
-    //   case RESET_CHATS:
-    //     return { ...state, ...initialState };
+        });  
               default:
         return state;
     }
