@@ -10,7 +10,7 @@ export const loginByUserId = (userId) => {
     return {
         type: LOGIN_BY_USERID,
         payload: {
-            userId, userId            
+            userId,             
         }
     }
 }
