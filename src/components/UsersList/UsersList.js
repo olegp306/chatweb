@@ -19,6 +19,7 @@ export default class UsersList extends Component {
     return usersItems.map((item, index) => {
       return (
         <UserSmall
+          key={item.id}
           user={item}          
         />
       );

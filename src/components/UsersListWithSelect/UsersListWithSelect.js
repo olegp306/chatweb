@@ -20,6 +20,7 @@ export default class UsersListWithSelect extends Component {
     return usersItems.map((item, index) => {
       return (
         <UserForAdd
+          key={item.id}
           user={item}
           isSelected={
             selectedUsers.get(item.id) && selectedUsers.get(item.id) == true
@@ -33,17 +34,13 @@ export default class UsersListWithSelect extends Component {
   };
 
   render() {
-    const {
-      users,      
-      addUserstoChat,
-      onChangeFilter
-    } = this.props;
+    const { users, addUserstoChat, onChangeFilter } = this.props;
 
     return (
       <div className="panel panel-primary chats-panel ">
         <div className="panel-heading add-users-panel-heading">
           <h3 className="panel-title">
-            Добавьте участников            
+            Добавьте участников
             <button
               type="button"
               className="btn btn-primary user-list-submit-selection"

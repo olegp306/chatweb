@@ -34,7 +34,7 @@ export default class Message extends Component {
 
   messageImageType = (message, fileUrl, smallFilePreviewUrl, isMyMessage) => {
     return (
-      <a class="fancybox" data-fancybox rel="group" href={fileUrl}>
+      <a className="fancybox" data-fancybox rel="group" href={fileUrl}>
         <div
           className={
             isMyMessage == true ? "right-side-message" : "left-side-message"
@@ -49,7 +49,7 @@ export default class Message extends Component {
   messageFileType = (message, fileUrl, smallFilePreviewUrl, isMyMessage) => {
     if (this.isFileCanBePreview(this.getFilename(fileUrl))) {
       return (
-        <a class="fancybox" data-fancybox rel="group" href={fileUrl}>
+        <a className="fancybox" data-fancybox rel="group" href={fileUrl}>
           <div
             className={
               isMyMessage == true
