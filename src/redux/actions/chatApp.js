@@ -6,6 +6,8 @@ export const SET_CURRENT_CHAT = "SET_CURRENT_CHAT";
 
 export const NEW_MESSAGE_RECIEVED = "NEW_MESSAGE_RECIEVED";
 export const NEW_CHAT_RECIEVED = "NEW_CHAT_RECIEVED";
+export const NEW_USERS_IN_CHAT_RECIEVED = "NEW_USERS_IN_CHAT_RECIEVED";
+
 export const NEW_MESSAGE_STATUS_INFO_RECIEVED = "NEW_MESSAGE_STATUS_INFO_RECIEVED";
 
 
@@ -56,6 +58,13 @@ export function newChatRecieved(chat) {
     payload: chat    
   };
 }
+export function newUsersInChatRecieved(users) {
+  return {
+    type: NEW_USERS_IN_CHAT_RECIEVED,
+    payload: users    
+  };
+}
+
 
 export function newMessageStatusRecieved(message) {
   return {

@@ -16,7 +16,7 @@ import messagesSaga from "../entities/messages/saga";
 
 import {fetchUnReadMessagesSaga as unReadmessagesSaga} from "../entities/unReadMessages/saga";
 
-import {initializeSignalR} from "../../signalr/signalr"
+
 import _ from "lodash";
 
 function* fetchChatAppDataSaga(action) {
@@ -25,8 +25,6 @@ function* fetchChatAppDataSaga(action) {
     yield* chatsSaga();
     yield* usersSaga();
     yield* setInitialCurrentChatSaga();
-
-    yield* initSignalrSaga();
     yield* messagesSaga();
     yield* unReadmessagesSaga();
     yield* chatUsersSaga();
@@ -60,29 +58,9 @@ function* setInitialCurrentChatSaga() {
   }
 }
 
-function* initSignalrSaga(){
-  const store = yield select();
-
-  const currentUserId = getCurrentUserId(store);
-  const chats = getChats(store);
-
-  if (
-    currentUserId != null &&
-    chats.fetched != false &&
-    chats.fetching != true
-  ) {
-    initializeSignalR(
-      currentUserId,
-      chats.items,
-      yield put(newMessageRecieved()), yield put(newChatRecieved()), yield put(newMessageStatusRecieved())
-      //newMessageRecieved,  newChatRecieved,  newMessageStatusRecieved
-    );
-  }
-}
 
 function* setCurrentChatSaga(chat) {
-  try {
-    //yield put(setCurrentChat(chat));
+  try {  
 
     yield* messagesSaga();
     yield* chatUsersSaga();

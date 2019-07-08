@@ -5,6 +5,8 @@ import CurrentChatContainer from "../CurrentChatContainer/CurrentChatContainer";
 import MessagesContainer from "../MessagesContainer/MessagesContainer";
 import NewMessageContainer from "../NewMessageContainer/NewMessageContainer";
 
+import SignalRContainer from "../SignalRContainer/SignalRContainer";
+
 import { connect } from "react-redux";
 
 import { login, loginByUserId } from "../../redux/actions/Session";
@@ -16,7 +18,7 @@ import {
   getCurrentChat
 } from "../../redux/selectors";
 
-import { initializeSignalR } from "../../signalr/signalr";
+import {} from "../../signalr/signalr";
 
 import api from "../../api";
 require("./styles.css");
@@ -26,44 +28,51 @@ class ChatApp extends Component {
     this.props.fetchChatAppData(this.props.chatparams.userId);
   }
 
-  // componentWillReceiveProps = nextProps => {
-   
+  // // componentWillReceiveProps = nextProps => {
+
+  // // };
+
+  // // сюда приходят данные с Сервера о новом сообщении
+  // handleNewMessage = newMessage => {
+  //   console.log("handleNewMessage" + newMessage);
   // };
 
-  // сюда приходят данные с Сервера о новом сообщении
-  handleNewMessage = newMessage => {
-    console.log("handleNewMessage" + newMessage);
-  };
+  // // сюда приходят данные с Сервера о новом чате
+  // handleNewChat = newChat => null;
 
-  // сюда приходят данные с Сервера о новом чате
-  handleNewChat = newChat => null;
+  // // сюда приходят данные с Сервера о новом статусе прочтения сообщении
+  // handleNewMessageStatus = readMessages => {
+  //   if (readMessages) {
+  //     let newUnreadmessages = this.state.unreadMessages;
 
-  // сюда приходят данные с Сервера о новом статусе прочтения сообщении
-  handleNewMessageStatus = readMessages => {
-    if (readMessages) {
-      let newUnreadmessages = this.state.unreadMessages;
+  //     for (let i = 0; i < readMessages.length; i++) {
+  //       let item = readMessages[i];
 
-      for (let i = 0; i < readMessages.length; i++) {
-        let item = readMessages[i];
+  //       if (
+  //         item.userId == this.state.currentUserId &&
+  //         newUnreadmessages[item.messageId]
+  //       ) {
+  //         let deleteresult = delete newUnreadmessages[item.messageId];
+  //         console.log(item.messageId);
+  //       }
+  //     }
 
-        if (
-          item.userId == this.state.currentUserId &&
-          newUnreadmessages[item.messageId]
-        ) {
-          let deleteresult = delete newUnreadmessages[item.messageId];
-          console.log(item.messageId);
-        }
-      }
-
-      this.setState({
-        unreadMessages: newUnreadmessages
-      });
-    }
+  //     this.setState({
+  //       unreadMessages: newUnreadmessages
+  //     });
+  //   }
+  // };
+  invokeSignalR = () => {
+    const { chats, currentUserId } = this.props;
+    if (chats.fetched == false || currentUserId == null) {return null;}
+  else {    
+    return <SignalRContainer />};
   };
 
   render() {
     return (
       <div className="bootstrap">
+        {this.invokeSignalR()}
         <div className="row">
           <div className="col-xs-3 no-padding-right">
             <ChatsContainer />
