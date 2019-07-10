@@ -127,7 +127,7 @@ class NewMessageContainer extends Component {
                   ref="fileUploader"
                   id="input-file-for-chat"
                   name="image"
-                  accept="image/*"
+                  // accept="image/*"                  
                   multiple
                   style={{ display: "none" }}
                   onChange={this.onChangeInputFile}
@@ -143,8 +143,7 @@ class NewMessageContainer extends Component {
               <img
                 className="add-file-icon"
                 src={Images.loading64gbgray}
-                alt="идет отправка сообщения"
-                //onClick={addMessage}
+                alt="идет отправка сообщения"               
               />
             ) : (
               <img
@@ -182,8 +181,7 @@ const mapDispatchToProps = dispatch => {
   return {
     changeNewMessage: message => dispatch(changeNewMessage(message)),
     cleanNewMessage: chatId => dispatch(cleanNewMessage(chatId)),
-    addMessage: () => dispatch(addMessageAction())
-    //postFileMessage: message => dispatch(postFileMessage(message))
+    addMessage: () => dispatch(addMessageAction()) 
   };
 };
 export default connect(
