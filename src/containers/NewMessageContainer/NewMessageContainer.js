@@ -12,7 +12,6 @@ import {
 import { add as addMessageAction } from "../../redux/entities/message/actions";
 
 import Images from "../../theme/images";
-import ImageTools from "../../utils/ImageTools";
 
 class NewMessageContainer extends Component {
   sendImageMessage = (file, blob) => {
@@ -87,28 +86,29 @@ class NewMessageContainer extends Component {
 
   render() {
     const { currentChat, newMessages, addMessage } = this.props;
-    if (!currentChat){
-    return(<div className="send-new-message-box row-fluid">
-      <div className="navbar-inner">
-        <div style={{ position: "relative" }}>
-          <img
-            className="add-file-icon"
-            src={Images.loading64gbgray}
-            alt="идет отправка сообщения"
-            //onClick={addMessage}
-          />
-          <textarea disabled
-              placeholder="Введите сообщение здесь.... (отправить Ctrl + Enter) "
-              rows={4}
-              className="form-control custom-control resize-none new-message-textarea"
-              rows="3"
-              //value={messageText}
-              onKeyPress={this.onKeyPressHandler}
-              onChange={this.onChangeNewMessage}
-            />
+    if (!currentChat) {
+      return (
+        <div className="send-new-message-box row-fluid">
+          <div className="navbar-inner">
+            <div style={{ position: "relative" }}>
+              <img
+                className="add-file-icon"
+                src={Images.loading64gbgray}
+                alt="идет отправка сообщения"
+              />
+              <textarea
+                disabled
+                placeholder="Введите сообщение здесь.... (отправить Ctrl + Enter) "
+                rows={4}
+                className="form-control custom-control resize-none new-message-textarea"
+                rows="3"
+                onKeyPress={this.onKeyPressHandler}
+                onChange={this.onChangeNewMessage}
+              />
+            </div>
+          </div>
         </div>
-      </div>
-    </div>)
+      );
     }
 
     const messageText =
@@ -127,7 +127,7 @@ class NewMessageContainer extends Component {
                   ref="fileUploader"
                   id="input-file-for-chat"
                   name="image"
-                  // accept="image/*"                  
+                  // accept="image/*"
                   multiple
                   style={{ display: "none" }}
                   onChange={this.onChangeInputFile}
@@ -143,7 +143,7 @@ class NewMessageContainer extends Component {
               <img
                 className="add-file-icon"
                 src={Images.loading64gbgray}
-                alt="идет отправка сообщения"               
+                alt="идет отправка сообщения"
               />
             ) : (
               <img
@@ -181,7 +181,7 @@ const mapDispatchToProps = dispatch => {
   return {
     changeNewMessage: message => dispatch(changeNewMessage(message)),
     cleanNewMessage: chatId => dispatch(cleanNewMessage(chatId)),
-    addMessage: () => dispatch(addMessageAction()) 
+    addMessage: () => dispatch(addMessageAction())
   };
 };
 export default connect(
