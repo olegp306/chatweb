@@ -120,7 +120,7 @@ function* addMessageSaga() {
 
           message = {
             chatId: chat.id,
-            text: "Изображение: "+ file.name,
+            text: file.name,
             type: newMessage.type,
             tempFrontId: new Date() + chat.id + newMessage.messageText,
             userId: userId,
@@ -141,7 +141,7 @@ function* addMessageSaga() {
 
           message = {
             chatId: chat.id,
-            text: "Файл: "+ file.name,
+            text: file.name,
             type: messageTypeId,
             tempFrontId: new Date() + chat.id + newMessage.messageText,
             userId: userId,
