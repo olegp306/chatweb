@@ -49,30 +49,43 @@ export default class Message extends Component {
   messageFileType = (message, fileUrl, smallFilePreviewUrl, isMyMessage) => {
     if (this.isFileCanBePreview(this.getFilename(fileUrl))) {
       return (
-        <a className="fancybox" data-fancybox rel="group" href={fileUrl}>
+        <a className="fancybox" data-fancybox rel="group" href={fileUrl} title={message.text}>
           <div
             className={
               isMyMessage == true
-                ? "my-message-text-block"
-                : "message-text-block"
+                ? "my-file-message-text-block"
+                : "file-message-text-block"
             }
           >
-            {message.text}
-            (скачать/посмотреть)
+            {message.text.slice(0, 15) + "..."}
+            <div>
+              <span className="file-extention-text">
+                {message.text.split(".").pop()}
+              </span>
+            </div>
+            <div className="file-message-gorizontal-deriver" />
+            <div className="load-text">скачать/посмотреть</div>
           </div>
         </a>
       );
     } else {
       return (
-        <a rel="group" href={fileUrl}>
+        <a rel="group" download href={fileUrl} title={message.text}>
           <div
             className={
               isMyMessage == true
-                ? "my-message-text-block"
-                : "message-text-block"
+                ? "my-file-message-text-block"
+                : "file-message-text-block"
             }
           >
-            {message.text}( скачать )
+            {message.text.slice(0, 15) + "..."}
+            <div>
+              <span className="file-extention-text">
+                {message.text.split(".").pop()}
+              </span>{" "}
+            </div>
+            <div className="file-message-gorizontal-deriver" />
+            <div className="load-text">скачать</div>
           </div>
         </a>
       );
@@ -116,14 +129,24 @@ export default class Message extends Component {
   };
 
   render() {
-    const { author, message, isMyMessage, isNewMessage,showDateTime } = this.props;
+    const {
+      author,
+      message,
+      isMyMessage,
+      isNewMessage,
+      showDateTime
+    } = this.props;
     const options = {
       weekday: "long",
       year: "numeric",
-      month:"long",
-      day:"numeric"}
- 
-    const messageDateTime = new Date(message.creationDate).toLocaleTimeString('ru-ru',options);
+      month: "long",
+      day: "numeric"
+    };
+
+    const messageDateTime = new Date(message.creationDate).toLocaleTimeString(
+      "ru-ru",
+      options
+    );
 
     const fileUrl =
       message.fileUrl != null ? message.fileUrl : Images.noPicture;
@@ -165,13 +188,18 @@ export default class Message extends Component {
               isMyMessage == true ? "my-message-author" : "message-author"
             }
           >
-            {(isMyMessage !=true ? (author ? author.name : "неизвестный"): "") + " "}  {showDateTime==true ? messageDateTime : ""}
+            {(isMyMessage != true
+              ? author
+                ? author.name
+                : "неизвестный"
+              : "") + " "}{" "}
+            {showDateTime == true ? messageDateTime : ""}
           </div>
           {this.renderMessage(
             message,
             fileUrl,
             smallFilePreviewUrl,
-            isMyMessage,
+            isMyMessage
           )}
         </div>
       </div>
