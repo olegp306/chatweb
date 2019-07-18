@@ -60,12 +60,6 @@ export const messageType = {
       name: "файл",      
     },
   };
-
-export default{
-  chatTypes,
-  messageType
-
-}
   
 export const INITIAL_UPDATE_TIME=10000;
 export const INITIAL_TIME_TO_READ_UNREAD_CHAT_MESSSAGE=3000;
