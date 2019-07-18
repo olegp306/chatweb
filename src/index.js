@@ -19,15 +19,17 @@ console.log("Запуск GermesChat index.js");
 // 2767267939000 Медведева
 //2767798896000 Лушин
 
-export const chatparams = {
-  userId: "39098772000"
+export const testChatparams = {
+  userId: "2767267939000"
 };
 
 function startfn  () {
   if (process.env.NODE_ENV === "production") {
+    // логика открытия в claris
   } else {
+    
     ReactDOM.render(
-      React.createElement(App, { chatparams: chatparams }, null),
+      React.createElement(App, { chatparams: testChatparams }, null),
       document.getElementById("germes-chat")
     );
   }
