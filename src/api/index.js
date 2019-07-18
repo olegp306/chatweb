@@ -1,23 +1,9 @@
 import axios from "axios";
-import { hubConnection } from "signalr-no-jquery";
-
-const CLIENT_ID = "kdwcc83defm8o7bkdwcc83defm8o7b";
-console.log("api loaded");
-
-const PRODUCTION_SIGNALR_URL = "http://localhost:5000";
-const DEVELOPMENT_SIGNALR_URL = "http://localhost:89/";
-
-// https://apitest.allwingroup.ru/germes/v1
-// https://service.allwingroup.ru:3652/germes/v1
-// http://192.168.1.67/ApiService/germes/v1
-
-const PRODUCTION_API_URL = "https://apitest.allwingroup.ru/germes/v1";
-const DEVELOPMENT_API_URL = "http://192.168.1.67/ApiService/germes/v1";
-
-const signalrUrl =
-  process.env.NODE_ENV === "production"
-    ? PRODUCTION_SIGNALR_URL
-    : DEVELOPMENT_SIGNALR_URL;
+import {
+  PRODUCTION_API_URL,
+  DEVELOPMENT_API_URL,
+  CLIENT_ID
+} from "../const/const";
 
 const apiUrl =
   process.env.NODE_ENV === "production"
@@ -25,71 +11,6 @@ const apiUrl =
     : DEVELOPMENT_API_URL;
 
 axios.defaults.baseURL = apiUrl;
-
-// Add a response interceptor
-// axios.interceptors.response.use(
-//   function(response) {
-//     // Do something with response data
-//     return response;
-//   },
-//   function(error) {
-//     // Do something with response error
-//     return Promise.reject(error);
-//   }
-// );
-
-export function initializeSignalR(
-  userId,
-  chats,
-  onNewMessage,
-  onNewChat,
-  onNewMessageReadStatus
-) {
-  const connection = hubConnection(signalrUrl);
-  connection.logging = true;
-
-  const hubProxy = connection.createHubProxy("ChatHub");
-
-  hubProxy.on("sendNewMessage", function(message) {
-    if (onNewMessage) onNewMessage(message);
-  });
-
-  hubProxy.on("sendNewChat", function(chat) {
-    if (onNewChat) onNewChat(chat);
-  });
-
-  hubProxy.on("sendNewMessageReadStatus", function(readMessages) {
-    if (onNewMessageReadStatus) onNewMessageReadStatus(readMessages);
-  });
-
-  let chatsIdArray = chats.map((item, index) => {
-    return { id: item.id };
-  });
-
-  connection
-    .start({ transport: "longPolling" })
-    .done(() => {
-      console.log(
-        "Now connected, user ID=" + userId + " connection ID=" + connection.id
-      );
-      hubProxy.invoke("connect", { id: userId }, chatsIdArray);
-    })
-    .fail(() => console.log("Could not connect user ID=" + userId));
-}
-
-const toAssociativeArray = (data, idFieldName) => {
-  if (!idFieldName) {
-    var idFieldName = "id";
-  }
-  let map = {};
-  //console.log('toAssociativeArr', data);
-  for (var i = 0, l = data.length; i < l; i++) {
-    let item = data[i];
-    map[item[idFieldName]] = item;
-  }
-  //console.log(map);
-  return map;
-};
 
 const checkStatus = response => {
   if (response.status >= 200 && response.status < 300) {
@@ -160,22 +81,9 @@ const updateMessagesReadStatus = readMessages => {
 
 const postFile = file => {
   var bodyFormData = new FormData();
-  
-  bodyFormData.append('name', file.name)
-  bodyFormData.append('file', file)
 
-  // bodyFormData.append("file", {
-  //   uri: URL.createObjectURL(file),
-  //   type: "image/jpeg", // or photo.type
-  //   name: "file.name"
-  // });
-
- // bodyFormData.append("file", {
-  //   name: file.name,
-  //   file: file,
-  //   // type: "image/jpeg", // or photo.type
-  //   // name: "fromWebApp.jpeg"
-  // });
+  bodyFormData.append("name", file.name);
+  bodyFormData.append("file", file);
 
   return axios.post("/files", bodyFormData, {
     headers: { "Content-Type": "multipart/form-data" }
@@ -195,6 +103,5 @@ export default {
   addMessage,
   fetchUnreadMessage,
   updateMessagesReadStatus,
-  toAssociativeArray,
   postFile
 };
