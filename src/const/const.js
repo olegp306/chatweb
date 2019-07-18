@@ -4,12 +4,12 @@ export const CLIENT_ID = "kdwcc83defm8o7bkdwcc83defm8o7b";
 // https://service.allwingroup.ru/germes/v1
 // http://192.168.1.67/ApiService/germes/v1
 export const PRODUCTION_API_URL = "https://apitest.allwingroup.ru/germes/v1";
-export const DEVELOPMENT_API_URL = "https://apitest.allwingroup.ru/germes/v1";
+export const DEVELOPMENT_API_URL = "https://service.allwingroup.ru/germes/v1";
 
 // http://pushtest.allwingroup.ru:3652/  тест
 // http://pushservice.allwingroup.ru:3652/" бой
 export const PRODUCTION_SIGNALR_URL = "http://pushtest.allwingroup.ru:3652/";
-export const DEVELOPMENT_SIGNALR_URL = "http://pushtest.allwingroup.ru:3652/";
+export const DEVELOPMENT_SIGNALR_URL = "http://pushservice.allwingroup.ru:3652/";
 
 
 export const chatTypes = {
