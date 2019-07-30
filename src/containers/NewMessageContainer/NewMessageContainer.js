@@ -65,7 +65,8 @@ class NewMessageContainer extends Component {
 
   onKeyPressHandler = event => {
     //отправляем как скайпе по Enter + CTRL
-    if (event.charCode == 13 && event.ctrlKey == true) {
+    // if (event.charCode == 13 && event.ctrlKey == true) {      
+    if (event.charCode == 13) {
       const { addMessage } = this.props;
 
       addMessage();
@@ -155,7 +156,7 @@ class NewMessageContainer extends Component {
             )}
 
             <textarea
-              placeholder="Введите сообщение здесь.... (отправить Ctrl + Enter) "
+              placeholder="Введите сообщение здесь.... (отправить Enter) "
               rows={4}
               className="form-control custom-control resize-none new-message-textarea"
               rows="3"
