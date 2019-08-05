@@ -90,6 +90,16 @@ const postFile = file => {
   });
 };
 
+const  updateChat=chat=>{
+  return axios.post("/chats/chat/"+chat.id, chat).then(checkStatus);
+}
+const  addChat=chat=>{
+  
+}
+const  removeChat=chat=>{
+  
+}
+
 export default {
   authenticateByUserId,
   login,
@@ -103,5 +113,9 @@ export default {
   addMessage,
   fetchUnreadMessage,
   updateMessagesReadStatus,
-  postFile
+  postFile,
+  updateChat,
+  addChat,
+  removeChat
+
 };
