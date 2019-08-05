@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getCurrentChat, getChatUsers } from "../../redux/selectors";
+import {
+  getCurrentChat,
+  getChatUsers,
+  getContractorId
+} from "../../redux/selectors";
 import UsersListWithSelectContainer from "../UsersListWithSelectContainer/UsersListWithSelectContainer";
 import UsersListContainer from "../UsersListContainer/UsersListContainer";
+import CloseChatButtonContainer from "../CloseChatButtonContainer/CloseChatButtonContainer";
 
 class CurrentChatContainer extends Component {
-  openRequestFomRnChat = () => {
+   openRequestFomRnChat = () => {
     const { currentChat } = this.props;
 
     if (window.Altsoft) {
@@ -22,14 +27,13 @@ class CurrentChatContainer extends Component {
   };
 
   render() {
-    const { currentChat, chatUsers } = this.props;
+    const { currentChat, chatUsers} = this.props;
 
     if (currentChat == null) {
       return <div>Загрузка иформации о чате</div>;
     }
     return (
       <div>
-        {/* <div> */}
         <div className="title-chat-name">
           <button className="btn title-btn" type="button">
             <h3
@@ -40,9 +44,6 @@ class CurrentChatContainer extends Component {
             </h3>
           </button>
         </div>
-        {/* </div> */}
-
-        {/* <div> */}
 
         <div className="btn-group pull-right">
           <button
@@ -61,6 +62,9 @@ class CurrentChatContainer extends Component {
             <UsersListWithSelectContainer />
           </div>
         </div>
+
+        <CloseChatButtonContainer />
+        
 
         <div className="btn-group  pull-left">
           <button
@@ -85,7 +89,8 @@ class CurrentChatContainer extends Component {
 const mapStateToProps = store => {
   return {
     currentChat: getCurrentChat(store),
-    chatUsers: getChatUsers(store)
+    chatUsers: getChatUsers(store),
+    contractorId: getContractorId(store)
   };
 };
 
