@@ -33,8 +33,8 @@ class CurrentChatContainer extends Component {
       return <div>Загрузка иформации о чате</div>;
     }
     return (
-      <div>
-        <div className="title-chat-name">
+      <div className={!currentChat.isOpen ? "": "current-chat-closed"}>
+        <div className="title-chat-name ">
           <button className="btn title-btn" type="button">
             <h3
               className="panel-title title-chat-name-text"
