@@ -86,8 +86,8 @@ function* updateCurrentChatSaga(action) {
     const draftMessage = {
       type: 2768777882000, //текст
       messageText: `Замечание ${(currentChat.isOpen
-        ? "открыто  "
-        : " закрыто  ") + session.userName}`,
+        ? "ОТКРЫТО  "
+        : " ЗАКРЫТО  ") + session.userName}`,
       chatId: currentChat.id
     };
     yield put(changeDraftMessage(draftMessage));
