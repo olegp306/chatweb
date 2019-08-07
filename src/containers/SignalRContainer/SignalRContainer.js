@@ -8,27 +8,6 @@ import {
   newMessageStatusRecieved
 } from "../../redux/actions/chatApp";
 
-class SignalRContainer extends React.PureComponent {
-  componentDidMount() {
-    const {
-      currentUserId,
-      chats,
-      newMessageRecieved,
-      newChatRecieved,
-      newMessageStatusRecieved
-    } = this.props;
-    console.log('SignalRContainer')
-    initializeSignalR(
-      currentUserId,
-      chats.items,
-      newMessageRecieved,
-      newChatRecieved,
-      newMessageStatusRecieved
-    );
-  }
-
-  render = () => null;
-}
 const mapDispatchToProps = dispatch => {
   return {
     newMessageRecieved: data => dispatch(newMessageRecieved(data)),
@@ -42,6 +21,30 @@ const mapStateToProps = store => {
     chats: getChats(store)
   };
 };
+
+class SignalRContainer extends React.PureComponent {
+  componentDidMount() {
+    const {
+      currentUserId,
+      chats,
+      newMessageRecieved,
+      newChatRecieved,
+      newMessageStatusRecieved
+    } = this.props;
+    
+    console.log("SignalRContainer");
+    initializeSignalR(
+      currentUserId,
+      chats.items,
+      newMessageRecieved,
+      newChatRecieved,
+      newMessageStatusRecieved
+    );
+  }
+
+  render = () => null;
+}
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
