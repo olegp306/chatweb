@@ -22,27 +22,13 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // addMessage: () => dispatch(addMessage()),
-    // changeDraftMessage: messageText =>
-    //   dispatch(changeDraftMessage(messageText)),
-    // updateChat: changedData => dispatch(updateChat(changedData)),
-    updateCurrentChat:changedData=>dispatch(updateCurrentChat(changedData)),
-    // setCurrentChat: chat => dispatch(setCurrentChat(chat))
+    updateCurrentChat: changedData => dispatch(updateCurrentChat(changedData))
   };
 };
 
 class CloseChatButtonContainer extends Component {
   toggleIsOpenChatHandler = () => {
-    const { changeDraftMessage, updateChat, currentChat,updateCurrentChat, session } = this.props;
-    console.log("closeChatHandler");
-
-    // changeDraftMessage({
-    //   type: 2768777882000, //текст
-    //   messageText: `Замечание ${(currentChat.isOpen
-    //     ? "открыто  "
-    //     : " закрыто  ") + session.userName}`,
-    //   chatId: currentChat.id
-    // });
+    const { currentChat, updateCurrentChat } = this.props;
 
     let changedData = currentChat;
     changedData.isOpen = !currentChat.isOpen;
