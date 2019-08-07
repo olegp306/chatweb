@@ -47,7 +47,7 @@ export default class SmallChat extends Component {
           >
             <div className={!chat.isOpen ? "" : "current-chat-closed"}>
               {chat.name}
-              {"chat.isOpen " + chat.isOpen }
+              {/* {"chat.isOpen " + chat.isOpen } */}
               <span
                 className={
                   unreadMessagesCount == 0 ? "hidden" : "unread-message-count"
