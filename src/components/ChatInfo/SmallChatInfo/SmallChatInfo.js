@@ -30,7 +30,7 @@ export default class SmallChat extends Component {
         <li
           className={
             isCurrentChat == true
-              ? chat.chatTypeId == chatTypes['2768909697000'].id
+              ? chat.chatTypeId == chatTypes["2768909697000"].id
                 ? "active-warning"
                 : "active"
               : ""
@@ -38,33 +38,38 @@ export default class SmallChat extends Component {
         >
           <a
             className={
-              chat.chatTypeId == chatTypes['2768909697000'].id
+              chat.chatTypeId == chatTypes["2768909697000"].id
                 ? "small-chat-text-warning "
                 : "small-chat-text"
             }
             href="#"
             onClick={() => onClickChat(chat)}
           >
-            {chat.name}
-            <span
-              className={
-                unreadMessagesCount == 0 ? "hidden" : "unread-message-count"
-              }
-            >
-              {unreadMessagesCount}
-            </span>
-            <div />
-
-            <span className="last-message-text-in-sm-chat">{lastMessage}</span>
-            <div>
+            <div className={!chat.isOpen ? "" : "current-chat-closed"}>
+              {chat.name}
+              {"chat.isOpen " + chat.isOpen }
               <span
                 className={
-                  "type-chat-text-in-sm-chat-" +
-                  chatTypes[chat.chatTypeId].color
+                  unreadMessagesCount == 0 ? "hidden" : "unread-message-count"
                 }
               >
-                {chatTypes[chat.chatTypeId].name}
+                {unreadMessagesCount}
               </span>
+              <div />
+
+              <span className="last-message-text-in-sm-chat">
+                {lastMessage}
+              </span>
+              <div>
+                <span
+                  className={
+                    "type-chat-text-in-sm-chat-" +
+                    chatTypes[chat.chatTypeId].color
+                  }
+                >
+                  {chatTypes[chat.chatTypeId].name}
+                </span>
+              </div>
             </div>
           </a>
         </li>
