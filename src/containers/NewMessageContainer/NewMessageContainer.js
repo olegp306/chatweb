@@ -165,7 +165,7 @@ class NewMessageContainer extends Component {
             <textarea
               placeholder={
                 currentChat && currentChat.isOpen
-                  ? " Чат закрыт, его может открыть только сотрудники Оллвин"
+                  ? " Чат по замечанию - ЗАКРЫТ, его может открыть только сотрудник Оллвин"
                   : "Введите сообщение здесь.... (отправить Ctrl + Enter) "
               }
               disabled={currentChat && currentChat.isOpen}
