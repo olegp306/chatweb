@@ -12,7 +12,7 @@ import { getChats, getCurrentUserId } from "../selectors";
 
 import loginSaga from "../saga/Session";
 
-import chatsSaga from "../entities/chats/saga";
+import { fetchChatsSaga as chatsSaga }from "../entities/chats/saga";
 
 import usersSaga from "../entities/users/saga";
 import chatUsersSaga from "../saga/chatUsers";
