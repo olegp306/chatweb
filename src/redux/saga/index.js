@@ -56,8 +56,6 @@ function* sagaWatcher() {
   yield takeLatest(FETCH_USERS, usersSaga);
   yield takeLatest(FETCH_MESSAGES, messagesSaga);
 
-  // yield takeLatest(UPDATE_DATA_VIEW_CHATS, updateViewChatsSaga);
-
   yield takeLatest(FETCH_APPCHAT_DATA, fetchChatAppDataSaga);
   yield takeLatest(SET_CURRENT_CHAT, setCurrentChatSaga);
 
