@@ -108,7 +108,7 @@ function* newChatRecievedSaga(action) {
   const chats = getChats(store);
 
   //есть ли такой чат, или обновить список чатов
-  let isChatExist = chats.items.some(
+  let isChatExist = !chats.items.some(
     element => element.id == action.payload.chatId
   );
 
