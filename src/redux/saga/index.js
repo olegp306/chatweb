@@ -1,7 +1,9 @@
-import { takeLatest, call, select } from "redux-saga/effects";
+import { takeLatest, call, select ,put} from "redux-saga/effects";
 
 import { LOGIN_REQUEST, LOGIN_BY_USERID } from "../actions/Session";
-import { FETCH_CHATS } from "../entities/chats/actions";
+import {
+  FETCH_CHATS, 
+} from "../entities/chats/actions";
 import { FETCH_USERS } from "../entities/users/actions";
 import { FETCH_CHAT_USERS } from "../actions/chatUsers";
 
@@ -23,7 +25,10 @@ import {
 import { ADD_SELECTED_USERS_TO_CHAT } from "../actions/usersListWithSelect";
 
 import loginSaga from "./Session.js";
-import chatsSaga from "../entities/chats/saga";
+import {
+  fetchChatsSaga as chatsSaga,
+  updateViewChatsSaga
+} from "../entities/chats/saga";
 
 import usersSaga from "../entities/users/saga";
 import { updateChatSaga } from "../entities/chat/saga";
@@ -36,8 +41,12 @@ import { fetchUnReadMessagesSaga } from "../entities/unReadMessages/saga";
 
 import addSelectesUsersToChat from "./usersListWithSelect";
 
-import { fetchChatAppDataSaga, setCurrentChatSaga , updateCurrentChatSaga} from "./chatApp";
-import { getCurrentChat } from "../selectors";
+import {
+  fetchChatAppDataSaga,
+  setCurrentChatSaga,
+  updateCurrentChatSaga
+} from "./chatApp";
+import { getCurrentChat, getChats } from "../selectors";
 
 function* sagaWatcher() {
   yield takeLatest(LOGIN_REQUEST, loginSaga);
@@ -47,11 +56,12 @@ function* sagaWatcher() {
   yield takeLatest(FETCH_USERS, usersSaga);
   yield takeLatest(FETCH_MESSAGES, messagesSaga);
 
+  // yield takeLatest(UPDATE_DATA_VIEW_CHATS, updateViewChatsSaga);
+
   yield takeLatest(FETCH_APPCHAT_DATA, fetchChatAppDataSaga);
   yield takeLatest(SET_CURRENT_CHAT, setCurrentChatSaga);
-  
+
   yield takeLatest(UPDATE_CURRENT_CHAT, updateCurrentChatSaga);
-  
 
   yield takeLatest(NEW_MESSAGE_RECIEVED, newMessageRecievedSaga);
   yield takeLatest(NEW_CHAT_RECIEVED, newChatRecievedSaga);
@@ -81,6 +91,7 @@ function* newMessageRecievedSaga(action) {
   } else {
     yield call(fetchUnReadMessagesSaga);
   }
+  yield call (updateViewChatsSaga,action);
 }
 
 function* newUsersInChatRecievedSaga(action) {
@@ -94,7 +105,18 @@ function* newUsersInChatRecievedSaga(action) {
 }
 
 function* newChatRecievedSaga(action) {
-  yield call(chatsSaga);
+  console.log("newChatRecievedSaga" + action.payload);
+  const store = yield select();
+  const chats = getChats(store);
+
+  //есть ли такой чат, или обновить список чатов
+  let isChatExist = chats.items.some(
+    element => element.id == action.payload.chatId
+  );
+
+  if (isChatExist) {
+    yield call(chatsSaga);
+  }
 }
 
 export default sagaWatcher;
