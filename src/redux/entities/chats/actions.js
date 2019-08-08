@@ -2,6 +2,9 @@ export const FETCH_CHATS = "FETCH_CHATS";
 export const IS_FETCHING_CHATS = "IS_FETCHING_CHATS";
 export const FETCH_CHATS_SUCCESS = "FETCH_CHATS_SUCCESS";
 export const FETCH_CHATS_FAIL = "FETCH_CHATS_FAIL";
+export const UPDATE_DATA_VIEW_CHATS = "UPDATE_DATA_VIEW_CHATS";
+
+
 
 export const RESET_CHATS = "RESET_CHATS";
 
@@ -41,3 +44,11 @@ export function reset() {
   };  
 }
 
+
+export function updateDataViewChats(payload) {
+  return {
+    type: UPDATE_DATA_VIEW_CHATS,
+    payload: payload
+    //currentPage: args.pageCount
+  };
+}
