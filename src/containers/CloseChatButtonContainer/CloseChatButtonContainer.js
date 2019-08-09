@@ -27,11 +27,12 @@ const mapDispatchToProps = dispatch => {
 };
 
 class CloseChatButtonContainer extends Component {
-  toggleIsOpenChatHandler = () => {
+  toggleisCloseChatHandler = () => {
     const { currentChat, updateCurrentChat } = this.props;
 
-    let changedData = currentChat;
-    changedData.isOpen = !currentChat.isOpen;
+    let changedData = {};
+    // changedData = currentChat
+    changedData.isClose = !currentChat.isClose;
 
     updateCurrentChat(changedData);
   };
@@ -46,19 +47,19 @@ class CloseChatButtonContainer extends Component {
             <button
               type="button"
               className="btn btn-default btn-sm"
-              onClick={this.toggleIsOpenChatHandler}
+              onClick={this.toggleisCloseChatHandler}
             >
               <span
                 className="title-close-chat-button "
                 title={
-                  !currentChat.isOpen
-                    ? " закрыть замечание"
-                    : "открыть замечание"
+                  currentChat.isClose
+                    ? "открыть замечание"
+                    : " закрыть замечание"
                 }
               >
-                {!currentChat.isOpen
-                  ? " закрыть замечание"
-                  : "открыть замечание"}
+                {currentChat.isClose
+                  ? "открыть замечание"
+                  : " закрыть замечание"}
               </span>
             </button>
           </div>

@@ -90,8 +90,9 @@ const postFile = file => {
   });
 };
 
-const  updateChat=chat=>{
-  return axios.post("/chats/chat/"+chat.id, chat).then(checkStatus);
+const  updateChat=updateParams=>{
+  //const updateParams ={ id:currentChat.id ,changeData:action.payload };
+  return axios.post("/chats/chat/"+updateParams.id, updateParams.changeData).then(checkStatus);
 }
 const  addChat=chat=>{
   

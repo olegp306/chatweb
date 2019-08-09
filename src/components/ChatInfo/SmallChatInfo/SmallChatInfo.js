@@ -45,9 +45,9 @@ export default class SmallChat extends Component {
             href="#"
             onClick={() => onClickChat(chat)}
           >
-            <div className={!chat.isOpen ? "" : "current-chat-closed"}>
+            <div className={!chat.isClose ? "" : "current-chat-closed close-small-chat-background"}>
               {chat.name}
-              {/* {"chat.isOpen " + chat.isOpen } */}
+              {/* {"chat.isClose " + chat.isClose } */}
               <span
                 className={
                   unreadMessagesCount == 0 ? "hidden" : "unread-message-count"

@@ -21,8 +21,9 @@ export function* updateChatSaga(action) {
   
   try {
     const store = yield select()
-    const currentChat = getCurrentChat(store);
-    action.payload.id=currentChat.id;
+    //const currentChat = getCurrentChat(store);
+
+    //action.payload.id=currentChat.id;
 
     const response = yield call(api.updateChat, action.payload);
     yield put(updated());

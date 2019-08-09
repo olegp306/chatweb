@@ -1,18 +1,18 @@
-import { put, select, call } from "redux-saga/effects";
+import { put, select, call ,take} from "redux-saga/effects";
 
 import { fetchSuccess, fetchFail, setCurrentChat } from "../actions/chatApp";
 
-import {
-  newMessageRecieved,
-  newChatRecieved,
-  newMessageStatusRecieved
-} from "../actions/chatApp";
+// import {
+//   newMessageRecieved,
+//   newChatRecieved,
+//   newMessageStatusRecieved
+// } from "../actions/chatApp";
 
-import { getChats, getCurrentUserId } from "../selectors";
+// import { getChats, getCurrentUserId } from "../selectors";
 
 import loginSaga from "../saga/Session";
 
-import { fetchChatsSaga as chatsSaga }from "../entities/chats/saga";
+import { fetchChatsSaga as chatsSaga } from "../entities/chats/saga";
 
 import usersSaga from "../entities/users/saga";
 import chatUsersSaga from "../saga/chatUsers";
@@ -23,7 +23,8 @@ import { changeNewMessage as changeDraftMessage } from "../../redux/actions/newM
 import { add as addNewMessage } from "../entities/message/actions";
 
 import { updateCurrentChat } from "../actions/chatApp";
-import { getCurrentChat, getSession } from "../selectors";
+import { update as updateChat } from "../entities/chat/actions";
+import { getChats,getCurrentChat, getSession } from "../selectors";
 
 import _ from "lodash";
 
@@ -85,15 +86,23 @@ function* updateCurrentChatSaga(action) {
 
     const draftMessage = {
       type: 2768777882000, //текст
-      messageText: `Замечание ${(currentChat.isOpen
-        ? "ЗАКРЫТО  "
-        : "ОТКРЫТО   ") + session.userName}`,
+      messageText: `Замечание ${(currentChat.isClose
+        ? "ОТКРЫТО   "
+        : "ЗАКРЫТО ") + session.userName}`,
       chatId: currentChat.id
     };
     yield put(changeDraftMessage(draftMessage));
     yield put(addNewMessage());
-    const changedData = action.payload;
-    yield updateCurrentChat(changedData);
+
+    const updateParams ={ id:currentChat.id ,changeData:action.payload };
+    
+    yield put(updateChat(updateParams));
+
+    yield* chatsSaga();
+
+    yield* setInitialCurrentChatSaga();
+    // yield take(setCurrentChat(chatsObjAr[currentChat.id]));
+    
   } catch (error) {
     yield put(fetchFail(error));
   }

@@ -89,10 +89,10 @@ class NewMessageContainer extends Component {
     const { currentChat, newMessages, addMessage } = this.props;
     if (!currentChat) {
       return (
-        // {currentChat.isOpen ? "": "current-chat-closed"}
+        // {currentChat.isClose ? "": "current-chat-closed"}
         <div
           className={
-            currentChat && currentChat.isOpen
+            currentChat && currentChat.isClose
               ? "send-new-message-box row-fluid "
               : "send-new-message-box row-fluid current-chat-closed"
           }
@@ -164,11 +164,11 @@ class NewMessageContainer extends Component {
 
             <textarea
               placeholder={
-                currentChat && currentChat.isOpen
+                currentChat && currentChat.isClose
                   ? " Чат по замечанию - ЗАКРЫТ, его может открыть только сотрудник Оллвин"
                   : "Введите сообщение здесь.... (отправить Ctrl + Enter) "
               }
-              disabled={currentChat && currentChat.isOpen}
+              disabled={currentChat && currentChat.isClose}
               rows={4}
               className="form-control custom-control resize-none new-message-textarea"
               rows="3"

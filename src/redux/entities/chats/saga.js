@@ -29,14 +29,35 @@ function* updateViewChatsSaga(action) {
   for (let index = 0; index < chats.items.length; index++) {
     const element = chats.items[index];
     if (element.id === action.payload.chatId) {
-      chats.items[index].lastMessage = action.payload;
+      for (let prop in action.payload) {
+        //action.payload[prop];
+        chats.items[index][prop] = action.payload[prop];
+      }
+      //chats.items[index].lastMessage = action.payload;
     }
   }
   try {
-   yield put(updateDataViewChats(chats.items));
+    yield put(updateDataViewChats(chats.items));
   } catch (error) {
     console.log("error updateViewChatsSaga error:" + error);
   }
 }
 
-export { fetchChatsSaga, updateViewChatsSaga };
+function* updateLastMessageViewChatsSaga(action) {
+  const store = yield select();
+  const chats = getChats(store);
+
+  for (let index = 0; index < chats.items.length; index++) {
+    const element = chats.items[index];
+    if (element.id === action.payload.chatId) {
+      chats.items[index].lastMessage = action.payload;
+    }
+  }
+  try {
+    yield put(updateDataViewChats(chats.items));
+  } catch (error) {
+    console.log("error updateViewChatsSaga error:" + error);
+  }
+}
+
+export { fetchChatsSaga, updateLastMessageViewChatsSaga ,updateViewChatsSaga};

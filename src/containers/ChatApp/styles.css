@@ -632,3 +632,10 @@ ul.chat-list {
 .current-chat-closed {
   opacity: 0.5 !important;
 }
+
+.close-small-chat-background{
+  background: transparent url("../../theme/images/close.png") no-repeat
+  
+  scroll center center;
+  background-size:auto;
+}

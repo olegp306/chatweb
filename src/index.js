@@ -20,7 +20,7 @@ console.log("Запуск GermesChat index.js");
 //2767798896000 Лушин
 
 export const testChatparams = {
-  userId: "2767267939000"
+  userId: "2767798896000"
 };
 
 function startfn  () {

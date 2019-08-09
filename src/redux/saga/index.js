@@ -27,7 +27,7 @@ import { ADD_SELECTED_USERS_TO_CHAT } from "../actions/usersListWithSelect";
 import loginSaga from "./Session.js";
 import {
   fetchChatsSaga as chatsSaga,
-  updateViewChatsSaga
+  updateLastMessageViewChatsSaga as updateLastMessageViewChatsSaga
 } from "../entities/chats/saga";
 
 import usersSaga from "../entities/users/saga";
@@ -62,6 +62,7 @@ function* sagaWatcher() {
   yield takeLatest(UPDATE_CURRENT_CHAT, updateCurrentChatSaga);
 
   yield takeLatest(NEW_MESSAGE_RECIEVED, newMessageRecievedSaga);
+
   yield takeLatest(NEW_CHAT_RECIEVED, newChatRecievedSaga);
   yield takeLatest(NEW_USERS_IN_CHAT_RECIEVED, newUsersInChatRecievedSaga);
 
@@ -89,7 +90,7 @@ function* newMessageRecievedSaga(action) {
   } else {
     yield call(fetchUnReadMessagesSaga);
   }
-  yield call (updateViewChatsSaga,action);
+  yield call (updateLastMessageViewChatsSaga, action);
 }
 
 function* newUsersInChatRecievedSaga(action) {

@@ -15,9 +15,10 @@ export default function chatAppReducer(state = initialState, action) {
       return state.merge({
         currentChat: action.payload
       });
+
     case UPDATE_CURRENT_CHAT:
       return state.merge({
-        currentChat: action.payload
+        // currentChat: action.payload
       });
     default:
       return state;
