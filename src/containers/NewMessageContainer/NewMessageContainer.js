@@ -65,7 +65,8 @@ class NewMessageContainer extends Component {
 
   onKeyPressHandler = event => {
     //отправляем как скайпе по Enter + CTRL
-    if (event.charCode == 13 && event.ctrlKey == true) {
+    // if (event.charCode == 13 && event.ctrlKey == true) {
+    if (event.charCode == 13) {
       const { addMessage } = this.props;
 
       addMessage();
@@ -88,7 +89,14 @@ class NewMessageContainer extends Component {
     const { currentChat, newMessages, addMessage } = this.props;
     if (!currentChat) {
       return (
-        <div className="send-new-message-box row-fluid">
+        // {currentChat.isOpen ? "": "current-chat-closed"}
+        <div
+          className={
+            currentChat && currentChat.isOpen
+              ? "send-new-message-box row-fluid "
+              : "send-new-message-box row-fluid current-chat-closed"
+          }
+        >
           <div className="navbar-inner">
             <div style={{ position: "relative" }}>
               <img
@@ -155,7 +163,12 @@ class NewMessageContainer extends Component {
             )}
 
             <textarea
-              placeholder="Введите сообщение здесь.... (отправить Ctrl + Enter) "
+              placeholder={
+                currentChat && currentChat.isOpen
+                  ? " Чат по замечанию - ЗАКРЫТ, его может открыть только сотрудник Оллвин"
+                  : "Введите сообщение здесь.... (отправить Ctrl + Enter) "
+              }
+              disabled={currentChat && currentChat.isOpen}
               rows={4}
               className="form-control custom-control resize-none new-message-textarea"
               rows="3"

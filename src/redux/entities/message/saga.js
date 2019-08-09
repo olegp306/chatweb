@@ -9,8 +9,8 @@ import {
   addFail as addFailNewMessage
 } from "../../actions/newMessages";
 import { addNewMessageInMesssageList } from "../messages/actions";
-import ImageTools from "../../../utils/ImageTools";
 import imageCompression from "browser-image-compression";
+import { messageType } from "../../../const/const";
 
 import api from "../../../api";
 import {
@@ -29,10 +29,9 @@ function imageCompressionHandler(imageFile, options) {
     });
 }
 
-
 function getExtension(filename) {
-    var parts = filename.split('.');
-    return parts[parts.length - 1];
+  var parts = filename.split(".");
+  return parts[parts.length - 1];
 }
 
 function isImage(filename) {
@@ -74,7 +73,7 @@ function* addMessageSaga() {
           maxWidthOrHeight: 320,
           useWebWorker: true
         };
-        let message={};
+        let message = {};
 
         if (isImage(file.name)) {
           let smallCompressedBLob = yield call(
@@ -130,14 +129,14 @@ function* addMessageSaga() {
             fileUrl: responseBigImg.data[0].url,
             smallFilePreviewId: smallImgFileId,
             smallFilePreviewUrl: responseSmallImg.data[0].url
-          };         
-        }
-        else{ // файл
+          };
+        } else {
+          // файл
           const responseFile = yield call(api.postFile, file);
 
           const fileId = responseFile.data[0].id;
           const url = responseFile.data[0].url;
-          const messageTypeId=2768842251000 // файл
+          const messageTypeId = messageType["2768842251000"].id; // файл
 
           message = {
             chatId: chat.id,
@@ -148,7 +147,7 @@ function* addMessageSaga() {
             creationDate: new Date(),
             // fileId: fileId,
             fileId: fileId,
-            fileUrl: url,
+            fileUrl: url
             // smallFilePreviewId: responseFile.data[0].url
             // smallFilePreviewUrl: responseSmallImg.data[0].url
           };
@@ -158,7 +157,6 @@ function* addMessageSaga() {
 
         yield put(addSuccess(response.data));
         yield put(addNewMessageInMesssageList(message));
-
 
         // todo lastMessagein chat in chatsList
       }

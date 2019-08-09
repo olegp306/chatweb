@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import _ from "lodash";
 import Message from "../Message/Message";
 import Images from "../../theme/images";
-import INITIAL_TIME_TO_READ_UNREAD_CHAT_MESSSAGE from "../../const/const"
+import {INITIAL_TIME_TO_READ_UNREAD_CHAT_MESSSAGE} from "../../const/const"
 
 export default class MessagesList extends Component {
   //при инициализации 1 раз

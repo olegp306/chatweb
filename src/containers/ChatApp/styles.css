@@ -221,8 +221,7 @@ ul.chat-list {
 }
 
 .send-new-message-box {
-  /* padding-right: 15px; */
-  /* padding-left: 15px; */
+  margin: 15 px !important;
 }
 
 .chat-list-title {
@@ -491,6 +490,7 @@ ul.chat-list {
   /* border-color: #2e6da4; */
 }
 .new-message-textarea {
+  padding-right: 100px !important;
   margin-top: 25px !important;
   height: auto !important;
   border-radius: 20px !important;
@@ -538,6 +538,12 @@ ul.chat-list {
   color: white;
 }
 .title-user-list-button {
+  color: darkslategray !important;
+  font-weight: 600 !important;
+  font-size: 15px;
+}
+
+.title-close-chat-button {
   color: darkslategray !important;
   font-weight: 600 !important;
   font-size: 15px;
@@ -616,6 +622,13 @@ ul.chat-list {
 }
 
 .load-text:hover {
-  
   color: #9ea1a5;
+}
+
+.close-chat-button {
+  margin-right: 100px;
+}
+
+.current-chat-closed {
+  opacity: 0.5 !important;
 }

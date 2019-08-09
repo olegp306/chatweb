@@ -6,6 +6,7 @@ import messages from "../entities/messages/reducer";
 import unReadMessages from "../entities/unReadMessages/reducer";
 
 import message from "../entities/message/reducer";
+import chat from "../entities/chat/reducer";
 import users from "../entities/users/reducer";
 import chatUsers from "./chatUsers";
 import usersListWithSelect from "./usersListWithSelect";
@@ -18,7 +19,7 @@ import chatsFilter from "./chatsFilter";
 const root = combineReducers({
   session,
   chats,
-  //chat,
+  chat,
   users,
   chatUsers,
   usersListWithSelect,

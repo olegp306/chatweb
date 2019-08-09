@@ -27,7 +27,7 @@ export function initializeSignalR(
     if (onNewMessage) onNewMessage(message);
   });
 
-  hubProxy.on("sendNewChat", function(chat) {
+  hubProxy.on("sendNewChatUsers", function(chat) {
     if (onNewChat) onNewChat(chat);
   });
 
@@ -48,4 +48,9 @@ export function initializeSignalR(
       hubProxy.invoke("connect", { id: userId }, chatsIdArray);
     })
     .fail(() => console.log("Could not connect user ID=" + userId));
+}
+
+export function addNewChatConnetion(userId, chat, onNewMessage, onNewChat, onNewMessageReadStatus) {
+  const chats=[chat];  
+  initializeSignalR(userId, chats, onNewMessage, onNewChat, onNewMessageReadStatus) 
 }

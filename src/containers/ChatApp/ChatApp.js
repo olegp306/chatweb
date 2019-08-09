@@ -27,41 +27,6 @@ class ChatApp extends Component {
   componentDidMount() {
     this.props.fetchChatAppData(this.props.chatparams.userId);
   }
-
-  // // componentWillReceiveProps = nextProps => {
-
-  // // };
-
-  // // сюда приходят данные с Сервера о новом сообщении
-  // handleNewMessage = newMessage => {
-  //   console.log("handleNewMessage" + newMessage);
-  // };
-
-  // // сюда приходят данные с Сервера о новом чате
-  // handleNewChat = newChat => null;
-
-  // // сюда приходят данные с Сервера о новом статусе прочтения сообщении
-  // handleNewMessageStatus = readMessages => {
-  //   if (readMessages) {
-  //     let newUnreadmessages = this.state.unreadMessages;
-
-  //     for (let i = 0; i < readMessages.length; i++) {
-  //       let item = readMessages[i];
-
-  //       if (
-  //         item.userId == this.state.currentUserId &&
-  //         newUnreadmessages[item.messageId]
-  //       ) {
-  //         let deleteresult = delete newUnreadmessages[item.messageId];
-  //         console.log(item.messageId);
-  //       }
-  //     }
-
-  //     this.setState({
-  //       unreadMessages: newUnreadmessages
-  //     });
-  //   }
-  // };
   invokeSignalR = () => {
     const { chats, currentUserId } = this.props;
     if (chats.fetched == false || currentUserId == null) {return null;}

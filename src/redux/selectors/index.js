@@ -2,6 +2,8 @@ export const getSession = store => store.session.toJS();
 
 export const getCurrentUserId = store => store.session.get("userId");
 
+export const getContractorId = store => store.session.get("contractorId");
+
 export const getCurrentChat = store => store.chatApp.get("currentChat");
 
 export const getUsers = store => store.users.toJS();
