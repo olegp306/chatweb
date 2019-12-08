@@ -10,7 +10,7 @@ import UsersListContainer from "../UsersListContainer/UsersListContainer";
 import CloseChatButtonContainer from "../CloseChatButtonContainer/CloseChatButtonContainer";
 
 class CurrentChatContainer extends Component {
-   openRequestFomRnChat = () => {
+  openRequestFomRnChat = () => {
     const { currentChat } = this.props;
 
     if (window.Altsoft) {
@@ -27,14 +27,20 @@ class CurrentChatContainer extends Component {
   };
 
   render() {
-    const { currentChat, chatUsers} = this.props;
+    const { currentChat, chatUsers } = this.props;
 
     if (currentChat == null) {
       return <div>Загрузка иформации о чате</div>;
     }
     return (
-      <div >
-        <div className={currentChat.isClose ? "title-chat-name current-chat-closed": "title-chat-name"}>
+      <div>
+        <div
+          className={
+            currentChat.isClose
+              ? "title-chat-name current-chat-closed"
+              : "title-chat-name"
+          }
+        >
           <button className="btn title-btn" type="button">
             <h3
               className="panel-title title-chat-name-text"
@@ -44,27 +50,31 @@ class CurrentChatContainer extends Component {
             </h3>
           </button>
         </div>
-
-        <div className="btn-group pull-right">
-          <button
-            type="button"
-            className="btn btn-default btn-sm dropdown-toggle"
-            data-toggle="dropdown"
-          >
-            <span
-              className="glyphicon glyphicon-plus title-user-list-button"
-              title="Добавить новых участников в чат"
-            >
-              Добавить
-            </span>
-          </button>
-          <div className="dropdown-menu slidedown user-dropdown-menu">
-            <UsersListWithSelectContainer />
+        {currentChat.isClose ? (
+          <div className="btn-group pull-right">
+            <span className="close-text-in-sm-chat">{"закрыто"}</span>
           </div>
-        </div>
+        ) : (
+          <div className="btn-group pull-right">
+            <button
+              type="button"
+              className="btn btn-default btn-sm dropdown-toggle"
+              data-toggle="dropdown"
+            >
+              <span
+                className="glyphicon glyphicon-plus title-user-list-button"
+                title="Добавить новых участников в чат"
+              >
+                Добавить
+              </span>
+            </button>
+            <div className="dropdown-menu slidedown user-dropdown-menu">
+              <UsersListWithSelectContainer />
+            </div>
+          </div>
+        )}
 
         <CloseChatButtonContainer />
-        
 
         <div className="btn-group  pull-left">
           <button

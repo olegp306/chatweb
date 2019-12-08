@@ -630,12 +630,19 @@ ul.chat-list {
 }
 
 .current-chat-closed {
-  opacity: 0.5 !important;
+  opacity: 0.6 !important;
 }
 
 .close-small-chat-background{
-  background: transparent url("../../theme/images/close.png") no-repeat
+  background: transparent url("../../theme/images/closeSm.png") no-repeat
   
   scroll center center;
   background-size:auto;
+}
+
+.close-text-in-sm-chat {
+  font-size: 25px !important;
+  font-weight: 600 !important;
+  color : #353535 !important;
+
 }

@@ -45,7 +45,13 @@ export default class SmallChat extends Component {
             href="#"
             onClick={() => onClickChat(chat)}
           >
-            <div className={!chat.isClose ? "" : "current-chat-closed close-small-chat-background"}>
+            <div
+              className={
+                !chat.isClose
+                  ? ""
+                  : "current-chat-closed"
+              }
+            >
               {chat.name}
               {/* {"chat.isClose " + chat.isClose } */}
               <span
@@ -56,10 +62,14 @@ export default class SmallChat extends Component {
                 {unreadMessagesCount}
               </span>
               <div />
+              {chat.isClose ? (
+                <span className="close-text-in-sm-chat">{"закрыто"}</span>
+              ) : (
+                <span className="last-message-text-in-sm-chat">
+                  {lastMessage}
+                </span>
+              )}
 
-              <span className="last-message-text-in-sm-chat">
-                {lastMessage}
-              </span>
               <div>
                 <span
                   className={
